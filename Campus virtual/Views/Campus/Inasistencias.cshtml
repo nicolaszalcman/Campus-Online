@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Inasistencias";
+}
+@{ int anio = 0;
+    string division = "";
+    int contador = 0;
+}
+
+@{List<SelectListItem> listItems = new List<SelectListItem>(); }
+@model List<Campus_virtual.Models.Falta>
+@{
+    listItems.Add(new SelectListItem
+    {
+        Text = "Ausente"
+    });
+    listItems.Add(new SelectListItem
+    {
+        Text = "Tarde",
+    });
+}
+     }
+        <div class="container">
+            @using (Html.BeginForm("Inasistencias", "Campus", FormMethod.Post))
+            {
+                <h2>Inasistencias</h2>
+                <div class="form-inline" role="form">
+                    <div class="form-group">
+                        <label for="sel1">Seleccionar Año</label>
+                        <select name="" class="form-control">
+                            @{anio = 1;}
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+
+
+                    <div id="Division" class="form-group">
+                        <label for="sel1">Seleccionar Division</label>
+                        <select name="" class="form-control">
+
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                        </select>
+                    </div>
+                    <div id="materia" class="form-group">
+                        <label for="sel1">Seleccionar Materia</label>
+                        <select name="" class="form-control">
+                            @foreach (var materia in ViewBag.listamateria)
+                            {
+                                <option value="">@materia.Nombre</option>
+                            }
+                        </select>
+                    </div><br /><br />
+
+
+                </div>
+                <button type="submit" class="btn btn-default">Aceptar</button>
+                                }
+
+            @using (Html.BeginForm("CargarInasistencias", "Campus", FormMethod.Post))
+            {
+                <table class="table table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.listaalumnos)
+                        {
+                            <tr>
+                                <td>@item.idAlumno @item.Nombre</td>
+                                <td>@item.Apellido</td>
+
+                                <td>
+                                    @Html.DropDownListFor(x => x[contador].tipo, listItems, "Presente")
+                                    </td>
+                            </tr>
+                            
+                            @Html.HiddenFor(x => x[contador].idAlumno, new { id = "idAlumno", name="idAlumno", Value = item.idAlumno })
+                            @Html.HiddenFor(x=>x[contador].fecha, new { id = "fecha", name = "fecha", Value = DateTime.Now })
+
+                            contador++;
+                        }
+                    </tbody>
+                </table>
+                <input type="submit" class="btn btn-default" />
+            }
+        </div>

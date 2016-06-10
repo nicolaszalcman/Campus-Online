@@ -1,0 +1,23 @@
+﻿@using Campus_virtual.Models
+
+@{
+    ViewBag.Title = "Altasancion";
+}
+@using Campus_virtual.Models;
+@model Sancion
+
+
+@using (Html.BeginForm("Altasancion", "Campus", FormMethod.Post))
+{
+<p>Fecha</p>@Html.TextBoxFor(x=>x.fecha, new {@class = "form.control", Type = "date" })
+ <p>Descripcion:</p> @Html.TextAreaFor(x => x.motivo)<br />
+    
+
+         @Html.DropDownListFor(x => x.idAlumno, new SelectList(ViewBag.listaalumnos, "idAlumno", "nombre", "apellido"))      
+
+
+@Html.HiddenFor(x => x.IdSancion)<br />
+<input type="submit" name="Enviar" />
+}
+
+
