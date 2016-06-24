@@ -34,6 +34,9 @@ namespace Campus_virtual.Controllers
             ViewBag.listamateria = unaMateria.listarmateria();
             Alumno unAlumno = new Alumno();
             ViewBag.listaalumnos = unAlumno.ListarAlumnos();
+            Falta falta = new Falta();
+            falta.Cargar_Falta(faltas);
+            
             
 
 
