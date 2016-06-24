@@ -26,7 +26,9 @@ namespace Campus_virtual.Models
 
             while (rdr.Read())
             {
-                ListaDivisiones_X_año.Add()
+                string Letra;
+                Letra = rdr[0].ToString();
+                ListaDivisiones_X_año.Add(Letra);
             }
             rdr.Close();
             return ListaDivisiones_X_año;

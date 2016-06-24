@@ -24,8 +24,9 @@ namespace Campus_virtual.Controllers
             return View();
         }
         public ActionResult ActualizarAnio(int anio)
-        { 
-
+        {
+            Division unaDivision = new Division();
+            ViewBag.listardivisiones = unaDivision.ListarDivisiones_X_Anio(anio);
             return PartialView("_cboAnio");
         }
         [HttpPost]

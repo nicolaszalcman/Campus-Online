@@ -1,7 +1,9 @@
 ﻿<select name="" class="form-control">
-
-    <option value="A">A</option>
-    <option value="B">B</option>
-    <option value="C">C</option>
-    <option value="D">F</option>
+    @foreach (var item in ViewBag.listardivisiones)
+    {
+        <option >@item</option>
+    }
 </select>
+
+
+
