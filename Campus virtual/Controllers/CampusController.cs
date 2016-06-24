@@ -40,7 +40,7 @@ namespace Campus_virtual.Controllers
             
 
 
-            return View("Inasistecias");
+            return View("Inasistencias");
         }
         public ActionResult VerSancion(int idSancion)
         {

@@ -17,26 +17,28 @@ namespace Campus_virtual.Models
         
         public void Cargar_Falta(List<Falta> listaTraida)
         {
-            AbrirConexion conecxion = new AbrirConexion();
-            MySqlConnection conn = new MySqlConnection();
-            conn = conecxion.Conexion();
-            MySqlCommand con = conn.CreateCommand();
+          
             for (int i =0; i< listaTraida.Count; i++)
             {
                 if(listaTraida[i].tipo == "Ausente" || listaTraida[i].tipo == "Tarde")
                 {
-                    
-                    
-                    con.CommandText = "INSERT INTO Falta(Tipo,IdAlumno) VALUES(@tip, @Id)";
+
+                    AbrirConexion conecxion = new AbrirConexion();
+                    MySqlConnection conn = new MySqlConnection();
+                    conn = conecxion.Conexion();
+                    MySqlCommand con = conn.CreateCommand();
+                    con.CommandText = "INSERT INTO Falta(Fecha,Tipo,IdAlumno) VALUES(@fech,@tip, @Id)";
+                    con.Parameters.Add("@fech", listaTraida[i].fecha);
                     con.Parameters.Add("@tip", listaTraida[i].tipo);
                     con.Parameters.Add("@Id", listaTraida[i].idAlumno);
-                    
-                    
+                    con.ExecuteNonQuery();
+                    conn.Close();
+
                 }
 
             }
-            con.ExecuteNonQuery();
-            conn.Close();
+            
+            
 
 
         }
