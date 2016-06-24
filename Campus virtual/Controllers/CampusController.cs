@@ -73,10 +73,8 @@ namespace Campus_virtual.Controllers
         [HttpPost]
         public ActionResult Altasancion(Sancion unasancion)
         {
-            Sancion unaSancion = new Sancion();
             unasancion.Cargar_Sancion(); 
-            ViewBag.listasanciones = unaSancion.ListarSanciones();
-            return View("Sanciones");
+            return RedirectToAction("Sanciones");
         }
 
 
