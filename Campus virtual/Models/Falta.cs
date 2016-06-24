@@ -13,9 +13,17 @@ namespace Campus_virtual.Models
         public DateTime fecha { get; set; }
         public string tipo { get; set; }
         public int idAlumno { get; set; }
-        public void Cargar_Falta()
-        {
 
+
+        public void Cargar_Falta(List<Falta> listaTraida)
+        {
+            for(int i =0; i> listaTraida.Count; i++)
+            {
+                string tipo;
+                tipo=listaTraida[i].tipo;
+
+
+            }
 
 
         }
