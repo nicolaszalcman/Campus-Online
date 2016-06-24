@@ -6,19 +6,19 @@
     int contador = 0;
 }
 <script type="text/javascript">
-$("#anio").change(function() {
-    $.ajax({
-        url: '/Campus/Inasistencias',
-        type: 'POST',
-        async: false,
-        dataType: 'int',
-        processData: false,
-        data: {
-            anio: $("#anio").val()
-        },
-        success: function (data) { }
+    $(document).ready(function () {
+        $("#anio").change(function () {
+            $.ajax({
+                url: '/Campus/ActualizarAnio',
+                //type: 'POST',
+                async: false,
+                data: {
+                    anio: $("#anio").val()
+                },
+                success: function (data) { $("#divAnio").html(data); }
+            });
+        });
     });
-});
 </script>
 @{List<SelectListItem> listItems = new List<SelectListItem>(); }
 @model List<Campus_virtual.Models.Falta>
@@ -34,7 +34,7 @@ $("#anio").change(function() {
 }
      }
         <div class="container">
-            @using (Html.BeginForm("Inasistencias", "Campus", FormMethod.Post))
+            @using (Html.BeginForm("Actualizaranio", "Campus", FormMethod.Post))
             {
                 <h2>Inasistencias</h2>
                 <div class="form-inline" role="form">
@@ -54,11 +54,13 @@ $("#anio").change(function() {
 
                     <div id="Division" class="form-group">
                         <label for="sel1">Seleccionar Division</label>
-                        <select name="" class="form-control">
+                        <div id="divAnio">
+                            <select name="" class="form-control">
 
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                        </select>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                            </select>
+                        </div>
                     </div>
                     <div id="materia" class="form-group">
                         <label for="sel1">Seleccionar Materia</label>

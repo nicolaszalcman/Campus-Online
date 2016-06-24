@@ -15,7 +15,7 @@ namespace Campus_virtual.Controllers
         {
             return View();
         }
-        public ActionResult Inasistencias(int anio, string division = null)
+        public ActionResult Inasistencias()
         {
             Division unaDivision = new Division();
             ViewBag.listadivision = unaDivision.listardivisiones();
@@ -24,6 +24,10 @@ namespace Campus_virtual.Controllers
             Alumno unAlumno = new Alumno();
             ViewBag.listaalumnos = unAlumno.ListarAlumnos();
             return View();
+        }
+        public ActionResult ActualizarAnio(int anio)
+        { 
+            return PartialView("_cboAnio");
         }
         [HttpPost]
         public ActionResult CargarInasistencias(List<Falta> faltas)
