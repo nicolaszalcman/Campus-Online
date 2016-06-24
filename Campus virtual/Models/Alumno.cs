@@ -35,7 +35,7 @@ namespace Campus_virtual.Models
             }
             rdr.Close();
             return listaAlumnos;
-            
+            conn.Close();
         }
 
 }
