@@ -82,5 +82,17 @@ namespace Campus_virtual.Models
             rdr.Close();
             return unaSancion;
         }
+        //esta funcion no esta bien
+        public void EliminarSacion(int IdSacion)
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            string sql = "delete sancion where IdSancion = @IdSancion";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@IdSancion", IdSacion);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
     }
 }
