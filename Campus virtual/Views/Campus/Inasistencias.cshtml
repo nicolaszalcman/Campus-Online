@@ -5,7 +5,21 @@
     string division = "";
     int contador = 0;
 }
-
+<script type="text/javascript">
+$("#anio").change(function() {
+    $.ajax({
+        url: '/Campus/Inasistencias',
+        type: 'POST',
+        async: false,
+        dataType: 'int',
+        processData: false,
+        data: {
+            anio: $("#anio").val()
+        },
+        success: function (data) { }
+    });
+});
+</script>
 @{List<SelectListItem> listItems = new List<SelectListItem>(); }
 @model List<Campus_virtual.Models.Falta>
 @{
@@ -26,7 +40,7 @@
                 <div class="form-inline" role="form">
                     <div class="form-group">
                         <label for="sel1">Seleccionar Año</label>
-                        <select name="" class="form-control">
+                        <select id="anio" name="anio" class="form-control">
                             @{anio = 1;}
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -59,7 +73,7 @@
 
                 </div>
                 <button type="submit" class="btn btn-default">Aceptar</button>
-                                }
+            }
 
             @using (Html.BeginForm("CargarInasistencias", "Campus", FormMethod.Post))
             {

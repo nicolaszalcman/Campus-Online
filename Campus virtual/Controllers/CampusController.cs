@@ -15,7 +15,7 @@ namespace Campus_virtual.Controllers
         {
             return View();
         }
-        public ActionResult Inasistencias()
+        public ActionResult Inasistencias(int anio, string division = null)
         {
             Division unaDivision = new Division();
             ViewBag.listadivision = unaDivision.listardivisiones();
