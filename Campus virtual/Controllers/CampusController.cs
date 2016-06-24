@@ -73,10 +73,20 @@ namespace Campus_virtual.Controllers
             return RedirectToAction("Sanciones");
         }
 
+        public ActionResult EliminarSancion(int IdSancion)
+        {
+            Sancion san = new Sancion();
+            san.EliminarSacion(IdSancion);
+            return View();
+        }
+        [HttpPost]
+        public ActionResult EliminarSancion ()
+        {
+            return RedirectToAction("Sanciones");
+        }
 
 
 
-    
     }
 
 }
