@@ -34,10 +34,13 @@ namespace Campus_virtual.Controllers
             ViewBag.listamateria = unaMateria.listarmateria();
             Alumno unAlumno = new Alumno();
             ViewBag.listaalumnos = unAlumno.ListarAlumnos();
+            Falta falta = new Falta();
+            falta.Cargar_Falta(faltas);
+            
             
 
 
-            return View("Inasistecias");
+            return View("Inasistencias");
         }
         public ActionResult VerSancion(int idSancion)
         {
@@ -56,18 +59,19 @@ namespace Campus_virtual.Controllers
 
         public ActionResult Altasancion()
         {
+            
             Alumno unAlumno = new Alumno();
             ViewBag.listaalumnos = unAlumno.ListarAlumnos();
-           
-          
+            
+
             return View();
         }
         [HttpPost]
         public ActionResult Altasancion(Sancion unasancion)
         {
             Sancion unaSancion = new Sancion();
+            unasancion.Cargar_Sancion(); 
             ViewBag.listasanciones = unaSancion.ListarSanciones();
-            unasancion.Cargar_Sancion();
             return View("Sanciones");
         }
 

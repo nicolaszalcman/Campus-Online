@@ -24,7 +24,7 @@ namespace Campus_virtual.Models
             string sql = "SELECT *  FROM alumno order by Apellido asc ";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
-
+            
             while (rdr.Read())
             {
                 Alumno unAlumno = new Alumno();
