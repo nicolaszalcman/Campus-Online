@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
-
 namespace Campus_virtual.Models
 {
     public class AbrirConexion
