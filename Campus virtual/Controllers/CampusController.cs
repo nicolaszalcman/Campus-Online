@@ -20,7 +20,7 @@ namespace Campus_virtual.Controllers
             Materia unaMateria = new Materia();
             ViewBag.listamateria = unaMateria.listarmateria();
             Alumno unAlumno = new Alumno();
-            ViewBag.listaalumnos = unAlumno.ListarAlumnos();
+           ViewBag.listaalumnos = unAlumno.Listar_Alumnos_Falta(año, division);
             return View();
         }
         public ActionResult ActualizarAnio(int anio)

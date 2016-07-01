@@ -38,5 +38,29 @@ namespace Campus_virtual.Models
             conn.Close();
         }
 
-}
+        public List<Alumno> Listar_Alumnos_Falta(int año, int division)
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            List<Alumno> listaAlumnos = new List<Alumno>();
+            string sql = "SELECT *  FROM alumno where IdDivision = division ";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                Alumno unAlumno = new Alumno();
+                unAlumno.idAlumno = Convert.ToInt32(rdr[0]);
+                unAlumno.Nombre = rdr[1].ToString();
+                unAlumno.Apellido = rdr[2].ToString();
+                listaAlumnos.Add(unAlumno);
+            }
+            rdr.Close();
+            return listaAlumnos;
+            conn.Close();
+
+        }
+
+    }
 }
