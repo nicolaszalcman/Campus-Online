@@ -88,7 +88,7 @@ namespace Campus_virtual.Models
             AbrirConexion abrirconexion = new AbrirConexion();
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
-            string sql = "delete sancion where IdSancion = @IdSancion";
+            string sql = "delete from sancion where IdSancion = @IdSancion";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@IdSancion", IdSacion);
             cmd.ExecuteNonQuery();

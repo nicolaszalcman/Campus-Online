@@ -10,7 +10,7 @@ namespace Campus_virtual.Controllers
     public class CampusController : Controller
     {
         //
-        // GET: /Campus/
+        // GET: /Campus/     
         public ActionResult Index()
         {
             return View();
@@ -39,9 +39,6 @@ namespace Campus_virtual.Controllers
             ViewBag.listaalumnos = unAlumno.ListarAlumnos();
             Falta falta = new Falta();
             falta.Cargar_Falta(faltas);
-            
-            
-
 
             return View("Inasistencias");
         }
@@ -80,7 +77,9 @@ namespace Campus_virtual.Controllers
         {
             Sancion san = new Sancion();
             san.EliminarSacion(IdSancion);
-            return View();
+            Sancion unaSancion = new Sancion();
+            ViewBag.listasanciones = unaSancion.ListarSanciones();
+            return View("Sanciones");
         }
         [HttpPost]
         public ActionResult EliminarSancion ()
@@ -88,7 +87,7 @@ namespace Campus_virtual.Controllers
             return RedirectToAction("Sanciones");
         }
 
-
+    
 
     }
 
