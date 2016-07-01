@@ -15,6 +15,7 @@ namespace Campus_virtual.Models
 
         public List<string> ListarDivisiones_X_Anio(int anio)
         {
+
             AbrirConexion abrirconexion = new AbrirConexion();
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
@@ -34,6 +35,7 @@ namespace Campus_virtual.Models
             return ListaDivisiones_X_año;
 
         }
+
 
     }
 }
