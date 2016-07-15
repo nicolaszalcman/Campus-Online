@@ -5,7 +5,38 @@
     string division = "";
     int contador = 0;
 }
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#anio").change(function () {
+            $.ajax({
+                url: '/Campus/ActualizarAnio',
+                //type: 'POST',
+                async: false,
+                data: {
+                    anio: $("#anio").val()
+                },
+                success: function (data) { $("#divAnio").html(data); }
+            });
+        });
+    });
 
+
+    function seleccionar_año() {
+        var lista = document.getElementById("anio");
+        var año = lista.options[lista.selectedIndex].value;
+        var año = lista.options[lista.selectedIndex].text;
+    }
+    function seleccionar_materia() {
+        var lista = document.getElementById("materia");
+        var materia = lista.options[lista.selectedIndex].value;
+        var materia = lista.options[lista.selectedIndex].text;
+    }
+    function seleccionar_division() {
+        var lista = document.getElementById("division");
+        var division = lista.options[lista.selectedIndex].value;
+        var division = lista.options[lista.selectedIndex].text;
+    }
+</script>
 @{List<SelectListItem> listItems = new List<SelectListItem>(); }
 @model List<Campus_virtual.Models.Falta>
 @{
@@ -20,35 +51,38 @@
 }
      }
         <div class="container">
-            @using (Html.BeginForm("Inasistencias", "Campus", FormMethod.Post))
+            @using (Html.BeginForm("Actualizaranio", "Campus", FormMethod.Post))
             {
                 <h2>Inasistencias</h2>
                 <div class="form-inline" role="form">
                     <div class="form-group">
                         <label for="sel1">Seleccionar Año</label>
-                        <select name="" class="form-control">
-                            @{anio = 1;}
-                            <option value="1">1</option>
+                        <select id="anio" name="anio" class="form-control" onclick="seleccionar_año()" >
+                            <option  value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
                             <option value="5">5</option>
                             <option value="6">6</option>
+                            
                         </select>
+                        
+                        
                     </div>
 
+                    
 
                     <div id="Division" class="form-group">
                         <label for="sel1">Seleccionar Division</label>
-                        <select name="" class="form-control">
+                        <div id="divAnio">
+                            <select name="division" id="division" class="form-control" onclick="seleccionar_division()">
 
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                        </select>
+                            </select>
+                        </div>
                     </div>
                     <div id="materia" class="form-group">
                         <label for="sel1">Seleccionar Materia</label>
-                        <select name="" class="form-control">
+                        <select name="materia" id="materia" class="form-control" onclick="seleccionar_materia()">
                             @foreach (var materia in ViewBag.listamateria)
                             {
                                 <option value="">@materia.Nombre</option>
@@ -59,7 +93,7 @@
 
                 </div>
                 <button type="submit" class="btn btn-default">Aceptar</button>
-                                }
+            }
 
             @using (Html.BeginForm("CargarInasistencias", "Campus", FormMethod.Post))
             {

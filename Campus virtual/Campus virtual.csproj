@@ -43,6 +43,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <Private>True</Private>
+      <HintPath>..\..\..\..\Downloads\mysql.data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -231,6 +232,8 @@
     <Content Include="Views\Campus\Sanciones.cshtml" />
     <Content Include="Views\Campus\Altasancion.cshtml" />
     <Content Include="Views\Campus\VerSancion.cshtml" />
+    <Content Include="Views\Campus\_CboAnio.cshtml" />
+    <Content Include="Views\Campus\_CboDivision.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
