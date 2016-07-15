@@ -23,6 +23,8 @@ namespace Campus_virtual.Models
             List<Alumno> listaAlumnos = new List<Alumno>();
             string sql = "SELECT *  FROM alumno order by Apellido asc ";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
+            
+           
             MySqlDataReader rdr = cmd.ExecuteReader();
             
             while (rdr.Read())
@@ -38,14 +40,15 @@ namespace Campus_virtual.Models
             conn.Close();
         }
 
-        public List<Alumno> Listar_Alumnos_Falta(int año, int division)
+        public List<Alumno> Listar_Alumnos_Falta(int año, string division)
         {
             AbrirConexion abrirconexion = new AbrirConexion();
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
             List<Alumno> listaAlumnos = new List<Alumno>();
-            string sql = "SELECT *  FROM alumno where IdDivision = division ";
+            string sql = "SELECT *  FROM alumno where IdDivision = @division ";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.Add("@division", division);
             MySqlDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())

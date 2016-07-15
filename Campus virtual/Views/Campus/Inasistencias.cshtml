@@ -76,6 +76,12 @@
                         <label for="sel1">Seleccionar Division</label>
                         <div id="divAnio">
                             <select name="division" id="division" class="form-control" onclick="seleccionar_division()">
+                                <select name="" class="form-control">
+                                    @foreach (var item in ViewBag.listardivisiones)
+                                    {
+                                        <option>@item </option>
+                                    }
+                                </select>
 
                             </select>
                         </div>
@@ -111,7 +117,7 @@
                         {
                             <tr>
                                 <td>@item.idAlumno @item.Nombre</td>
-                                <td>@item.Apellido</td>
+                                <td>@item.Apellido @item.IdMateria</td>
 
                                 <td>
                                     @Html.DropDownListFor(x => x[contador].tipo, listItems, "Presente")
@@ -120,6 +126,7 @@
                             
                             @Html.HiddenFor(x => x[contador].idAlumno, new { id = "idAlumno", name="idAlumno", Value = item.idAlumno })
                             @Html.HiddenFor(x=>x[contador].fecha, new { id = "fecha", name = "fecha", Value = DateTime.Now })
+                            @Html.HiddenFor(x => x[contador].IdMateria, new { id = "idMateria", name = "idMateria", Value = item.idMateria })
 
                             contador++;
                         }
