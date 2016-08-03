@@ -23,11 +23,11 @@ namespace Campus_virtual.Controllers
             //ViewBag.Listar_Alumnos_Falta = unAlumno.Listar_Alumnos_Falta();
             return View();
         }
-        public ActionResult ActualizarAnio(int anio)
+        public ActionResult ActualizarAnio(int anio, string Letra )
         {
             Division unaDivision = new Division();
             ViewBag.listardivisiones = unaDivision.ListarDivisiones_X_Anio(anio);
-            return PartialView("_cboAnio");
+            return View();
         }
         [HttpPost]
         public ActionResult CargarInasistencias(List<Falta> faltas)
