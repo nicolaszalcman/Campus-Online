@@ -26,7 +26,7 @@ namespace Campus_virtual.Controllers
         public ActionResult ActualizarAnio(int anio, string Letra )
         {
             Division unaDivision = new Division();
-            ViewBag.listardivisiones = unaDivision.ListarDivisiones_X_Anio(anio);
+            ViewBag.listardivisiones = unaDivision.ListarDivisiones_X_Anio(anio, Letra);
             return View();
         }
         [HttpPost]
