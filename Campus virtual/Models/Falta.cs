@@ -61,6 +61,31 @@ namespace Campus_virtual.Models
             conn.Close();
         }
 
+        public List<Falta> TraerFaltas()
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            List<Falta> listaFalta = new List<Falta>();
+            string sql = "selelct * from falta";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                Falta unafalta = new Falta();
+                unafalta.idFalta = Convert.ToInt32(rdr[0]);
+                unafalta.fecha = Convert.ToDateTime(rdr[1]);
+                unafalta.tipo = rdr[2].ToString();
+                unafalta.idAlumno= Convert.ToInt32(rdr[3]);
+                unafalta.IdMateria= Convert.ToInt32(rdr[4]);
+                listaFalta.Add(unafalta);
+            }
+            rdr.Close();
+            return listaFalta;
+            conn.Close();
+        }
         
     }
 }
