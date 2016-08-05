@@ -8,18 +8,7 @@
 
 
 
-@{List<SelectListItem> listItems = new List<SelectListItem>(); }
-@model List<Campus_virtual.Models.Falta>
-@{
-    listItems.Add(new SelectListItem
-    {
-        Text = "Ausente"
-    });
-    listItems.Add(new SelectListItem
-    {
-        Text = "Tarde",
-    });
-}
+
      }
         <div class="container">
             @using (Html.BeginForm("ActualizarAnio", "Campus", FormMethod.Post))
@@ -68,41 +57,5 @@
                 </div>
                 <button type="submit" class="btn btn-default">Aceptar</button>
             }
-            <!--This is a comment. Comments are not displayed in the browser
-            @* @using (Html.BeginForm("CargarInasistencias", "Campus", FormMethod.Post))
-            {
-                <table class="table table-hover">
 
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Tipo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in ViewBag.listaalumnos)
-                        {
-                            <tr>
-                                <td>@item.idAlumno @item.Nombre</td>
-                                <td>@item.Apellido @item.IdMateria</td>
-
-                                <td>
-                                    @Html.DropDownListFor(x => x[contador].tipo, listItems, "Presente")
-                                    </td>
-                            </tr>
-                            
-                            @Html.HiddenFor(x => x[contador].idAlumno, new { id = "idAlumno", name="idAlumno", Value = item.idAlumno })
-                            @Html.HiddenFor(x=>x[contador].fecha, new { id = "fecha", name = "fecha", Value = DateTime.Now })
-                            @Html.HiddenFor(x => x[contador].IdMateria, new { id = "idMateria", name = "idMateria", Value = item.idMateria })
-
-                            contador++;
-                        }
-                
-                    </tbody>
-                </table>
-                <input type="submit" class="btn btn-default" />
-            }
-                *@
-                -->
         </div>
