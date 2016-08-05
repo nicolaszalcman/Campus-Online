@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Mvc; 
 using Campus_virtual.Models;
 
 namespace Campus_virtual.Controllers
@@ -26,7 +26,7 @@ namespace Campus_virtual.Controllers
         public ActionResult ActualizarAnio(int anio, string Letra )
         {
             Division unaDivision = new Division();
-            ViewBag.listardivisiones = unaDivision.ListarDivisiones_X_Anio(anio, Letra);
+           // ViewBag.listardivisiones = unaDivision.ListarDivisiones_X_Anio(anio, Letra);
             return View();
         }
         [HttpPost]
