@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "ModificarFalta";
+}
+@using Campus_virtual.Models;
+
+@model Falta
+
+
+@using (Html.BeginForm("Altasancion", "Campus", FormMethod.Post))
+{
+    <p>Fecha</p>@Html.TextBoxFor(x => x.fecha , new { @class = "form.control", Type = "date" })
+
+}

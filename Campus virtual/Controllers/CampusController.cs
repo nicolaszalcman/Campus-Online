@@ -15,6 +15,11 @@ namespace Campus_virtual.Controllers
         {
             return View();
         }
+        public ActionResult ModificarFalta()
+        {
+            return View();
+        }
+
         public ActionResult Inasistencias()
         {
             Materia unaMateria = new Materia();

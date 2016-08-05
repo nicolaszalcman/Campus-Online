@@ -3,11 +3,11 @@
     string division = "";
     int contador = 0;
 }
-
-
-@{List<SelectListItem> listItems = new List<SelectListItem>(); }
 @model List<Campus_virtual.Models.Falta>
+
 @{
+    List<SelectListItem> listItems = new List<SelectListItem>();
+
     listItems.Add(new SelectListItem
     {
         Text = "Ausente"
