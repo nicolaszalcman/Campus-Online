@@ -46,10 +46,12 @@ namespace Campus_virtual.Models
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
             List<Alumno> listaAlumnos = new List<Alumno>();
-            string sql = "SELECT *  FROM alumno where IdDivision = @division ";
+            string sql = "SELECT * FROM alumno INNER JOIN division on alumno.IdDivision = division.IdDivision WHERE division.Año = @anio AND division.Division = @letra";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
-            cmd.Parameters.Add("@division", division);
+            cmd.Parameters.Add("@anio", año);
+            cmd.Parameters.Add("@letra", division);
             MySqlDataReader rdr = cmd.ExecuteReader();
+
 
             while (rdr.Read())
             {
