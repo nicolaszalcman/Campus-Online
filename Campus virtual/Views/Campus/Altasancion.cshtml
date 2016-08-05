@@ -9,6 +9,8 @@
 
 @using (Html.BeginForm("Altasancion", "Campus", FormMethod.Post))
 {
+
+
 <p>Fecha</p>@Html.TextBoxFor(x=>x.fecha, new {@class = "form.control", Type = "date" })
  <p>Descripcion:</p> @Html.TextAreaFor(x => x.motivo)<br />
     

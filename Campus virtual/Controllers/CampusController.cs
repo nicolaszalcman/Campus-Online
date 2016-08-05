@@ -56,8 +56,16 @@ namespace Campus_virtual.Controllers
 
         public ActionResult Sanciones()
         {
+            
+            Materia unaMateria = new Materia();
+            ViewBag.listamateria = unaMateria.listarmateria();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ListaSanciones(int anio, string Letra)
+        {
             Sancion unaSancion = new Sancion();
-            ViewBag.listasanciones = unaSancion.ListarSanciones();
+            ViewBag.listasanciones = unaSancion.ListarSanciones(anio, Letra);
             return View();
         }
 
@@ -81,9 +89,8 @@ namespace Campus_virtual.Controllers
         {
             Sancion san = new Sancion();
             san.EliminarSacion(IdSancion);
-            Sancion unaSancion = new Sancion();
-            ViewBag.listasanciones = unaSancion.ListarSanciones();
-            return View("Sanciones");
+           
+            return View("ListaSanciones");
         }
         [HttpPost]
         public ActionResult EliminarSancion ()
