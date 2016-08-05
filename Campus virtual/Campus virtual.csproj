@@ -236,6 +236,8 @@
     <Content Include="Views\Campus\_CboDivision.cshtml" />
     <Content Include="Views\Campus\ActualizarAnio.cshtml" />
     <Content Include="Views\Campus\ListaSanciones.cshtml" />
+    <Content Include="Views\Campus\ModificarFalta.cshtml" />
+    <Content Include="Views\Campus\ModificarFaltaCurso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
