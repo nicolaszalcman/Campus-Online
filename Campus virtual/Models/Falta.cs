@@ -13,7 +13,8 @@ namespace Campus_virtual.Models
         public DateTime fecha { get; set; }
         public string tipo { get; set; }
         public int idAlumno { get; set; }
-
+        public string apellido { get; set; }
+        public string nombre { get; set; }
         public int IdMateria { get; set; }
 
 
@@ -61,15 +62,16 @@ namespace Campus_virtual.Models
             conn.Close();
         }
 
-        public List<Falta> TraerFaltas()
+        public List<Falta> TraerFaltas_X_Fecha( DateTime Fecha, int idMateria, int idDivision )
         {
             AbrirConexion abrirconexion = new AbrirConexion();
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
             List<Falta> listaFalta = new List<Falta>();
-            string sql = "selelct * from falta";
+            string sql = "SELECT * FROM falta INNER JOIN alumno ON falta.IdAlumno = alumno.IdAlumno WHERE falta.Fecha = @ingfecha AND falta.IdMateria = @ingmat  ";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
-
+            cmd.Parameters.Add("@ingfecha", Fecha);
+            cmd.Parameters.Add("@ingmat", IdMateria);
             MySqlDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -78,8 +80,9 @@ namespace Campus_virtual.Models
                 unafalta.idFalta = Convert.ToInt32(rdr[0]);
                 unafalta.fecha = Convert.ToDateTime(rdr[1]);
                 unafalta.tipo = rdr[2].ToString();
-                unafalta.idAlumno= Convert.ToInt32(rdr[3]);
                 unafalta.IdMateria= Convert.ToInt32(rdr[4]);
+                unafalta.nombre = rdr[6].ToString();
+                unafalta.apellido = rdr[7].ToString();
                 listaFalta.Add(unafalta);
             }
             rdr.Close();

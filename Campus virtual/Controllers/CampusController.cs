@@ -17,9 +17,17 @@ namespace Campus_virtual.Controllers
         }
         public ActionResult ModificarFalta()
         {
+            Materia unaMateria = new Materia();
+            ViewBag.listamateria = unaMateria.listarmateria();
             return View();
         }
+        public ActionResult ModificarFaltaCurso(Falta unaFalta, int anio, string Letra, int IdMateria)
+        {
+            Falta objFalta = new Falta();
 
+            ViewBag.listaFaltas = objFalta.TraerFaltas_X_Fecha(unaFalta.fecha, IdMateria);
+            return View();
+        }
         public ActionResult Inasistencias()
         {
             Materia unaMateria = new Materia();
