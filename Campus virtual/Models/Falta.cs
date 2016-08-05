@@ -17,13 +17,16 @@ namespace Campus_virtual.Models
         public int IdMateria { get; set; }
 
 
-        public void Cargar_Falta(List<Falta> listaTraida)
+        public void Cargar_Falta(List<Falta> listaTraida, int materia)
         {
           
             for (int i =0; i< listaTraida.Count; i++)
             {
-                if(listaTraida[i].tipo == "Ausente" || listaTraida[i].tipo == "Tarde")
+                if(listaTraida[i].tipo == null)
                 {
+                    listaTraida[i].tipo = "Presente";
+
+                }
 
                     AbrirConexion conecxion = new AbrirConexion();
                     MySqlConnection conn = new MySqlConnection();
@@ -33,17 +36,29 @@ namespace Campus_virtual.Models
                     con.Parameters.Add("@fech", listaTraida[i].fecha);
                     con.Parameters.Add("@tip", listaTraida[i].tipo);
                     con.Parameters.Add("@Id", listaTraida[i].idAlumno);
-                    con.Parameters.Add("@Mat", listaTraida[i].IdMateria);
+                    con.Parameters.Add("@Mat", materia);
                     con.ExecuteNonQuery();
                     conn.Close();
 
-                }
+                
 
             }
             
             
 
 
+        }
+
+        public void EliminarFalta(int IdFalta)
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            string sql = "delete from sancion where IdFalta = @IdFalta";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@IdSancion", IdFalta);
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
 
         

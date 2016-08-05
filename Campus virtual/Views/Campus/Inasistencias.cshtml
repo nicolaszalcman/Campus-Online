@@ -45,17 +45,26 @@
                     </div>
                     <div id="materia" class="form-group">
                         <label for="sel1">Seleccionar Materia</label>
-                        <select name="materia" id="materia" class="form-control" >
+                        <select name="IdMateria" id="IdMateria" class="form-control" >
                             @foreach (var materia in ViewBag.listamateria)
                             {
-                                <option value="">@materia.Nombre</option>
+                                <option value="@materia.idMateria">@materia.Nombre</option>
                             }
                         </select>
                     </div><br /><br />
 
 
                 </div>
-                <button type="submit" class="btn btn-default">Aceptar</button>
+                <button type="submit" class="btn btn-default">Cargar</button>
+                
             }
+
+            @using (Html.BeginForm("ActualizarAnio", "Campus", FormMethod.Post))
+            {
+
+                <button type="submit" class="btn btn-default">Modificar</button>
+            }
+
+           
 
         </div>
