@@ -15,12 +15,20 @@ namespace Campus_virtual.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult ModificarInasistencias(List<Falta> unaFalta)
+        {
+            Falta unaFaltastatic = new Falta();
+            unaFaltastatic.Modificar_Falta(unaFalta);
+            return View();
+        }
         public ActionResult ModificarFalta()
         {
             Materia unaMateria = new Materia();
             ViewBag.listamateria = unaMateria.listarmateria();
             return View();
         }
+        [HttpPost]
         public ActionResult ModificarFaltaCurso(Falta unaFalta, int anio, string letra, int idMateria)
         {
             Falta objFalta = new Falta();
