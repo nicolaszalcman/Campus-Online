@@ -79,6 +79,9 @@ namespace Campus_virtual.Controllers
         {
             Sancion unaSancion = new Sancion();
             ViewBag.listasanciones = unaSancion.ListarSanciones(anio, Letra);
+            TempData.Add("anio", anio);
+            TempData.Add("letra", Letra);
+            TempData.Keep();
             return View();
         }
 
@@ -86,7 +89,7 @@ namespace Campus_virtual.Controllers
         {
             
             Alumno unAlumno = new Alumno();
-            ViewBag.listaalumnos = unAlumno.ListarAlumnos();
+            ViewBag.listaalumnos = unAlumno.ListarAlumnos((int) TempData["anio"], (string)TempData["letra"]);
             
 
             return View();
@@ -103,7 +106,7 @@ namespace Campus_virtual.Controllers
             Sancion san = new Sancion();
             san.EliminarSacion(IdSancion);
            
-            return View("ListaSanciones");
+            return View("Sanciones");
         }
         [HttpPost]
         public ActionResult EliminarSancion ()

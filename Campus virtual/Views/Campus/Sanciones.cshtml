@@ -3,8 +3,11 @@
     <div class="page-header">
         <h1>Sanciones</h1>
     </div>
+
+   
     
     @(Html.BeginForm("ListaSanciones", "Campus", FormMethod.Post))
+    
     
         <div class="form-inline" role="form">
             <div class="form-group">
@@ -26,7 +29,7 @@
 
             <div id="Division" class="form-group">
                 <div class="form-group">
-                    <label for="sel1">Seleccionar Año</label>
+                    <label for="sel1">Seleccionar Divicion</label>
                     <select id="anio" name="letra" class="form-control">
                         <option id="letra" value="A">A</option>
                         <option id="letra" value="B">B</option>
@@ -37,8 +40,11 @@
             </div>
             
         </div><br /><br />
+    
     <button type="submit" class="btn btn-default">Cargar</button>
+    
     
 
         </div>
+
     

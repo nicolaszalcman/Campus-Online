@@ -72,7 +72,7 @@ namespace Campus_virtual.Models
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.Add("@ingfecha", Fecha);
             cmd.Parameters.Add("@ingmat", IdMateria);
-            MySqlDataReader rdr = cmd.ExecuteReader();
+             MySqlDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
             {
