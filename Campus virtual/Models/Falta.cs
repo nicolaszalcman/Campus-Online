@@ -68,14 +68,11 @@ namespace Campus_virtual.Models
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
             List<Falta> listaFalta = new List<Falta>();
-            string sql = "SELECT * FROM `falta` INNER JOIN alumno ON falta.IdAlumno = alumno.IdAlumno INNER JOIN division ON alumno.IdDivision = division.IdDivision WHERE division.Division = @ingletra AND division.Año = @inganio AND falta.fecha = @ingfecha AND falta.IdMateria = @ingmat ";
+            string sql = "SELECT * FROM `falta` INNER JOIN alumno ON falta.IdAlumno = alumno.IdAlumno INNER JOIN division ON alumno.IdDivision = division.IdDivision WHERE division.Division = @ingletra AND division.Año = @inganio AND falta.fecha = @ingfecha AND falta.IdMateria = @ingidmat ";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
-            cmd.Parameters.Add("@ingletra", letra);
-            cmd.Parameters.Add("@inganio", division);
-            cmd.Parameters.Add("@ingfecha", Fecha.ToString("yyyyddMM"));
-            cmd.Parameters.Add("@ingmat", idMateria);
-            
-            MySqlDataReader rdr = cmd.ExecuteReader();
+            cmd.Parameters.Add("@ingfecha", Fecha);
+            cmd.Parameters.Add("@ingmat", IdMateria);
+             MySqlDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
             {
