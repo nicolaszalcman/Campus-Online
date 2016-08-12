@@ -24,9 +24,8 @@ namespace Campus_virtual.Controllers
         public ActionResult ModificarFaltaCurso(Falta unaFalta, int anio, string letra, int idMateria)
         {
             Falta objFalta = new Falta();
-
-            ViewBag.listaFaltas = objFalta.TraerFaltas_X_Fecha(unaFalta.fecha, anio,letra, idMateria);
-            return View();
+            List<Falta> listaFaltas = objFalta.TraerFaltas_X_Fecha(unaFalta.fecha, anio,letra, idMateria);
+            return View(listaFaltas);
         }
         public ActionResult Inasistencias()
         {
