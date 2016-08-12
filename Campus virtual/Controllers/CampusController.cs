@@ -21,11 +21,11 @@ namespace Campus_virtual.Controllers
             ViewBag.listamateria = unaMateria.listarmateria();
             return View();
         }
-        public ActionResult ModificarFaltaCurso(Falta unaFalta, int anio, string Letra, int IdMateria)
+        public ActionResult ModificarFaltaCurso(Falta unaFalta, int anio, string letra, int idMateria)
         {
             Falta objFalta = new Falta();
 
-            ViewBag.listaFaltas = objFalta.TraerFaltas_X_Fecha(unaFalta.fecha, IdMateria);
+            ViewBag.listaFaltas = objFalta.TraerFaltas_X_Fecha(unaFalta.fecha, anio,letra, idMateria);
             return View();
         }
         public ActionResult Inasistencias()
