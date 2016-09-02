@@ -46,32 +46,18 @@ namespace Campus_virtual.Controllers
         public ActionResult ActualizarAnio(Falta unaFalta, int anio, string Letra, int IdMateria )
         {
             Alumno unAlumno = new Alumno();
-            ViewBag.listaalumnos = unAlumno.Listar_Alumnos_Falta(anio, Letra);
+            
             Falta Unafalta = new Falta();
             Boolean falta;
             Division unaDivision = new Division();
             int divi;
             divi = unaDivision.TraerIdDivision( anio,  Letra);
-            List<Falta> lista;
-            lista = Unafalta.ListraFaltas();
-            falta = Unafalta.HayUnaFalta(unaFalta, divi, IdMateria, lista );
+            falta = Unafalta.HayUnaFalta(unaFalta, divi, IdMateria,  );
 
-            if(falta == true)
-            {
-                TempData.Add("Fecha", unaFalta);
-                TempData.Add("IdMateria", IdMateria);
-                TempData.Keep();
-                return View("ModificarFaltaCurso");
-            }
-            else
-            {
-                TempData.Add("Fecha", unaFalta);
-                TempData.Add("IdMateria", IdMateria);
-                TempData.Keep();
-                return View();
-            }
-            
-            
+            TempData.Add("Fecha", unaFalta);
+            TempData.Add("IdMateria",IdMateria);
+            TempData.Keep();
+            return View();
         }
         [HttpPost]
         public ActionResult CargarInasistencias(List<Falta> faltas)
@@ -79,12 +65,10 @@ namespace Campus_virtual.Controllers
 
             Materia unaMateria = new Materia();
             ViewBag.listamateria = unaMateria.listarmateria();
-
-           
            
 
             Falta falta = new Falta();
-            falta.Cargar_Falta(faltas, (int)TempData["IdMateria"]);
+            falta.Cargar_Falta((DateTime)TempData["Fecha"],faltas, (int)TempData["IdMateria"], (int)TempData["IdDivision"]);
 
             return View("Inasistencias");
         }
