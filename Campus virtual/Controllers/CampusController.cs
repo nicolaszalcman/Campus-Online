@@ -58,14 +58,14 @@ namespace Campus_virtual.Controllers
 
             if (falta == true)
             {
-                TempData.Add("Fecha", unaFalta);
+                TempData.Add("Fecha", unaFalta.fecha);
                 TempData.Add("IdMateria", IdMateria);
                 TempData.Keep();
                 return View("ModificarFaltaCurso");
             }
             else
             {
-                TempData.Add("Fecha", unaFalta);
+                TempData.Add("Fecha", unaFalta.fecha);
                 TempData.Add("IdMateria", IdMateria);
                 TempData.Keep();
                 return View();
