@@ -52,12 +52,26 @@ namespace Campus_virtual.Controllers
             Division unaDivision = new Division();
             int divi;
             divi = unaDivision.TraerIdDivision( anio,  Letra);
-            falta = Unafalta.HayUnaFalta(unaFalta, divi, IdMateria,  );
+            List<Falta> lista;
+            lista = Unafalta.ListraFaltas();
+            falta = Unafalta.HayUnaFalta(unaFalta, divi, IdMateria, lista );
 
-            TempData.Add("Fecha", unaFalta);
-            TempData.Add("IdMateria",IdMateria);
-            TempData.Keep();
-            return View();
+            if(falta == true)
+            {
+                TempData.Add("Fecha", unaFalta);
+                TempData.Add("IdMateria", IdMateria);
+                TempData.Keep();
+                return View("ModificarFaltaCurso");
+            }
+            else
+            {
+                TempData.Add("Fecha", unaFalta);
+                TempData.Add("IdMateria", IdMateria);
+                TempData.Keep();
+                return View();
+            }
+            
+            
         }
         [HttpPost]
         public ActionResult CargarInasistencias(List<Falta> faltas)

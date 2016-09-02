@@ -116,19 +116,19 @@ namespace Campus_virtual.Models
         {
             for (int i =0; i < listaFalta.Count(); i++)
             {
-                if(listaFalta[i].fecha != fecha)
+                if(listaFalta[i].fecha == fecha.fecha)
                 {
-                    if(listaFalta[i].IdDivision != IdDivision)
+                    if(listaFalta[i].IdDivision == IdDivision)
                     {
-                        if(listaFalta[i].IdMateria != IdMateria)
+                        if(listaFalta[i].IdMateria == IdMateria)
                         {
-                            return false;
+                            return true;
                         }
                     }
                 }
 
             }
-            return true;
+            return false;
 
             
         }
