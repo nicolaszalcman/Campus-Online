@@ -19,7 +19,7 @@ namespace Campus_virtual.Models
 
         public int IdDivision { get; set; }
 
-        public void Cargar_Falta(DateTime fecha, List<Falta> listaTraida, int materia)
+        public void Cargar_Falta(DateTime fecha, List<Falta> listaTraida, int materia, int idDivision)
         {
 
             for (int i = 0; i < listaTraida.Count; i++)
@@ -34,11 +34,12 @@ namespace Campus_virtual.Models
                 MySqlConnection conn = new MySqlConnection();
                 conn = conecxion.Conexion();
                 MySqlCommand con = conn.CreateCommand();
-                con.CommandText = "INSERT INTO Falta(Fecha,Tipo,IdAlumno, IdMateria) VALUES(@fech,@tip, @Id, @Mat)";
+                con.CommandText = "INSERT INTO Falta(Fecha,Tipo,IdAlumno, IdMateria, IdDivision) VALUES(@fech,@tip, @Id, @Mat, @iddiv)";
                 con.Parameters.Add("@fech", fecha.ToString("yyyyMMdd"));
                 con.Parameters.Add("@tip", listaTraida[i].tipo);
                 con.Parameters.Add("@Id", listaTraida[i].idAlumno);
                 con.Parameters.Add("@Mat", materia);
+                con.Parameters.Add("@iddiv", idDivision);
                 con.ExecuteNonQuery();
                 conn.Close();
 
@@ -112,7 +113,7 @@ namespace Campus_virtual.Models
             conn.Close();
         }
 
-        public Boolean HayUnaFalta(Falta fecha, int IdDivision, int IdMateria, List<Falta> listaFalta)
+        public Boolean HayUnaFalta(DateTime fecha, int IdDivision, int IdMateria, List<Falta> listaFalta)
         {
             for (int i =0; i < listaFalta.Count(); i++)
             {
@@ -131,34 +132,6 @@ namespace Campus_virtual.Models
             return true;
 
             
-        }
-
-        public List<Falta> ListraFaltas()
-        {
-            AbrirConexion abrirconexion = new AbrirConexion();
-            MySqlConnection conn = new MySqlConnection();
-            conn = abrirconexion.Conexion();
-            List<Falta> listaFalta = new List<Falta>();
-            string sql = "SELECT * FROM `falta`";
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-            
-
-            MySqlDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                Falta unafalta = new Falta();
-                unafalta.idFalta = Convert.ToInt32(rdr[0]);
-                unafalta.fecha = Convert.ToDateTime(rdr[1]);
-                unafalta.tipo = rdr[2].ToString();
-                unafalta.IdMateria = Convert.ToInt32(rdr[4]);
-                unafalta.nombre = rdr[6].ToString();
-                unafalta.apellido = rdr[7].ToString();
-                listaFalta.Add(unafalta);
-            }
-            rdr.Close();
-            return listaFalta;
-            conn.Close();
         }
         
     }
