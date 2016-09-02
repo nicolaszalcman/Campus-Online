@@ -58,14 +58,14 @@ namespace Campus_virtual.Controllers
 
             if (falta == true)
             {
-                TempData.Add("Fecha", unaFalta);
+                TempData.Add("Fecha", unaFalta.fecha);
                 TempData.Add("IdMateria", IdMateria);
                 TempData.Keep();
                 return View("ModificarFaltaCurso");
             }
             else
             {
-                TempData.Add("Fecha", unaFalta);
+                TempData.Add("Fecha", unaFalta.fecha);
                 TempData.Add("IdMateria", IdMateria);
                 TempData.Keep();
                 return View();
@@ -84,7 +84,7 @@ namespace Campus_virtual.Controllers
 
 
             Falta falta = new Falta();
-            falta.Cargar_Falta((DateTime)TempData["Fecha"]),(int)TempData["IdDivision"] , (int)TempData["IdMateria"],faltas );
+            falta.Cargar_Falta((DateTime)TempData["Fecha"], faltas, (int)TempData["IdMateria"],(int)TempData["IdDivision"]);
       
             return View("Inasistencias");
         }
