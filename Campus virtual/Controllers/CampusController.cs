@@ -32,7 +32,7 @@ namespace Campus_virtual.Controllers
         public ActionResult ModificarFaltaCurso(Falta unaFalta, int anio, string letra, int idMateria)
         {
             Falta objFalta = new Falta();
-            List<Falta> listaFaltas = objFalta.TraerFaltas_X_Fecha(unaFalta.fecha, anio,letra, idMateria);
+            List<Falta> listaFaltas = objFalta.TraerFaltas_X_Fecha(unaFalta.fecha, anio, letra, idMateria);
             return View(listaFaltas);
         }
         public ActionResult Inasistencias()
@@ -43,21 +43,35 @@ namespace Campus_virtual.Controllers
             //ViewBag.Listar_Alumnos_Falta = unAlumno.Listar_Alumnos_Falta();
             return View();
         }
-        public ActionResult ActualizarAnio(Falta unaFalta, int anio, string Letra, int IdMateria )
+        public ActionResult ActualizarAnio(Falta unaFalta, int anio, string Letra, int IdMateria)
         {
             Alumno unAlumno = new Alumno();
-            
+            ViewBag.listaalumnos = unAlumno.Listar_Alumnos_Falta(anio, Letra);
             Falta Unafalta = new Falta();
             Boolean falta;
             Division unaDivision = new Division();
             int divi;
-            divi = unaDivision.TraerIdDivision( anio,  Letra);
-            falta = Unafalta.HayUnaFalta(unaFalta, divi, IdMateria,  );
+            divi = unaDivision.TraerIdDivision(anio, Letra);
+            List<Falta> lista;
+            lista = Unafalta.ListarFaltas();
+            falta = Unafalta.HayUnaFalta(unaFalta, divi, IdMateria, lista);
 
-            TempData.Add("Fecha", unaFalta);
-            TempData.Add("IdMateria",IdMateria);
-            TempData.Keep();
-            return View();
+            if (falta == true)
+            {
+                TempData.Add("Fecha", unaFalta);
+                TempData.Add("IdMateria", IdMateria);
+                TempData.Keep();
+                return View("ModificarFaltaCurso");
+            }
+            else
+            {
+                TempData.Add("Fecha", unaFalta);
+                TempData.Add("IdMateria", IdMateria);
+                TempData.Keep();
+                return View();
+            }
+
+
         }
         [HttpPost]
         public ActionResult CargarInasistencias(List<Falta> faltas)
@@ -65,15 +79,17 @@ namespace Campus_virtual.Controllers
 
             Materia unaMateria = new Materia();
             ViewBag.listamateria = unaMateria.listarmateria();
-           
+
+
+
 
             Falta falta = new Falta();
-            falta.Cargar_Falta((DateTime)TempData["Fecha"],faltas, (int)TempData["IdMateria"], (int)TempData["IdDivision"]);
+            falta.Cargar_Falta(faltas, (int)TempData["IdMateria"]);
 
             return View("Inasistencias");
         }
 
-        
+
         public ActionResult VerSancion(int idSancion)
         {
             Sancion unaSancion = new Sancion();
@@ -84,7 +100,7 @@ namespace Campus_virtual.Controllers
 
         public ActionResult Sanciones()
         {
-            
+
             Materia unaMateria = new Materia();
             ViewBag.listamateria = unaMateria.listarmateria();
             return View();
@@ -102,17 +118,17 @@ namespace Campus_virtual.Controllers
 
         public ActionResult Altasancion()
         {
-            
+
             Alumno unAlumno = new Alumno();
-            ViewBag.listaalumnos = unAlumno.ListarAlumnos((int) TempData["anio"], (string)TempData["letra"]);
-            
+            ViewBag.listaalumnos = unAlumno.ListarAlumnos((int)TempData["anio"], (string)TempData["letra"]);
+
 
             return View();
         }
         [HttpPost]
         public ActionResult Altasancion(Sancion unasancion)
         {
-            unasancion.Cargar_Sancion(); 
+            unasancion.Cargar_Sancion();
             return RedirectToAction("Sanciones");
         }
 
@@ -120,16 +136,16 @@ namespace Campus_virtual.Controllers
         {
             Sancion san = new Sancion();
             san.EliminarSacion(IdSancion);
-           
+
             return View("Sanciones");
         }
         [HttpPost]
-        public ActionResult EliminarSancion ()
+        public ActionResult EliminarSancion()
         {
             return RedirectToAction("Sanciones");
         }
 
-    
+
 
     }
 
