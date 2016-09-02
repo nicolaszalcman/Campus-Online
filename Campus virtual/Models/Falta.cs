@@ -17,8 +17,9 @@ namespace Campus_virtual.Models
         public string nombre { get; set; }
         public int IdMateria { get; set; }
 
+        public int IdDivision { get; set; }
 
-        public void Cargar_Falta(List<Falta> listaTraida, int materia, int idDivision)
+        public void Cargar_Falta(DateTime fecha, List<Falta> listaTraida, int materia)
         {
 
             for (int i = 0; i < listaTraida.Count; i++)
@@ -33,12 +34,11 @@ namespace Campus_virtual.Models
                 MySqlConnection conn = new MySqlConnection();
                 conn = conecxion.Conexion();
                 MySqlCommand con = conn.CreateCommand();
-                con.CommandText = "INSERT INTO Falta(Fecha,Tipo,IdAlumno, IdMateria, IdDivision) VALUES(@fech,@tip, @Id, @Mat,@iddiv)";
-                con.Parameters.Add("@fech", listaTraida[i].fecha);
+                con.CommandText = "INSERT INTO Falta(Fecha,Tipo,IdAlumno, IdMateria) VALUES(@fech,@tip, @Id, @Mat)";
+                con.Parameters.Add("@fech", fecha.ToString("yyyyMMdd"));
                 con.Parameters.Add("@tip", listaTraida[i].tipo);
                 con.Parameters.Add("@Id", listaTraida[i].idAlumno);
                 con.Parameters.Add("@Mat", materia);
-                con.Parameters.Add("@iddiv", idDivision);
                 con.ExecuteNonQuery();
                 conn.Close();
 
@@ -102,7 +102,7 @@ namespace Campus_virtual.Models
             for (int i = 0; i < listafaltas.Count(); i++)
             {
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@ingtipo", listafaltas[i].tipo );
+                cmd.Parameters.AddWithValue("@ingtipo", listafaltas[i].tipo);
                 cmd.Parameters.AddWithValue("@ingalumno", listafaltas[i].idAlumno);
                 cmd.Parameters.AddWithValue("@ingfecha", listafaltas[i].fecha.ToString("yyyyMMdd"));
                 cmd.Parameters.AddWithValue("@ingmat", listafaltas[i].IdMateria);
@@ -110,6 +110,27 @@ namespace Campus_virtual.Models
             }
 
             conn.Close();
+        }
+
+        public Boolean HayUnaFalta(DateTime fecha, int IdDivision, int IdMateria, List<Falta> listaFalta)
+        {
+            for (int i =0; i < listaFalta.Count(); i++)
+            {
+                if(listaFalta[i].fecha != fecha)
+                {
+                    if(listaFalta[i].IdDivision != IdDivision)
+                    {
+                        if(listaFalta[i].IdMateria != IdMateria)
+                        {
+                            return false;
+                        }
+                    }
+                }
+
+            }
+            return true;
+
+            
         }
         
     }
