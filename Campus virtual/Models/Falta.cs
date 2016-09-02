@@ -18,7 +18,7 @@ namespace Campus_virtual.Models
         public int IdMateria { get; set; }
 
 
-        public void Cargar_Falta(List<Falta> listaTraida, int materia)
+        public void Cargar_Falta(List<Falta> listaTraida, int materia, int idDivision)
         {
 
             for (int i = 0; i < listaTraida.Count; i++)
@@ -33,11 +33,12 @@ namespace Campus_virtual.Models
                 MySqlConnection conn = new MySqlConnection();
                 conn = conecxion.Conexion();
                 MySqlCommand con = conn.CreateCommand();
-                con.CommandText = "INSERT INTO Falta(Fecha,Tipo,IdAlumno, IdMateria) VALUES(@fech,@tip, @Id, @Mat)";
+                con.CommandText = "INSERT INTO Falta(Fecha,Tipo,IdAlumno, IdMateria, IdDivision) VALUES(@fech,@tip, @Id, @Mat,@iddiv)";
                 con.Parameters.Add("@fech", listaTraida[i].fecha);
                 con.Parameters.Add("@tip", listaTraida[i].tipo);
                 con.Parameters.Add("@Id", listaTraida[i].idAlumno);
                 con.Parameters.Add("@Mat", materia);
+                con.Parameters.Add("@iddiv", idDivision);
                 con.ExecuteNonQuery();
                 conn.Close();
 
