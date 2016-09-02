@@ -47,14 +47,6 @@ namespace Campus_virtual.Controllers
         {
             Alumno unAlumno = new Alumno();
             ViewBag.listaalumnos = unAlumno.Listar_Alumnos_Falta(anio, Letra);
-            Falta Unafalta = new Falta();
-            Boolean falta;
-            Division unaDivision = new Division();
-            int divi;
-            divi = unaDivision.TraerIdDivision( anio,  Letra);
-            falta = Unafalta.HayUnaFalta(unaFalta, divi, IdMateria,  );
-
-            TempData.Add("Fecha", unaFalta);
             TempData.Add("IdMateria",IdMateria);
             TempData.Keep();
             return View();
@@ -68,7 +60,7 @@ namespace Campus_virtual.Controllers
            
 
             Falta falta = new Falta();
-            falta.Cargar_Falta((DateTime)TempData["Fecha"],faltas, (int)TempData["IdMateria"]);
+            falta.Cargar_Falta(faltas, (int)TempData["IdMateria"]);
 
             return View("Inasistencias");
         }
