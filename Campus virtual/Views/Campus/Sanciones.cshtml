@@ -3,13 +3,48 @@
     <div class="page-header">
         <h1>Sanciones</h1>
     </div>
-    <a href="@Url.Action("Altasancion", "Campus")" class="btn btn-info" role="button">Agregar Sancion</a>
+
+   
     
-    @foreach (var item in ViewBag.listasanciones)
-    {
-        <div class="list-group">
-            <a href="@Url.Action("VerSancion", "Campus", new { IdSancion = item.IdSancion })" class="list-group-item"><span class="badge">Ver</span> @item.fecha     @item.nombre   @item.apellido</a>
-            <a href="@Url.Action("EliminarSancion", "Campus", new { IdSancion = item.IdSancion })" class="btn btn-info" role="button">Eliminar Sancion</a>
+    @(Html.BeginForm("ListaSanciones", "Campus", FormMethod.Post))
+    
+    
+        <div class="form-inline" role="form">
+            <div class="form-group">
+                <label for="sel1">Seleccionar Año</label>
+                <select id="anio" name="anio" class="form-control">
+                    <option id="anio" value="1">1</option>
+                    <option id="anio" value="2">2</option>
+                    <option id="anio" value="3">3</option>
+                    <option id="anio" value="4">4</option>
+                    <option id="anio" value="5">5</option>
+                    <option id="anio" value="6">6</option>
+
+                </select>
+
+
+            </div>
+
+
+
+            <div id="Division" class="form-group">
+                <div class="form-group">
+                    <label for="sel1">Seleccionar Divicion</label>
+                    <select id="anio" name="letra" class="form-control">
+                        <option id="letra" value="A">A</option>
+                        <option id="letra" value="B">B</option>
+                        <option id="letra" value="C">C</option>
+
+                    </select>
+                </div>
+            </div>
+            
+        </div><br /><br />
+    
+    <button type="submit" class="btn btn-default">Cargar</button>
+    
+    
+
         </div>
-    }
-</div>
+
+    

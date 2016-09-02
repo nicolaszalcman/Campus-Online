@@ -41,9 +41,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
       <Private>True</Private>
-      <HintPath>..\..\..\..\Downloads\mysql.data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -234,6 +234,11 @@
     <Content Include="Views\Campus\VerSancion.cshtml" />
     <Content Include="Views\Campus\_CboAnio.cshtml" />
     <Content Include="Views\Campus\_CboDivision.cshtml" />
+    <Content Include="Views\Campus\ActualizarAnio.cshtml" />
+    <Content Include="Views\Campus\ListaSanciones.cshtml" />
+    <Content Include="Views\Campus\ModificarFalta.cshtml" />
+    <Content Include="Views\Campus\ModificarFaltaCurso.cshtml" />
+    <Content Include="Views\Campus\ModificarInasistencias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

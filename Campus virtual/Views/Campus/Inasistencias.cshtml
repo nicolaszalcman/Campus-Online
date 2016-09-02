@@ -5,65 +5,25 @@
     string division = "";
     int contador = 0;
 }
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#anio").change(function () {
-            $.ajax({
-                url: '/Campus/ActualizarAnio',
-                //type: 'POST',
-                async: false,
-                data: {
-                    anio: $("#anio").val()
-                },
-                success: function (data) { $("#divAnio").html(data); }
-            });
-        });
-    });
 
 
-    function seleccionar_año() {
-        var lista = document.getElementById("anio");
-        var año = lista.options[lista.selectedIndex].value;
-        var año = lista.options[lista.selectedIndex].text;
-    }
-    function seleccionar_materia() {
-        var lista = document.getElementById("materia");
-        var materia = lista.options[lista.selectedIndex].value;
-        var materia = lista.options[lista.selectedIndex].text;
-    }
-    function seleccionar_division() {
-        var lista = document.getElementById("division");
-        var division = lista.options[lista.selectedIndex].value;
-        var division = lista.options[lista.selectedIndex].text;
-    }
-</script>
-@{List<SelectListItem> listItems = new List<SelectListItem>(); }
-@model List<Campus_virtual.Models.Falta>
-@{
-    listItems.Add(new SelectListItem
-    {
-        Text = "Ausente"
-    });
-    listItems.Add(new SelectListItem
-    {
-        Text = "Tarde",
-    });
-}
+
+
      }
         <div class="container">
-            @using (Html.BeginForm("Actualizaranio", "Campus", FormMethod.Post))
+            @using (Html.BeginForm("ActualizarAnio", "Campus", FormMethod.Post))
             {
                 <h2>Inasistencias</h2>
                 <div class="form-inline" role="form">
                     <div class="form-group">
                         <label for="sel1">Seleccionar Año</label>
-                        <select id="anio" name="anio" class="form-control" onclick="seleccionar_año()" >
-                            <option  value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
+                        <select id="anio" name="anio" class="form-control"  >
+                            <option id="anio" value="1">1</option>
+                            <option id="anio" value="2">2</option>
+                            <option id="anio" value="3">3</option>
+                            <option id="anio" value="4">4</option>
+                            <option id="anio" value="5">5</option>
+                            <option id="anio" value="6">6</option>
                             
                         </select>
                         
@@ -73,65 +33,38 @@
                     
 
                     <div id="Division" class="form-group">
-                        <label for="sel1">Seleccionar Division</label>
-                        <div id="divAnio">
-                            <select name="division" id="division" class="form-control" onclick="seleccionar_division()">
-                                <select name="" class="form-control">
-                                    @foreach (var item in ViewBag.listardivisiones)
-                                    {
-                                        <option>@item  </option>
-                                    }
-                                </select>
+                       <div class="form-group">
+                           <label for="sel1">Seleccionar Año</label>
+                           <select id="anio" name="letra" class="form-control" >
+                               <option id="letra" value="A">A</option>
+                               <option id="letra" value="B">B</option>
+                               <option id="letra" value="C">C</option>
 
-                            </select>
-                        </div>
+                           </select>
+                       </div>
                     </div>
                     <div id="materia" class="form-group">
                         <label for="sel1">Seleccionar Materia</label>
-                        <select name="materia" id="materia" class="form-control" onclick="seleccionar_materia()">
+                        <select name="IdMateria" id="IdMateria" class="form-control" >
                             @foreach (var materia in ViewBag.listamateria)
                             {
-                                <option value="">@materia.Nombre</option>
+                                <option value="@materia.idMateria">@materia.Nombre</option>
                             }
                         </select>
                     </div><br /><br />
 
 
                 </div>
-                <button type="submit" class="btn btn-default">Aceptar</button>
+                <button type="submit" class="btn btn-default">Cargar</button>
+                
             }
 
-            @using (Html.BeginForm("CargarInasistencias", "Campus", FormMethod.Post))
+            @using (Html.BeginForm("ModificarFalta", "Campus", FormMethod.Post))
             {
-                <table class="table table-hover">
 
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Tipo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in ViewBag.listaalumnos)
-                        {
-                            <tr>
-                                <td>@item.idAlumno @item.Nombre</td>
-                                <td>@item.Apellido @item.IdMateria</td>
-
-                                <td>
-                                    @Html.DropDownListFor(x => x[contador].tipo, listItems, "Presente")
-                                    </td>
-                            </tr>
-                            
-                            @Html.HiddenFor(x => x[contador].idAlumno, new { id = "idAlumno", name="idAlumno", Value = item.idAlumno })
-                            @Html.HiddenFor(x=>x[contador].fecha, new { id = "fecha", name = "fecha", Value = DateTime.Now })
-                            @Html.HiddenFor(x => x[contador].IdMateria, new { id = "idMateria", name = "idMateria", Value = item.idMateria })
-
-                            contador++;
-                        }
-                    </tbody>
-                </table>
-                <input type="submit" class="btn btn-default" />
+                <button type="submit" class="btn btn-default">Modificar</button>
             }
+
+           
+
         </div>

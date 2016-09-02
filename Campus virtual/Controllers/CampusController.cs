@@ -15,6 +15,26 @@ namespace Campus_virtual.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult ModificarInasistencias(List<Falta> unaFalta)
+        {
+            Falta unaFaltastatic = new Falta();
+            unaFaltastatic.Modificar_Falta(unaFalta);
+            return View();
+        }
+        public ActionResult ModificarFalta()
+        {
+            Materia unaMateria = new Materia();
+            ViewBag.listamateria = unaMateria.listarmateria();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ModificarFaltaCurso(Falta unaFalta, int anio, string letra, int idMateria)
+        {
+            Falta objFalta = new Falta();
+            List<Falta> listaFaltas = objFalta.TraerFaltas_X_Fecha(unaFalta.fecha, anio,letra, idMateria);
+            return View(listaFaltas);
+        }
         public ActionResult Inasistencias()
         {
             Materia unaMateria = new Materia();
@@ -23,11 +43,13 @@ namespace Campus_virtual.Controllers
             //ViewBag.Listar_Alumnos_Falta = unAlumno.Listar_Alumnos_Falta();
             return View();
         }
-        public ActionResult ActualizarAnio(int anio)
+        public ActionResult ActualizarAnio(int anio, string Letra, int IdMateria )
         {
-            Division unaDivision = new Division();
-            ViewBag.listardivisiones = unaDivision.ListarDivisiones_X_Anio(anio);
-            return PartialView("_cboAnio");
+            Alumno unAlumno = new Alumno();
+            ViewBag.listaalumnos = unAlumno.Listar_Alumnos_Falta(anio, Letra);
+            TempData.Add("IdMateria",IdMateria);
+            TempData.Keep();
+            return View();
         }
         [HttpPost]
         public ActionResult CargarInasistencias(List<Falta> faltas)
@@ -38,10 +60,12 @@ namespace Campus_virtual.Controllers
            
 
             Falta falta = new Falta();
-            falta.Cargar_Falta(faltas);
+            falta.Cargar_Falta(faltas, (int)TempData["IdMateria"]);
 
             return View("Inasistencias");
         }
+
+        
         public ActionResult VerSancion(int idSancion)
         {
             Sancion unaSancion = new Sancion();
@@ -52,8 +76,19 @@ namespace Campus_virtual.Controllers
 
         public ActionResult Sanciones()
         {
+            
+            Materia unaMateria = new Materia();
+            ViewBag.listamateria = unaMateria.listarmateria();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ListaSanciones(int anio, string Letra)
+        {
             Sancion unaSancion = new Sancion();
-            ViewBag.listasanciones = unaSancion.ListarSanciones();
+            ViewBag.listasanciones = unaSancion.ListarSanciones(anio, Letra);
+            TempData.Add("anio", anio);
+            TempData.Add("letra", Letra);
+            TempData.Keep();
             return View();
         }
 
@@ -61,7 +96,7 @@ namespace Campus_virtual.Controllers
         {
             
             Alumno unAlumno = new Alumno();
-            ViewBag.listaalumnos = unAlumno.ListarAlumnos();
+            ViewBag.listaalumnos = unAlumno.ListarAlumnos((int) TempData["anio"], (string)TempData["letra"]);
             
 
             return View();
@@ -77,8 +112,7 @@ namespace Campus_virtual.Controllers
         {
             Sancion san = new Sancion();
             san.EliminarSacion(IdSancion);
-            Sancion unaSancion = new Sancion();
-            ViewBag.listasanciones = unaSancion.ListarSanciones();
+           
             return View("Sanciones");
         }
         [HttpPost]

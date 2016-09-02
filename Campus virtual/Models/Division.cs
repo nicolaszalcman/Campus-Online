@@ -13,16 +13,17 @@ namespace Campus_virtual.Models
         public string Nombre { get; set; }
 
 
-        public List<string> ListarDivisiones_X_Anio(int anio)
+        public List<string> ListarDivisiones_X_Anio(int anio, string letra)
         {
 
             AbrirConexion abrirconexion = new AbrirConexion();
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
             List<string> ListaDivisiones_X_año = new List<string>();
-            string sql = "SELECT Division FROM division WHERE Año = @inganio order by Division asc";
+            string sql = "SELECT * FROM alumno INNER JOIN division on alumno.IdDivision = division.IdDivision WHERE division.Año = @anio AND division.Division = @letra";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
-            cmd.Parameters.Add("@inganio", anio);
+            cmd.Parameters.Add("@anio", anio);
+            cmd.Parameters.Add("@letra", letra);
             MySqlDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -34,6 +35,25 @@ namespace Campus_virtual.Models
             rdr.Close();
             return ListaDivisiones_X_año;
 
+        }
+        public int TraerIdDivision (int anio, string letra )
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            int idDivision = 1000;
+            string sql = "SELECT * FROM `division` WHERE division.Año = @anio AND division.Division= @letra";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.Add("@anio", anio);
+            cmd.Parameters.Add("@letra", letra);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                idDivision = Convert.ToInt32(rdr[0]);       
+            }
+            rdr.Close();
+            return idDivision;
         }
 
 

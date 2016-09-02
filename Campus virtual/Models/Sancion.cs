@@ -14,15 +14,18 @@ namespace Campus_virtual.Models
         public string nombre { get; set; }
         public string apellido { get; set; }
         public int idAlumno { get; set; }
+        public int IdDivision { get; set; }
 
-        public List<Sancion> ListarSanciones()
+        public List<Sancion> ListarSanciones(int año, string division)
         {
             AbrirConexion abrirconexion = new AbrirConexion();
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
             List<Sancion> listaSanciones = new List<Sancion>();
-            string sql = "SELECT * FROM `sancion` INNER JOIN alumno ON sancion.idAlumno = alumno.IdAlumno";
+            string sql = "SELECT * FROM `sancion` INNER JOIN alumno ON sancion.idAlumno = alumno.IdAlumno INNER JOIN division ON sancion.IdDivision = division.IdDivision WHERE  division.Año = @año AND division.Division = @division  ";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.Add("@año", año);
+            cmd.Parameters.Add("@division", division);
             MySqlDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -46,11 +49,12 @@ namespace Campus_virtual.Models
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
             List<Alumno> listaAlumnos = new List<Alumno>();
-            string sql = "INSERT INTO sancion (Fecha, Motivo, idAlumno) VALUES (@value2,@value3,@value4)";
+            string sql = "INSERT INTO sancion (Fecha, Motivo, idAlumno, IdDivision) VALUES (@value2,@value3,@value4, @value5)";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@value2", fecha);
             cmd.Parameters.AddWithValue("@value3", motivo);
             cmd.Parameters.AddWithValue("@value4", idAlumno);
+            cmd.Parameters.AddWithValue("@value5", IdDivision);
 
             cmd.ExecuteNonQuery();
 
