@@ -53,7 +53,7 @@ namespace Campus_virtual.Controllers
             int divi;
             divi = unaDivision.TraerIdDivision(anio, Letra);
             List<Falta> lista;
-            lista = Unafalta.ListraFaltas();
+            lista = Unafalta.ListarFaltas();
             falta = Unafalta.HayUnaFalta(unaFalta, divi, IdMateria, lista );
 
             if (falta == true)

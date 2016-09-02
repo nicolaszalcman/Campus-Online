@@ -153,8 +153,7 @@ namespace Campus_virtual.Models
                 unafalta.fecha = Convert.ToDateTime(rdr[1]);
                 unafalta.tipo = rdr[2].ToString();
                 unafalta.IdMateria = Convert.ToInt32(rdr[4]);
-                unafalta.nombre = rdr[6].ToString();
-                unafalta.apellido = rdr[7].ToString();
+                //falta iddivision
                 listaFalta.Add(unafalta);
             }
             rdr.Close();
@@ -162,5 +161,7 @@ namespace Campus_virtual.Models
             conn.Close();
         }
         
+
+       
     }
 }
