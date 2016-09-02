@@ -66,6 +66,8 @@ namespace Campus_virtual.Controllers
             }
 
             ViewBag.listaalumnos = unAlumno.Listar_Alumnos_Falta(anio, Letra);
+
+            TempData.Add("IdDivision", divi);
             TempData.Add("Fecha", unaFalta);
             TempData.Add("IdMateria",IdMateria);
 
@@ -81,7 +83,7 @@ namespace Campus_virtual.Controllers
            
 
             Falta falta = new Falta();
-            falta.Cargar_Falta((DateTime)TempData["Fecha"],faltas, (int)TempData["IdMateria"]);
+            falta.Cargar_Falta((DateTime)TempData["Fecha"],faltas, (int)TempData["IdMateria"], (int)TempData["IdDivision"]);
 
             return View("Inasistencias");
         }
