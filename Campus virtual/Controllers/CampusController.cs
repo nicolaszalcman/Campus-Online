@@ -60,9 +60,7 @@ namespace Campus_virtual.Controllers
             {
                 Falta objFalta = new Falta();
                 List<Falta> listaFaltas = objFalta.TraerFaltas_X_Fecha(unaFalta.fecha, anio, Letra, IdMateria);
-                TempData.Add("Fecha", unaFalta.fecha);
-                TempData.Add("IdMateria", IdMateria);
-                TempData.Keep();
+
                 return View("ModificarFaltaCurso", listaFaltas);
             }
             else

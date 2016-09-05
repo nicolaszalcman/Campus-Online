@@ -86,8 +86,10 @@ namespace Campus_virtual.Models
                 unafalta.fecha = Convert.ToDateTime(rdr[1]);
                 unafalta.tipo = rdr[2].ToString();
                 unafalta.IdMateria = Convert.ToInt32(rdr[4]);
-                unafalta.nombre = rdr[6].ToString();
-                unafalta.apellido = rdr[7].ToString();
+                unafalta.IdDivision = Convert.ToInt32(rdr[5]);
+                unafalta.idAlumno = Convert.ToInt32(rdr[6]);
+                unafalta.nombre = rdr[7].ToString();
+                unafalta.apellido = rdr[8].ToString();
                 listaFalta.Add(unafalta);
             }
             rdr.Close();
@@ -105,7 +107,7 @@ namespace Campus_virtual.Models
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@ingtipo", listafaltas[i].tipo);
                 cmd.Parameters.AddWithValue("@ingalumno", listafaltas[i].idAlumno);
-                cmd.Parameters.AddWithValue("@ingfecha", listafaltas[i].fecha.ToString("yyyyMMdd"));
+                cmd.Parameters.AddWithValue("@ingfecha", listafaltas[i].fecha);
                 cmd.Parameters.AddWithValue("@ingmat", listafaltas[i].IdMateria);
                 cmd.ExecuteNonQuery();
             }
