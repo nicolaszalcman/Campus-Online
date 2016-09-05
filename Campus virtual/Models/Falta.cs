@@ -74,7 +74,7 @@ namespace Campus_virtual.Models
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.Add("@ingletra", letra);
             cmd.Parameters.Add("@inganio", division);
-            cmd.Parameters.Add("@ingfecha", Fecha.ToString("yyyyddMM"));
+            cmd.Parameters.Add("@ingfecha", Fecha);
             cmd.Parameters.Add("@ingmat", idMateria);
 
             MySqlDataReader rdr = cmd.ExecuteReader();
@@ -153,7 +153,7 @@ namespace Campus_virtual.Models
                 unafalta.fecha = Convert.ToDateTime(rdr[1]);
                 unafalta.tipo = rdr[2].ToString();
                 unafalta.IdMateria = Convert.ToInt32(rdr[4]);
-                unafalta.IdMateria = Convert.ToInt32(rdr[5]);
+                unafalta.IdDivision = Convert.ToInt32(rdr[5]);
                 listaFalta.Add(unafalta);
             }
             rdr.Close();

@@ -58,11 +58,12 @@ namespace Campus_virtual.Controllers
             ViewBag.nombrefecha = unaFalta.fecha;
             if (falta == true)
             {
-
+                Falta objFalta = new Falta();
+                List<Falta> listaFaltas = objFalta.TraerFaltas_X_Fecha(unaFalta.fecha, anio, Letra, IdMateria);
                 TempData.Add("Fecha", unaFalta.fecha);
                 TempData.Add("IdMateria", IdMateria);
                 TempData.Keep();
-                return View("ModificarFaltaCurso");
+                return View("ModificarFaltaCurso", listaFaltas);
             }
             else
             {

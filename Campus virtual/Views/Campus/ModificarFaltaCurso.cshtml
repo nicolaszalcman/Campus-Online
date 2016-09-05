@@ -53,7 +53,7 @@
                             @Html.DropDownListFor(x => x[contador].tipo, listItems)
                         </td>
                     </tr>
-                    @Html.HiddenFor(x => x[contador].idAlumno, new { id = "idAlumno", name = "idAlumno", Value =  })
+                    
                     @Html.HiddenFor(x => x[contador].idAlumno, new { id = "idAlumno", name = "idAlumno", Value = item.idAlumno })                   
                     contador++;
                 }
