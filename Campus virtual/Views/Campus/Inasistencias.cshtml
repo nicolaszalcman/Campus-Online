@@ -10,7 +10,7 @@
 @model Falta
 
 
-     
+     @ViewBag.nombrefecha;
         <div class="container">
           
                 @using (Html.BeginForm("ActualizarAnio", "Campus", FormMethod.Post))
@@ -56,7 +56,7 @@
                             </select>
                         </div><br /><br />
 
-
+                        @Html.HiddenFor(x => x.fecha);
                     </div>
                     <button type="submit" class="btn btn-default">Cargar</button>
                 

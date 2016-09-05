@@ -55,9 +55,10 @@ namespace Campus_virtual.Controllers
             List<Falta> lista;
             lista = Unafalta.ListarFaltas();
             falta = Unafalta.HayUnaFalta(unaFalta, divi, IdMateria, lista );
-
+            ViewBag.nombrefecha = unaFalta.fecha;
             if (falta == true)
             {
+
                 TempData.Add("Fecha", unaFalta.fecha);
                 TempData.Add("IdMateria", IdMateria);
                 TempData.Keep();
@@ -65,8 +66,9 @@ namespace Campus_virtual.Controllers
             }
             else
             {
-                TempData.Add("Fecha", unaFalta.fecha);
-                TempData.Add("IdMateria", IdMateria);
+                TempData.Add("IdDivision", divi);
+                unaFalta.IdMateria = IdMateria;
+                TempData.Add("Falta", unaFalta);
                 TempData.Keep();
                 return View();
             }
@@ -84,7 +86,7 @@ namespace Campus_virtual.Controllers
 
 
             Falta falta = new Falta();
-            falta.Cargar_Falta((DateTime)TempData["Fecha"], faltas, (int)TempData["IdMateria"],(int)TempData["IdDivision"]);
+            falta.Cargar_Falta( faltas, (Falta)TempData["Falta"],(int)TempData["IdDivision"]);
       
             return View("Inasistencias");
         }

@@ -19,7 +19,7 @@ namespace Campus_virtual.Models
 
         public int IdDivision { get; set; }
 
-        public void Cargar_Falta(DateTime fecha, List<Falta> listaTraida, int materia, int idDivision)
+        public void Cargar_Falta( List<Falta> listaTraida, Falta unaFalta, int idDivision)
         {
 
             for (int i = 0; i < listaTraida.Count; i++)
@@ -35,10 +35,10 @@ namespace Campus_virtual.Models
                 conn = conecxion.Conexion();
                 MySqlCommand con = conn.CreateCommand();
                 con.CommandText = "INSERT INTO Falta(Fecha,Tipo,IdAlumno, IdMateria, IdDivision) VALUES(@fech,@tip, @Id, @Mat, @iddiv)";
-                con.Parameters.Add("@fech", fecha.ToString("yyyyMMdd"));
+                con.Parameters.Add("@fech", unaFalta.fecha.ToString("yyyyMMdd"));
                 con.Parameters.Add("@tip", listaTraida[i].tipo);
                 con.Parameters.Add("@Id", listaTraida[i].idAlumno);
-                con.Parameters.Add("@Mat", materia);
+                con.Parameters.Add("@Mat", unaFalta.IdMateria);
                 con.Parameters.Add("@iddiv", idDivision);
                 con.ExecuteNonQuery();
                 conn.Close();
@@ -153,7 +153,7 @@ namespace Campus_virtual.Models
                 unafalta.fecha = Convert.ToDateTime(rdr[1]);
                 unafalta.tipo = rdr[2].ToString();
                 unafalta.IdMateria = Convert.ToInt32(rdr[4]);
-                //falta iddivision
+                unafalta.IdMateria = Convert.ToInt32(rdr[5]);
                 listaFalta.Add(unafalta);
             }
             rdr.Close();
