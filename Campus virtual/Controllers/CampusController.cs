@@ -20,7 +20,9 @@ namespace Campus_virtual.Controllers
         {
             Falta unaFaltastatic = new Falta();
             unaFaltastatic.Modificar_Falta(unaFalta, (DateTime)TempData["Fecha"]);
-            return View();
+            Materia unaMateria = new Materia();
+            ViewBag.listamateria = unaMateria.listarmateria();
+            return View("Inasistencias");
         }
         public ActionResult ModificarFalta()
         {
