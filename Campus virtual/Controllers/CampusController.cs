@@ -19,7 +19,7 @@ namespace Campus_virtual.Controllers
         public ActionResult ModificarInasistencias(List<Falta> unaFalta)
         {
             Falta unaFaltastatic = new Falta();
-            unaFaltastatic.Modificar_Falta(unaFalta);
+            unaFaltastatic.Modificar_Falta(unaFalta, (DateTime)TempData["Fecha"]);
             return View();
         }
         public ActionResult ModificarFalta()
@@ -60,7 +60,7 @@ namespace Campus_virtual.Controllers
             {
                 Falta objFalta = new Falta();
                 List<Falta> listaFaltas = objFalta.TraerFaltas_X_Fecha(unaFalta.fecha, anio, Letra, IdMateria);
-
+                TempData.Add("Fecha", unaFalta.fecha);
                 return View("ModificarFaltaCurso", listaFaltas);
             }
             else

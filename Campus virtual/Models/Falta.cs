@@ -96,7 +96,7 @@ namespace Campus_virtual.Models
             return listaFalta;
             conn.Close();
         }
-        public void Modificar_Falta(List<Falta> listafaltas)
+        public void Modificar_Falta(List<Falta> listafaltas, DateTime fecha)
         {
             AbrirConexion abrirconexion = new AbrirConexion();
             MySqlConnection conn = new MySqlConnection();
@@ -107,7 +107,7 @@ namespace Campus_virtual.Models
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@ingtipo", listafaltas[i].tipo);
                 cmd.Parameters.AddWithValue("@ingalumno", listafaltas[i].idAlumno);
-                cmd.Parameters.AddWithValue("@ingfecha", listafaltas[i].fecha);
+                cmd.Parameters.AddWithValue("@ingfecha", fecha);
                 cmd.Parameters.AddWithValue("@ingmat", listafaltas[i].IdMateria);
                 cmd.ExecuteNonQuery();
             }
