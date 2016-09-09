@@ -24,11 +24,11 @@
         Text = "Tarde",
     });
 }
-<h2>ActualizarAnio</h2>
 
 @using (Html.BeginForm("ModificarInasistencias", "Campus", FormMethod.Post))
 {
     <div class="container">
+        <h1>Modificar Inasitencias <small>@(ViewBag.nombrefecha.ToString("dd/MM/yyyy"))</small></h1>
         <table class="table table-hover">
 
             <thead>
