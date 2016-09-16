@@ -20,7 +20,8 @@ namespace Campus_virtual.Controllers
         {
             //function VerFaltas(falta){
                 //window.open("Informe_Inasistencia_Superior_Web.asp?f=" + falta + "&cl=" + document.all.CmbCiclos.value + "&c=" + document.all.ca.value, "InasistenciaDetalla", "top=200,left=150,menubar=no,width=550,dependent=yes,height=300,toolbar=no,scrollbars=yes")
-//}
+//}
+
             ViewBag.mensaje = "";
             string nombre = Request.Form["usuario"].ToString();
             string contraseña = Request.Form["pwd"].ToString();
