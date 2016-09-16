@@ -43,7 +43,7 @@ namespace Campus_virtual.Models
 
         }
 
-        public void Cargar_Sancion()
+        public void Cargar_Sancion(int idDivi)
         {
             AbrirConexion abrirconexion = new AbrirConexion();
             MySqlConnection conn = new MySqlConnection();
@@ -54,7 +54,7 @@ namespace Campus_virtual.Models
             cmd.Parameters.AddWithValue("@value2", fecha);
             cmd.Parameters.AddWithValue("@value3", motivo);
             cmd.Parameters.AddWithValue("@value4", idAlumno);
-            cmd.Parameters.AddWithValue("@value5", IdDivision);
+            cmd.Parameters.AddWithValue("@value5", idDivi);
 
             cmd.ExecuteNonQuery();
 

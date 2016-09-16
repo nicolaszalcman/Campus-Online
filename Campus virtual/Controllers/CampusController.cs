@@ -125,14 +125,19 @@ namespace Campus_virtual.Controllers
 
             Alumno unAlumno = new Alumno();
             ViewBag.listaalumnos = unAlumno.ListarAlumnos((int)TempData["anio"], (string)TempData["letra"]);
+            Division unaDivi = new Division();
+            int IdDivi;
+            IdDivi=unaDivi.TraerIdDivision((int)TempData["anio"], (string)TempData["letra"]);
 
+            TempData.Add("IdDivi", IdDivi);
+            TempData.Keep();
 
             return View();
         }
         [HttpPost]
         public ActionResult Altasancion(Sancion unasancion)
         {
-            unasancion.Cargar_Sancion();
+            unasancion.Cargar_Sancion((int)TempData["IdDivi"]);
             return RedirectToAction("Sanciones");
         }
 
@@ -148,6 +153,9 @@ namespace Campus_virtual.Controllers
         {
             return RedirectToAction("Sanciones");
         }
+
+
+        
 
 
 

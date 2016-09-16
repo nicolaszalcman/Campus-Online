@@ -71,5 +71,28 @@ namespace Campus_virtual.Models
 
         }
 
+        public Boolean IniciarSesion (string NombreUsu, string contraseña)
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            string sql = "SELECT * FROM alumno Where NombreUsuario = @NomUsu and Contraseña = @Contra";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.Add("@NomUsu", NombreUsu);
+            cmd.Parameters.Add("@Contra", contraseña);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            if(rdr.HasRows)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
     }
+
 }
