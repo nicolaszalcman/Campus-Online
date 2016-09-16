@@ -162,6 +162,33 @@ namespace Campus_virtual.Models
             return listaFalta;
             conn.Close();
         }
+
+        public List<Falta> Faltas_por_Alumnos(int IdAlum)
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            List<Falta> listaFalta = new List<Falta>();
+            string sql = "SELECT * FROM `falta`  where IdAlumno = @IdAlu ";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@IdAlu", IdAlum);
+
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                Falta unafalta = new Falta();
+                unafalta.idFalta = Convert.ToInt32(rdr[0]);
+                unafalta.fecha = Convert.ToDateTime(rdr[1]);
+                unafalta.tipo = rdr[2].ToString();
+                unafalta.IdMateria = Convert.ToInt32(rdr[4]);
+                unafalta.IdDivision = Convert.ToInt32(rdr[5]);
+                listaFalta.Add(unafalta);
+            }
+            rdr.Close();
+            return listaFalta;
+            conn.Close();
+        }
         
 
        

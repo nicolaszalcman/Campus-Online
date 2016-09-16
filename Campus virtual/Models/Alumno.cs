@@ -93,6 +93,24 @@ namespace Campus_virtual.Models
 
         }
 
-    }
+        public int BuscarId (string NombreUsuario)
+        {
+            int id = 0;
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            string sql = "SELECT * FROM alumno Where NombreUsuario = @NomUsu ";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.Add("@NomUsu", NombreUsuario);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                id = Convert.ToInt32(rdr[0]);
+            }
+            rdr.Close();
+            conn.Close();
+            return id;
+        }
 
 }
