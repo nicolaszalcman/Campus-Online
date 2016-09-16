@@ -16,6 +16,13 @@ namespace Campus_virtual.Controllers
             return View();
         }
         [HttpPost]
+        public ActionResult Login(FormCollection form)
+        {
+            string email = Request.Form["email"].ToString();
+            string contraseña = Request.Form["pwd"].ToString();
+            return View();
+        }
+        [HttpPost]
         public ActionResult ModificarInasistencias(List<Falta> unaFalta)
         {
             Falta unaFaltastatic = new Falta();
@@ -54,6 +61,10 @@ namespace Campus_virtual.Controllers
             Division unaDivision = new Division();
             int divi;
             divi = unaDivision.TraerIdDivision(anio, Letra);
+            TempData.Clear();
+            TempData.Add("divi", divi);
+            TempData.Keep();
+
             List<Falta> lista;
             lista = Unafalta.ListarFaltas();
             falta = Unafalta.HayUnaFalta(unaFalta, divi, IdMateria, lista );
@@ -88,7 +99,7 @@ namespace Campus_virtual.Controllers
 
 
             Falta falta = new Falta();
-            falta.Cargar_Falta( faltas, (Falta)TempData["Falta"]);
+            falta.Cargar_Falta( faltas, (Falta)TempData["Falta"], (int)TempData["divi"]);
       
             return View("Inasistencias");
         }

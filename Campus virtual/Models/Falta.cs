@@ -19,7 +19,7 @@ namespace Campus_virtual.Models
 
         public int IdDivision { get; set; }
 
-        public void Cargar_Falta( List<Falta> listaTraida, Falta unaFalta)
+        public void Cargar_Falta( List<Falta> listaTraida, Falta unaFalta, int divi)
         {
 
             for (int i = 0; i < listaTraida.Count; i++)
@@ -39,7 +39,7 @@ namespace Campus_virtual.Models
                 con.Parameters.Add("@tip", listaTraida[i].tipo);
                 con.Parameters.Add("@Id", listaTraida[i].idAlumno);
                 con.Parameters.Add("@Mat", unaFalta.IdMateria);
-                con.Parameters.Add("@iddiv", unaFalta.IdDivision);
+                con.Parameters.Add("@iddiv", divi);
                 con.ExecuteNonQuery();
                 conn.Close();
 
