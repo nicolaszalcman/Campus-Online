@@ -2,4 +2,13 @@
     <div class="page-header">
         <h1>Inasistencias</h1>
     </div>
+
+    <div class="list-group">
+        <a href="#" class="list-group-item disabled">Fecha</a>
+        @foreach (var item in ViewBag.listafaltas)
+        {
+            <a href="#" class="list-group-item">@item.fecha.ToString("dd/MM/yyyy")</a>
+        }
+        
+    </div>
 </div>

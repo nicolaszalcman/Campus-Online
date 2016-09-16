@@ -22,6 +22,7 @@ namespace Campus_virtual.Controllers
             string nombre = Request.Form["usuario"].ToString();
             string contraseña = Request.Form["pwd"].ToString();
             Alumno unAlumno = new Alumno();
+            Falta unaFalta = new Falta();
             Boolean hayUsuario = unAlumno.IniciarSesion(nombre, contraseña);
             if(hayUsuario == false)
             {
@@ -29,7 +30,9 @@ namespace Campus_virtual.Controllers
                 return View();
             } else 
             {
-                
+                int idAlumno = unAlumno.BuscarId(nombre);
+                List<Falta> listarFaltasAlumno = unaFalta.Faltas_por_Alumnos(idAlumno);
+                ViewBag.listafaltas = listarFaltasAlumno;
                 return View("VerInasistencias");
             }
 

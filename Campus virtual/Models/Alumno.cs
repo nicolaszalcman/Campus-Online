@@ -13,7 +13,7 @@ namespace Campus_virtual.Models
         public string Nombre { get; set; }
         public string Apellido { get; set; }
 
-        
+
 
 
 
@@ -29,14 +29,14 @@ namespace Campus_virtual.Models
             cmd.Parameters.Add("@division", division);
 
             MySqlDataReader rdr = cmd.ExecuteReader();
-            
+
             while (rdr.Read())
             {
                 Alumno unAlumno = new Alumno();
                 unAlumno.idAlumno = Convert.ToInt32(rdr[0]);
                 unAlumno.Nombre = rdr[1].ToString();
                 unAlumno.Apellido = rdr[2].ToString();
-                
+
                 listaAlumnos.Add(unAlumno);
             }
             rdr.Close();
@@ -71,7 +71,7 @@ namespace Campus_virtual.Models
 
         }
 
-        public Boolean IniciarSesion (string NombreUsu, string contraseña)
+        public Boolean IniciarSesion(string NombreUsu, string contraseña)
         {
             AbrirConexion abrirconexion = new AbrirConexion();
             MySqlConnection conn = new MySqlConnection();
@@ -82,7 +82,7 @@ namespace Campus_virtual.Models
             cmd.Parameters.Add("@Contra", contraseña);
             MySqlDataReader rdr = cmd.ExecuteReader();
 
-            if(rdr.HasRows)
+            if (rdr.HasRows)
             {
                 return true;
             }
@@ -93,7 +93,7 @@ namespace Campus_virtual.Models
 
         }
 
-        public int BuscarId (string NombreUsuario)
+        public int BuscarId(string NombreUsuario)
         {
             int id = 0;
             AbrirConexion abrirconexion = new AbrirConexion();
@@ -112,5 +112,6 @@ namespace Campus_virtual.Models
             conn.Close();
             return id;
         }
-
+    }
 }
+
