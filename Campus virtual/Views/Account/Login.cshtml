@@ -2,11 +2,11 @@
     <br />
     <br />
     <br />
-    <form method="post" action="../Controllers/Login" class="form-horizontal" name="form" id="form">
+    <form method="post" action="../Campus/login" class="form-horizontal" name="form" id="form">
         <div class="form-group">
-            <label class="control-label col-sm-2" for="email">Email:</label>
+            <label class="control-label col-sm-2" for="email">Usuario:</label>
             <div class="col-sm-10">
-                <input name="email" type="email" class="form-control" id="email" placeholder="Ingresar email">
+                <input name="usuario" type="text" class="form-control" id="usuario" placeholder="Ingrese usuario">
             </div>
         </div>
         <div class="form-group">
@@ -20,5 +20,6 @@
                 <button type="submit" class="btn btn-default">Submit</button>
             </div>
         </div>
+        <p><span style="color:red"> @ViewBag.mensaje</span> </p>
     </form>
 </div>

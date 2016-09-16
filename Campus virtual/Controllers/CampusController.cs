@@ -16,11 +16,23 @@ namespace Campus_virtual.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(FormCollection form)
+        public ActionResult login(FormCollection form)
         {
-            string email = Request.Form["email"].ToString();
+            ViewBag.mensaje = "";
+            string nombre = Request.Form["usuario"].ToString();
             string contraseña = Request.Form["pwd"].ToString();
-            return View();
+            Alumno unAlumno = new Alumno();
+            Boolean hayUsuario = unAlumno.IniciarSesion(nombre, contraseña);
+            if(hayUsuario == false)
+            {
+                ViewBag.mensaje = "Usuario Invalido";
+                return View();
+            } else 
+            {
+                
+                return View("VerInasistencias");
+            }
+
         }
         [HttpPost]
         public ActionResult ModificarInasistencias(List<Falta> unaFalta)

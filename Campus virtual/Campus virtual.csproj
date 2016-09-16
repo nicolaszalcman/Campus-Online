@@ -239,6 +239,8 @@
     <Content Include="Views\Campus\ModificarFalta.cshtml" />
     <Content Include="Views\Campus\ModificarFaltaCurso.cshtml" />
     <Content Include="Views\Campus\ModificarInasistencias.cshtml" />
+    <Content Include="Views\Campus\Login.cshtml" />
+    <Content Include="Views\Campus\VerInasistencias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
