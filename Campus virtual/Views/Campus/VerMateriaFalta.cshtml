@@ -14,20 +14,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Matematica</td>
-                <td>Ausente</td>
-                
-            </tr>
-            <tr>
-                <td>Arte</td>
-                <td>Presente</td>
-                
-            </tr>
-            <tr>
-                <td>Lengua</td>
-                <td>Tarde</td>
-            </tr>
+            @foreach (var falta in ViewBag.listafaltas)
+            {
+                <tr>
+                    <td>
+                        @foreach (var materia in ViewBag.listamaterias)
+                        {
+                            if(falta.IdMateria == materia.idMateria)
+                            {
+                                @materia.Nombre
+                            }
+                        }
+                    </td>
+                    <td>@falta.tipo </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>

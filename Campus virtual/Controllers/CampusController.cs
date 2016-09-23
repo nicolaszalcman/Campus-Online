@@ -191,10 +191,11 @@ namespace Campus_virtual.Controllers
         public ActionResult VerMateriaFalta( DateTime fecha)
         {
             Falta unaFalta = new Falta();
-            Materia 
+            Materia unaMateria = new Materia();
             List<Falta> faltaAlumnoFecha = unaFalta.TraerFaltas_X_Fecha_por_IdAlumno(fecha, (int)TempData["idAlumno"]);
             ViewBag.listafaltas = faltaAlumnoFecha;
-            ViewBag.listamaterias = 
+            ViewBag.listamaterias = unaMateria.listarmateria();
+            ViewBag.fecha = fecha;
             return View();
         }
 
