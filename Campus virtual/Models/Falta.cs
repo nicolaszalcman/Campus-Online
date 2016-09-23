@@ -169,7 +169,7 @@ namespace Campus_virtual.Models
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
             List<Falta> listaFalta = new List<Falta>();
-            string sql = "SELECT * FROM `falta`  where IdAlumno = @IdAlu ";
+            string sql = "SELECT * FROM `falta`  where IdAlumno = @IdAlu GROUP BY Fecha";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@IdAlu", IdAlum);
 
