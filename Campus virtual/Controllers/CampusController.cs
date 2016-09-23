@@ -13,6 +13,9 @@ namespace Campus_virtual.Controllers
         // GET: /Campus/     
         public ActionResult Index()
         {
+            Noticias UnaNoti = new Noticias();
+            ViewBag.ListarNoticias= UnaNoti.ListarNoticias();
+            
             return View();
         }
         [HttpPost]
@@ -192,12 +195,27 @@ namespace Campus_virtual.Controllers
             unaFalta = new Falta();
 
             List<Falta> lista;
-            lista = new List<Falta>;
+            lista = new List<Falta>();
 
             lista = unaFalta.TraerFaltas_x_fecha_x_Materia();
 
             return View();
         }
+
+        public ActionResult AgregarNoticia()
+        {
+            return View();
+
+        }
+        [HttpPost]
+
+        public ActionResult AgregarNoticia(Noticias MiNoti)
+        {
+            //MiNoti.AgregarFoto();
+            MiNoti.CargarNoticia();
+            return View("Index");
+        }
+
 
 
 
