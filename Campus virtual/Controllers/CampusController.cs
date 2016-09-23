@@ -35,6 +35,8 @@ namespace Campus_virtual.Controllers
             } else 
             {
                 int idAlumno = unAlumno.BuscarId(nombre);
+                TempData.Clear();
+                TempData.Add("idAlumno", idAlumno);
                 List<Falta> listarFaltasAlumno = unaFalta.Faltas_por_Alumnos(idAlumno);
                 ViewBag.listafaltas = listarFaltasAlumno;
                 return View("VerInasistencias");
@@ -186,16 +188,13 @@ namespace Campus_virtual.Controllers
             return RedirectToAction("Sanciones");
         }
 
-        public ActionResult VerMateriaFalta()
+        public ActionResult VerMateriaFalta( DateTime fecha)
         {
-            Falta unaFalta;
-            unaFalta = new Falta();
-
-            List<Falta> lista;
-            lista = new List<Falta>;
-
-            lista = unaFalta.TraerFaltas_x_fecha_x_Materia();
-
+            Falta unaFalta = new Falta();
+            Materia 
+            List<Falta> faltaAlumnoFecha = unaFalta.TraerFaltas_X_Fecha_por_IdAlumno(fecha, (int)TempData["idAlumno"]);
+            ViewBag.listafaltas = faltaAlumnoFecha;
+            ViewBag.listamaterias = 
             return View();
         }
 

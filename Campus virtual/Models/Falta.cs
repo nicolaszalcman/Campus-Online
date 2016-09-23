@@ -212,9 +212,6 @@ namespace Campus_virtual.Models
                 unafalta.tipo = rdr[2].ToString();
                 unafalta.IdMateria = Convert.ToInt32(rdr[4]);
                 unafalta.IdDivision = Convert.ToInt32(rdr[5]);
-                unafalta.idAlumno = Convert.ToInt32(rdr[6]);
-                unafalta.nombre = rdr[7].ToString();
-                unafalta.apellido = rdr[8].ToString();
                 listaFalta.Add(unafalta);
             }
             rdr.Close();
