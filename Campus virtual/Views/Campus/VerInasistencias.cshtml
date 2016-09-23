@@ -7,7 +7,7 @@
         <a href="#" class="list-group-item disabled">Fecha</a>
         @foreach (var item in ViewBag.listafaltas)
         {
-            <a href="#" class="list-group-item">@item.fecha.ToString("dd/MM/yyyy")</a>
+            <a href="~/Controllers/CampusController.cs/VerMateriaFalta"  class="list-group-item">@item.fecha.ToString("dd/MM/yyyy")</a>
         }
         
     </div>

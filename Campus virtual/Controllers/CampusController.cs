@@ -137,7 +137,7 @@ namespace Campus_virtual.Controllers
             Sancion unaSancion = new Sancion();
             Materia unaMateria = new Materia();
             ViewBag.listamateria = unaMateria.listarmateria();
-            ViewBag.listasanciones = unaSancion
+            ViewBag.listasanciones = unaSancion.ListarTodasSanciones();
             return View();
         }
         [HttpPost]

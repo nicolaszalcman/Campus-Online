@@ -6,9 +6,10 @@
 
    
     
-    @(Html.BeginForm("ListaSanciones", "Campus", FormMethod.Post))
-    
-    
+    @using (Html.BeginForm("ListaSanciones", "Campus", FormMethod.Post))
+    {
+
+
         <div class="form-inline" role="form">
             <div class="form-group">
                 <label for="sel1">Seleccionar Año</label>
@@ -40,11 +41,10 @@
             </div>
             
         </div><br /><br />
-    
+
     <button type="submit" class="btn btn-default">Cargar</button>
     
-    
 
-        </div>
 
-    
+    }
+
