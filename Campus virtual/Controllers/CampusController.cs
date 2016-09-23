@@ -186,8 +186,22 @@ namespace Campus_virtual.Controllers
             return RedirectToAction("Sanciones");
         }
 
+        public ActionResult VerMateriaFalta()
+        {
+            Falta unaFalta;
+            unaFalta = new Falta();
 
-        
+            List<Falta> lista;
+            lista = new List<Falta>;
+
+            lista = unaFalta.TraerFaltas_x_fecha_x_Materia();
+
+            return View();
+        }
+
+
+
+
 
 
 
