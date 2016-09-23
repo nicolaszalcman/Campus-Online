@@ -2,12 +2,17 @@
     <div class="page-header">
         <h1>Inasistencias</h1>
     </div>
-
+    <script>
+        function hacerclick(fecha) {
+            window.open("http://localhost:45685/Campus/VerMateriaFalta?fecha=" + fecha , "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=500,left=500,width=400,height=350");
+        }
+    </script>
     <div class="list-group">
         <a href="#" class="list-group-item disabled">Fecha</a>
         @foreach (var item in ViewBag.listafaltas)
-        {
-            <a href="~/Controllers/CampusController.cs/VerMateriaFalta"  class="list-group-item">@item.fecha.ToString("dd/MM/yyyy")</a>
+        {            
+            <a href="#" onclick="hacerclick('@item.fecha.ToString("yyyy-MM-dd")')"   class="list-group-item">@item.fecha.ToString("dd/MM/yyyy")</a>
+           
         }
         
     </div>
