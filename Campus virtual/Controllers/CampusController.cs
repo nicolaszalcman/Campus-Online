@@ -88,7 +88,7 @@ namespace Campus_virtual.Controllers
             TempData.Clear();
             TempData.Add("divi", divi);
             TempData.Keep();
-
+            
             List<Falta> lista;
             lista = Unafalta.ListarFaltas();
             falta = Unafalta.HayUnaFalta(unaFalta, divi, IdMateria, lista );
