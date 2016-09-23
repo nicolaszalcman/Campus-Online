@@ -134,9 +134,10 @@ namespace Campus_virtual.Controllers
 
         public ActionResult Sanciones()
         {
-
+            Sancion unaSancion = new Sancion();
             Materia unaMateria = new Materia();
             ViewBag.listamateria = unaMateria.listarmateria();
+            ViewBag.listasanciones = unaSancion
             return View();
         }
         [HttpPost]
@@ -144,6 +145,7 @@ namespace Campus_virtual.Controllers
         {
             Sancion unaSancion = new Sancion();
             ViewBag.listasanciones = unaSancion.ListarSanciones(anio, Letra);
+            TempData.Clear();
             TempData.Add("anio", anio);
             TempData.Add("letra", Letra);
             TempData.Keep();
