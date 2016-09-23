@@ -98,5 +98,30 @@ namespace Campus_virtual.Models
             cmd.ExecuteNonQuery();
             conn.Close();
         }
+
+        public List<Sancion> ListarTodasSanciones()
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            List<Sancion> listaSanciones = new List<Sancion>();
+            string sql = "SELECT * FROM `sancion` ";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+         
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                Sancion unaSancion = new Sancion();
+                unaSancion.IdSancion = Convert.ToInt32(rdr[0]);
+                unaSancion.fecha = Convert.ToDateTime(rdr[1]);
+                unaSancion.motivo = rdr[2].ToString();
+                unaSancion.nombre = rdr[5].ToString();
+                unaSancion.apellido = rdr[6].ToString();
+                listaSanciones.Add(unaSancion);
+            }
+            rdr.Close();
+            return listaSanciones;
+        }
     }
 }
