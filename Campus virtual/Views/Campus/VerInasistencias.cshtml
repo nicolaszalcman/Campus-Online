@@ -2,12 +2,18 @@
     <div class="page-header">
         <h1>Inasistencias</h1>
     </div>
-
+    <script>
+    function myFunction() {
+    var myWindow = window.open("", "MsgWindow", "width=200,height=100");
+    myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
+    }
+    </script>
     <div class="list-group">
         <a href="#" class="list-group-item disabled">Fecha</a>
         @foreach (var item in ViewBag.listafaltas)
         {
-            <a href="~/Controllers/CampusController.cs/VerMateriaFalta"  class="list-group-item">@item.fecha.ToString("dd/MM/yyyy")</a>
+            <a href="~/Controllers/CampusController.cs/VerMateriaFalta" onclick="hacerclick()" name=""  class="list-group-item">@item.fecha.ToString("dd/MM/yyyy")</a>
+           
         }
         
     </div>
