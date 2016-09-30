@@ -27,7 +27,7 @@ namespace Campus_virtual.Models
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
             List<Alumno> listaAlumnos = new List<Alumno>();
-            string sql = "INSERT INTO noticias (Titulo, Descripcion, Nota, Foto, Fecha) VALUES (@value2,@value3,@value4, @value5, @value6)";
+            string sql = "INSERT INTO noticia (Titulo, Descripcion, Nota, Foto, Fecha) VALUES (@value2,@value3,@value4, @value5, @value6)";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@value2", Titulo);
             cmd.Parameters.AddWithValue("@value3", Descripcion);

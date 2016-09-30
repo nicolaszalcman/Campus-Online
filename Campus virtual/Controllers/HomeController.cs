@@ -66,10 +66,21 @@ namespace Campus_virtual.Controllers
             return View("Index");
         }
 
+        public ActionResult AgregarNoticia()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult AgregarNoticia(Noticias MiNoti)
         {
             //MiNoti.AgregarFoto();
             MiNoti.CargarNoticia();
+
+            Noticias UnaNoti = new Noticias();
+
+            List<Noticias> lista = UnaNoti.ListarNoticias();
+            ViewBag.ListarNoticias = lista;
             return View("Index");
         }
     }

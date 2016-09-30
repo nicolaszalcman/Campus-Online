@@ -246,6 +246,7 @@
     <Content Include="Views\Campus\VerMateriaFalta.cshtml" />
     <Content Include="Views\Campus\DetalleNoticia.cshtml" />
     <Content Include="Views\Home\ModificarNoticia.cshtml" />
+    <Content Include="Views\Home\AgregarNoticia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
