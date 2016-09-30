@@ -12,10 +12,7 @@ namespace Campus_virtual.Controllers
         //
         // GET: /Campus/     
         public ActionResult Index()
-        {
-            Noticias UnaNoti = new Noticias();
-            ViewBag.ListarNoticias= UnaNoti.ListarNoticias();
-            
+        {                     
             return View();
         }
         [HttpPost]
@@ -208,6 +205,37 @@ namespace Campus_virtual.Controllers
         {
             //MiNoti.AgregarFoto();
             MiNoti.CargarNoticia();
+            return View("Index");
+        }
+        [HttpGet]
+        public ActionResult DetalleNoticia(int parametro)
+        {
+            Models.Noticias UnaNoti = new Models.Noticias();
+            UnaNoti= UnaNoti.TraerUnaNoticia(parametro);
+            return View(UnaNoti);
+        }
+
+        public ActionResult ModificarNoticia(int parametro)
+        {
+            Models.Noticias MINoticia = new Models.Noticias();
+           MINoticia= MINoticia.TraerUnaNoticia(parametro);
+            ViewBag.NomFoto = MINoticia.Foto;
+            return View(MINoticia);
+        }
+        [HttpPost]
+        public ActionResult ModificarNoticia(Noticias MiNoticia, HttpPostedFileBase file)
+        {
+
+
+            
+            Noticias MiFoto = new Noticias();
+            MiFoto.Foto = MiNoticia.Foto;
+           // MiFoto.AgregarFoto();
+            
+            MiNoticia.ModificarNoticia();
+
+            List<Models.Noticias> listaNoticias = MiNoticia.ListarNoticias();
+            ViewBag.listaNoticias = listaNoticias;
             return View("Index");
         }
 

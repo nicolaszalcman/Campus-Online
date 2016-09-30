@@ -1,0 +1,17 @@
+﻿@using Campus_virtual.Models;
+@model Noticias
+@{  
+    ViewBag.Title = "DetalleNoticia";
+}
+
+<h2>DetalleNoticia</h2>
+@{
+    @Model.Fecha<br /><br />
+    <h1>@Model.Titulo</h1><br /><br />
+    <img src="/content/@Model.Foto" alt="@Model.Foto" height="330px" width="350px" /><br /><br />
+    <h3>@Model.Descripcion</h3><br /><br />
+    <h4>@Model.Nota</h4>
+
+
+
+}

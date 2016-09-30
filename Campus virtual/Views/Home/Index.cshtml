@@ -1,6 +1,8 @@
 ﻿@{
     ViewBag.Title = "La escuela de hilel";
 }
+@using Campus_virtual.Models;
+@model Noticias
 
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
@@ -37,3 +39,22 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+
+<h2>Noticias</h2>
+@{
+    @Html.ActionLink("Agregar noticia", "AgregarNoticia", "Home")<br />
+    foreach (Noticias MiNoti in ViewBag.ListarNoticias)
+    {
+        @MiNoti.Titulo <br /><br />
+        <img src="/content/@MiNoti.Foto" alt="@MiNoti.Foto" height="200px" width="220px" />
+        <table>
+            <tr>
+                <td><p>@Html.ActionLink("Ver", "DetalleNoticia", "Campus", new { parametro = MiNoti.IdNotica}, null)   </p></td>
+                <td><p>@Html.ActionLink("Editar", "ModificarNoticia", "Home", new { parametro = MiNoti.IdNotica }, null)    </p></td>
+                <td><p>@Html.ActionLink("Eliminar", "EliminarNoticia", "Campus", new { parametro = MiNoti.IdNotica }, null)</p></td>
+            </tr>
+        </table>
+
+    }
+
+}
