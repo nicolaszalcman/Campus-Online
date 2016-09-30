@@ -11,6 +11,7 @@ namespace Campus_virtual.Controllers
         public ActionResult Log_Out()
         {
             Session.Clear();
+            return RedirectToAction("Index");
         }
         public ActionResult Index()
         {
