@@ -11,6 +11,8 @@ namespace Campus_virtual.Controllers
     {
         //
         // GET: /Campus/     
+
+
         public ActionResult Index()
         {                     
             return View();
@@ -34,11 +36,13 @@ namespace Campus_virtual.Controllers
                 return View();
             } else 
             {
-                int idAlumno = unAlumno.BuscarId(nombre);
+                
+                unAlumno = unAlumno.BuscarId(nombre);
                 TempData.Clear();
-                TempData.Add("idAlumno", idAlumno);
-                List<Falta> listarFaltasAlumno = unaFalta.Faltas_por_Alumnos(idAlumno);
+                TempData.Add("idAlumno", unAlumno.idAlumno);
+                List<Falta> listarFaltasAlumno = unaFalta.Faltas_por_Alumnos(unAlumno.idAlumno);
                 ViewBag.listafaltas = listarFaltasAlumno;
+                Session["Nombre"] = unAlumno.Nombre;
                 return View("VerInasistencias");
             }
 

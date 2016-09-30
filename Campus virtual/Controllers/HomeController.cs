@@ -9,6 +9,11 @@ namespace Campus_virtual.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult Log_Out()
+        {
+            Session.Clear();
+            return RedirectToAction("Index");
+        }
         public ActionResult Index()
         {
 
