@@ -76,7 +76,7 @@ namespace Campus_virtual.Models
             AbrirConexion abrirconexion = new AbrirConexion();
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
-            string sql = "SELECT * FROM alumno Where NombreUsuario = @NomUsu and Contraseña = @Contra";
+            string sql = "SELECT * FROM alumno Where NombreUsuario = @NomUsu and Contrasenia = @Contra";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.Add("@NomUsu", NombreUsu);
             cmd.Parameters.Add("@Contra", contraseña);
@@ -93,9 +93,9 @@ namespace Campus_virtual.Models
 
         }
 
-        public int BuscarId(string NombreUsuario)
+        public Alumno BuscarId(string NombreUsuario)
         {
-            int id = 0;
+            
             AbrirConexion abrirconexion = new AbrirConexion();
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
@@ -103,14 +103,18 @@ namespace Campus_virtual.Models
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.Add("@NomUsu", NombreUsuario);
             MySqlDataReader rdr = cmd.ExecuteReader();
+            Alumno unAlumno = new Alumno();
 
             while (rdr.Read())
             {
-                id = Convert.ToInt32(rdr[0]);
+                
+                unAlumno.idAlumno = Convert.ToInt32(rdr[0]);
+                unAlumno.Nombre = rdr[1].ToString();
+                unAlumno.Apellido = rdr[2].ToString();
             }
             rdr.Close();
             conn.Close();
-            return id;
+            return unAlumno;
         }
     }
 }
