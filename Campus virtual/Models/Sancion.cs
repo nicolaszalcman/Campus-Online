@@ -116,8 +116,8 @@ namespace Campus_virtual.Models
                 unaSancion.IdSancion = Convert.ToInt32(rdr[0]);
                 unaSancion.fecha = Convert.ToDateTime(rdr[1]);
                 unaSancion.motivo = rdr[2].ToString();
-                unaSancion.nombre = rdr[5].ToString();
-                unaSancion.apellido = rdr[6].ToString();
+                unaSancion.nombre = rdr[3].ToString();
+                unaSancion.apellido = rdr[4].ToString();
                 listaSanciones.Add(unaSancion);
             }
             rdr.Close();

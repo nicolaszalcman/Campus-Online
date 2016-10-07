@@ -10,7 +10,7 @@
 {
 
     @Html.Label("Titulo: ") @Html.TextBoxFor(x => x.Titulo)<br />
-    @Html.Label("Fecha: ") @Html.TextBoxFor(x => x.Fecha)<br />
+    @Html.Label("Fecha: ") @Html.TextBoxFor(x => x.Fecha, new { @class = "form.control", Type = "date" })<br />
     @Html.Label("Descripcion: ") @Html.TextBoxFor(x => x.Descripcion)<br />
     @Html.Label("Foto: ") <input type="file" name="file" id="file" /><br />
     @Html.Label("Fuente: ") @Html.TextBoxFor(x => x.Nota)<br />

@@ -43,9 +43,9 @@ namespace Campus_virtual.Models
             AbrirConexion abrirconexion = new AbrirConexion();
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
-            string sql = "delete from noticias where IdNoticia = @IdNoticia";
+            string sql = "delete from noticia where IdNoticia = @IdNoticia";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@IdNoticia", IdNotica);
+            cmd.Parameters.AddWithValue("@IdNoticia", IdNoticia);
             cmd.ExecuteNonQuery();
             conn.Close();
         }
@@ -76,18 +76,7 @@ namespace Campus_virtual.Models
             return listaSanciones;
         }
 
-        public void AgregarFoto()
-        {
-            AbrirConexion abrirconexion = new AbrirConexion();
-            MySqlConnection conn = new MySqlConnection();
-            conn = abrirconexion.Conexion();
-            List<Alumno> listaAlumnos = new List<Alumno>();
-            string sql = "INSERT INTO noticia ( Foto ) VALUES(@pFoto) ";
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@pFoto", Foto);
-           
-            cmd.ExecuteNonQuery();
-        }
+       
 
         public Noticias TraerUnaNoticia(int Id)
         {
@@ -134,5 +123,7 @@ namespace Campus_virtual.Models
 
 
         }
+
+        
     }
 }

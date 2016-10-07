@@ -18,7 +18,7 @@
     <img src="/content/@ViewBag.NomFoto" alt="@ViewBag.NomFoto" height="200px" width="220px" /><br />
     <input type="file" name="file" id="file" /><br />
     Fuente: @Html.TextBoxFor(x => x.Nota)<br />
-    Fecha: @Html.TextBoxFor(x => x.Fecha)<br />
+    Fecha: @Html.TextBoxFor(x => x.Fecha, new { @class = "form.control", Type = "date" })<br />
    
     <input type="submit" value="Aceptar" />
 

@@ -175,6 +175,7 @@
     <Compile Include="Models\Alumno.cs" />
     <Compile Include="Models\Division.cs" />
     <Compile Include="Models\Falta.cs" />
+    <Compile Include="Models\FotosNoticias.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListItem.cs" />
     <Compile Include="Models\Materia.cs" />
@@ -186,6 +187,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Imagenes\noticia.jpg" />
+    <Content Include="Content\Imagenes\noticia1.jpg" />
+    <Content Include="Content\Imagenes\noticia2.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -250,7 +254,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Imagenes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
