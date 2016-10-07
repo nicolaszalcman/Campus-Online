@@ -17,6 +17,12 @@ namespace Campus_virtual.Controllers
         {                     
             return View();
         }
+        public ActionResult Notas()
+        {
+            Materia unaMateria = new Materia();
+            ViewBag.listamateria = unaMateria.listarmateria();
+            return View();
+        }
         [HttpPost]
         public ActionResult login(FormCollection form)
         {
@@ -83,6 +89,28 @@ namespace Campus_virtual.Controllers
             //ViewBag.Listar_Alumnos_Falta = unAlumno.Listar_Alumnos_Falta();
             return View();
         }
+        [HttpPost]
+        public ActionResult CargarNotas(List<Nota> UnaNota)
+        {
+            Nota unaNota = new Nota();
+            unaNota.Cargar_Nota(unaNota, (int)TempData["Materia"], (int)TempData["Divi"]);
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AdminNotas( string trimestre, int anio, string Letra, int IdMateria)
+        {
+            Alumno unAlumno = new Alumno();
+            Division unaDivision = new Division();
+            int divi;
+            divi = unaDivision.TraerIdDivision(anio, Letra);
+            TempData.Clear();
+            TempData.Add("Materia", IdMateria);
+            TempData.Add("divi", divi);
+            TempData.Keep();
+            ViewBag.listaalumnos = unAlumno.Listar_Alumnos_Falta(anio, Letra);
+            return View("AltaNotas");
+        }
+        [HttpPost]
         public ActionResult ActualizarAnio(Falta unaFalta, int anio, string Letra, int IdMateria)
         {
             Alumno unAlumno = new Alumno();
