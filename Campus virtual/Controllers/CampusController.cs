@@ -225,7 +225,37 @@ namespace Campus_virtual.Controllers
             return View(UnaNoti);
         }
 
-      
+        public ActionResult Alumnos()
+        {
+            return View("Alumnos");
+        }
+        [HttpPost]
+
+        public ActionResult ListarAlumnos(int anio, string letra)
+        {
+            Division miDivi = new Division();
+            int IdDivi = miDivi.TraerIdDivision(anio, letra);
+
+            Alumno MiAlumno = new Alumno();
+
+            List<Alumno> listaAlumnos = new List<Alumno>();
+            listaAlumnos = MiAlumno.ListarAlumnosConId(IdDivi);
+            ViewBag.ListarAlumnos = listaAlumnos;
+            return View("ListaAlumnos");
+        }
+        [HttpPost]
+        public ActionResult AgregarAlumno() 
+        {
+            //MiAlumno.AgregarAlumno();
+
+            
+
+            return View();
+
+        }
+
+
+
 
 
 
