@@ -1,0 +1,31 @@
+﻿@using Campus_virtual.Models;
+@model Alumno
+@{
+    ViewBag.Title = "AgregarAlumno";
+}
+
+<h2>AgregarAlumno</h2>
+
+@using (Html.BeginForm("AgregarAlumno", "Campus", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-inline">
+        <div class="form-group">
+            @Html.Label("Nombre: ") @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })<br />
+        </div>
+        <div class="form-group">
+            @Html.Label("Apellido: ") @Html.TextBoxFor(x => x.Apellido, new { @class = "form.control", Type = "date" })<br />
+        </div>
+        
+        <div class="form-group">
+            @Html.Label("Nombre de Uusario: ") @Html.TextBoxFor(x => x.NombreUsuario, new { @class = "form-control" })<br />
+        </div>
+        <div class="form-group">
+            @Html.Label("Contraseña: ") @Html.TextBoxFor(x => x.Contrasenia, new { @class = "form-control" })<br />
+
+        </div>
+        <input type="submit" value="Aceptar" />
+
+
+
+    </div>
+}

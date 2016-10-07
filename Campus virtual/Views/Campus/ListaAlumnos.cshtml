@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "ListaAlumnos";
+}
+
+<h2>ListaAlumnos</h2>
+
+<a href="@Url.Action("AgregarAlumno", "Campus")" class="btn btn-info" role="button">Agregar Alumno</a>
+
+@foreach (var item in ViewBag.ListarAlumnos)
+{
+    <div class="list-group">
+        <a href="@Url.Action("ModificarAlumno", "Campus", new { idAlumno = item.idAlumno })" class="list-group-item"><span class="badge">Modificar</span> @item.Nombre     @item.Apellido   </a>
+        <a href="@Url.Action("EliminarAlumno", "Campus", new { idAlumno = item.idAlumno })" class="btn btn-info" role="button">Eliminar </a>
+    </div>
+}

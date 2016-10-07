@@ -13,6 +13,12 @@ namespace Campus_virtual.Models
         public string Nombre { get; set; }
         public string Apellido { get; set; }
 
+        public int IdDivision { get; set; }
+
+        public string NombreUsuario { get; set; }
+        public string Contrasenia { get; set; }
+
+ 
 
 
 
@@ -115,6 +121,52 @@ namespace Campus_virtual.Models
             rdr.Close();
             conn.Close();
             return unAlumno;
+        }
+
+        public void AgregarAlumno()
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+
+            string sql = "INSERT INTO alumno (Nombre, Apelido, IdDivision, NombreUsuario, Contrasenia) VALUES (@pNombre, @pApellido, @pIdDivision, @pNombreUsu, @pContra)";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@pNombre", Nombre);
+            cmd.Parameters.AddWithValue("@pApellido", Apellido);
+            cmd.Parameters.AddWithValue("@pIdDivision",IdDivision);
+            cmd.Parameters.AddWithValue("@pNombreUsu", NombreUsuario);
+            cmd.Parameters.AddWithValue("@pContra", Contrasenia);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public List<Alumno> ListarAlumnosConId(int IdDivision)
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            List<Alumno> listaAlumnos = new List<Alumno>();
+            string sql = "SELECT *  FROM alumno  where IdDivision= @Id order by Apellido asc ";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            
+            cmd.Parameters.Add("@Id", IdDivision);
+
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                Alumno unAlumno = new Alumno();
+                unAlumno.idAlumno = Convert.ToInt32(rdr[0]);
+                unAlumno.Nombre = rdr[1].ToString();
+                unAlumno.Apellido = rdr[2].ToString();
+                unAlumno.IdDivision= Convert.ToInt32( rdr[3]);
+                unAlumno.NombreUsuario= rdr[4].ToString();
+                unAlumno.Contrasenia= rdr[5].ToString();
+                listaAlumnos.Add(unAlumno);
+            }
+            rdr.Close();
+            return listaAlumnos;
+            conn.Close();
         }
     }
 }
