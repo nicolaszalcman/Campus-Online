@@ -22,8 +22,14 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Inasitencias", "Inasistencias", "Campus")</li>
-                <li>@Html.ActionLink("Sanciones", "Sanciones", "Campus")</li>
+                <li></li>
+              
+                @if ( Session["Nombre"] == "Admin")
+                {
+                    
+                    <li>@Html.ActionLink("Inasitencias", "Inasistencias", "Campus")</li>
+                    <li>@Html.ActionLink("Sanciones", "Sanciones", "Campus")</li>
+                }
                 <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
             </ul>
             @Html.Partial("_LoginPartial")
