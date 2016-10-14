@@ -18,6 +18,24 @@ namespace Campus_virtual.Models
         public string nombre { get; set; }
         public string apellido { get; set; }
 
+        public void Modificar_Nota(List<Nota> listaNotas, string trimestre, int Materia)
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            string sql = "UPDATE `nota` SET `Nota`= @nota WHERE Trimestre = @trim AND nota.IdAlumno = @ingalum AND nota.IdMateria = @ingmat";
+            for (int i = 0; i < listaNotas.Count(); i++)
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@nota", listaNotas[i].nota);
+                cmd.Parameters.AddWithValue("@trim", trimestre);
+                cmd.Parameters.AddWithValue("@ingalum", listaNotas[i].IdAlumno);
+                cmd.Parameters.AddWithValue("@ingmat", Materia);
+                cmd.ExecuteNonQuery();
+            }
+
+            conn.Close();
+        }
         public void Cargar_Nota(List<Nota> listaTraida, string trim,int Materia, int division)
         {
 
