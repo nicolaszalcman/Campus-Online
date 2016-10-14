@@ -11,6 +11,7 @@ namespace Campus_virtual.Models
         public int idDivision { get; set; }
         public int Año { get; set; }
         public string Nombre { get; set; }
+        public string DivisionCompleta { get; set; }
 
 
         public List<string> ListarDivisiones_X_Anio(int anio, string letra)
@@ -36,7 +37,7 @@ namespace Campus_virtual.Models
             return ListaDivisiones_X_año;
 
         }
-        public int TraerIdDivision (int anio, string letra )
+        public int TraerIdDivision(int anio, string letra)
         {
             AbrirConexion abrirconexion = new AbrirConexion();
             MySqlConnection conn = new MySqlConnection();
@@ -50,10 +51,35 @@ namespace Campus_virtual.Models
 
             while (rdr.Read())
             {
-                idDivision = Convert.ToInt32(rdr[0]);       
+                idDivision = Convert.ToInt32(rdr[0]);
             }
             rdr.Close();
             return idDivision;
+        } 
+
+        public List<Division> ListarDivisiones()
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            List<Division> Lista = new List<Division>();
+            string sql = "SELECT * FROM division";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                Division midivi = new Division();
+                midivi.idDivision =Convert.ToInt32( rdr[0]);
+                midivi.Año = Convert.ToInt32(rdr[1]);
+                midivi.Nombre = rdr[2].ToString();
+                midivi.DivisionCompleta= rdr[3].ToString();
+
+                Lista.Add(midivi);
+            }
+            rdr.Close();
+            return Lista;
         }
 
         

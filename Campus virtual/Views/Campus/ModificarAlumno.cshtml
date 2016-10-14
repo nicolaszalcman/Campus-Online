@@ -1,0 +1,29 @@
+﻿@using Campus_virtual.Models;
+@model AlumnoDivision
+
+@{
+    ViewBag.Title = "ModificarAlumno";
+}
+
+<h2>ModificarAlumno</h2>
+
+<form method="post" action="@Url.Action("ModificarAlumno","Campus")" enctype="multipart/form-data">
+
+    @Html.HiddenFor(x => x.idAlumno)
+
+    Nombre: @Html.TextBoxFor(x => x.Nombre)<br />
+    Apellido: @Html.TextBoxFor(x => x.Apellido)<br />
+    Division:
+    <select name="IdMateria" id="IdMateria" class="form-control">
+        @foreach (var division in ViewBag.ListarDivision)
+        {
+            <option value="@division.idDivision">@division.DivisionCompleta</option>
+        }
+    </select>
+    Nombre de Usuario:@Html.TextBoxFor(x => x.NombreUsuario)<br />
+    Contraseña: @Html.TextBoxFor(x => x.Contrasenia)<br />
+    <input type="submit" value="Aceptar" />
+
+</form>
+
+

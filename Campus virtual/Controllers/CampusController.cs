@@ -29,14 +29,15 @@ namespace Campus_virtual.Controllers
             string contraseña = Request.Form["pwd"].ToString();
             Alumno unAlumno = new Alumno();
             Falta unaFalta = new Falta();
-            Boolean hayUsuario = unAlumno.IniciarSesion(nombre, contraseña);
+            
             if(nombre == "Admin" && contraseña == "Admin")
             {
                 Session.Clear();
                 Session["Nombre"] = "Admin";
                 return View();
             }
-            else if(hayUsuario == false)
+            Boolean hayUsuario = unAlumno.IniciarSesion(nombre, contraseña);
+             if (hayUsuario == false)
             {
                 ViewBag.mensaje = "Usuario Invalido";
                 return View();
@@ -235,7 +236,9 @@ namespace Campus_virtual.Controllers
         {
             Division miDivi = new Division();
             int IdDivi = miDivi.TraerIdDivision(anio, letra);
-
+            TempData.Clear();
+            TempData.Add("Divi", IdDivi);
+            TempData.Keep();
             Alumno MiAlumno = new Alumno();
 
             List<Alumno> listaAlumnos = new List<Alumno>();
@@ -243,24 +246,73 @@ namespace Campus_virtual.Controllers
             ViewBag.ListarAlumnos = listaAlumnos;
             return View("ListaAlumnos");
         }
-        [HttpPost]
-        public ActionResult AgregarAlumno() 
+        public ActionResult AgregarAlumno()
         {
-            //MiAlumno.AgregarAlumno();
-
             
-
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult AgregarAlumno(Alumno UnAlumno)
+        {
+           
+            UnAlumno.AgregarAlumno((int)TempData["Divi"]);
+
+
+
+            Alumno MiAlumno = new Alumno();
+
+            List<Alumno> listaAlumnos = new List<Alumno>();
+            listaAlumnos = MiAlumno.ListarAlumnosConId((int)TempData["Divi"]);
+            ViewBag.ListarAlumnos = listaAlumnos;
+            return View("ListaAlumnos");
 
         }
 
+        public ActionResult EliminarAlumno(int idAlumno)
+        {
+            Alumno MiAlumno = new Alumno();
+            MiAlumno.EliminarAlumno(idAlumno);
+
+            List<Alumno> listaAlumnos = new List<Alumno>();
+            listaAlumnos = MiAlumno.ListarAlumnosConId((int)TempData["Divi"]);
+            ViewBag.ListarAlumnos = listaAlumnos;
+            return View("ListaAlumnos");
+            
+        }
+
+        public ActionResult ModificarAlumno()
+        {
+            Division midivi = new Division();
+            List<Division> lista = new List<Division>();
+            lista= midivi.ListarDivisiones();
+            ViewBag.ListarDivision = lista;
 
 
+            return View();
+        }
+        [HttpPost]
+
+        public ActionResult ModificarAlumno(Alumno UnAlumno)
+        {
+            UnAlumno.ModificarAlumno(UnAlumno.IdDivision);
+
+            Alumno MiAlumno = new Alumno();
+            List<Alumno> listaAlumnos = new List<Alumno>();
+            listaAlumnos = MiAlumno.ListarAlumnosConId((int)TempData["Divi"]);
+            ViewBag.ListarAlumnos = listaAlumnos;
+            return View("ListaAlumnos");
 
 
+        }
 
+        public ActionResult VerAlumno(int idAlumno)
+        {
+            Alumno miAlu = new Alumno();
+            miAlu.TraerAlumno(idAlumno);
 
-
+            return View();
+        }
 
 
     }

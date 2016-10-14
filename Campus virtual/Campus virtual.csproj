@@ -173,6 +173,7 @@
     <Compile Include="Models\AbrirConexion.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Alumno.cs" />
+    <Compile Include="Models\AlumnoDivision.cs" />
     <Compile Include="Models\Division.cs" />
     <Compile Include="Models\Falta.cs" />
     <Compile Include="Models\FotosNoticias.cs" />
@@ -254,6 +255,8 @@
     <Content Include="Views\Campus\Alumnos.cshtml" />
     <Content Include="Views\Campus\ListaAlumnos.cshtml" />
     <Content Include="Views\Campus\AgregarAlumno.cshtml" />
+    <Content Include="Views\Campus\ModificarAlumno.cshtml" />
+    <Content Include="Views\Campus\VerAlumno.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

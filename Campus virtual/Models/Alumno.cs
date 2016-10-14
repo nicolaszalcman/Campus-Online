@@ -123,17 +123,17 @@ namespace Campus_virtual.Models
             return unAlumno;
         }
 
-        public void AgregarAlumno()
+        public void AgregarAlumno(int Divi)
         {
             AbrirConexion abrirconexion = new AbrirConexion();
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
 
-            string sql = "INSERT INTO alumno (Nombre, Apelido, IdDivision, NombreUsuario, Contrasenia) VALUES (@pNombre, @pApellido, @pIdDivision, @pNombreUsu, @pContra)";
+            string sql = "INSERT INTO alumno (Nombre, Apellido, IdDivision, NombreUsuario, Contrasenia) VALUES (@pNombre, @pApellido, @pIdDivision, @pNombreUsu, @pContra)";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@pNombre", Nombre);
             cmd.Parameters.AddWithValue("@pApellido", Apellido);
-            cmd.Parameters.AddWithValue("@pIdDivision",IdDivision);
+            cmd.Parameters.AddWithValue("@pIdDivision",Divi);
             cmd.Parameters.AddWithValue("@pNombreUsu", NombreUsuario);
             cmd.Parameters.AddWithValue("@pContra", Contrasenia);
 
@@ -167,6 +167,65 @@ namespace Campus_virtual.Models
             rdr.Close();
             return listaAlumnos;
             conn.Close();
+        }
+
+        public void EliminarAlumno(int id)
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            string sql = "delete from alumno where IdAlumno = @IdAlumno";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@IdAlumno", id);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        public void ModificarAlumno(int id)
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            string sql = "UPDATE alumno SET Nombre = @pTitu, Apellido = @pDesc,  IdDivision = @pFuente, NombreUsuario = @pFoto ,Contrasenia = @pFecha WHERE IdAlumno = @pIdNoti";
+
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@pTitu", Nombre);
+            cmd.Parameters.AddWithValue("@pDesc", Apellido);
+            cmd.Parameters.AddWithValue("@pFuente", id);
+            cmd.Parameters.AddWithValue("@pFoto", NombreUsuario);
+            cmd.Parameters.AddWithValue("@pFecha", Contrasenia);
+            cmd.Parameters.AddWithValue("@pIdNoti", idAlumno);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public Alumno TraerAlumno(int Id)
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            
+            string sql = "SELECT *  FROM alumno where IdAlumno=@Id ";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.Add("@Id", Id);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            Alumno unAlumno = new Alumno();
+            while (rdr.Read())
+            {
+                
+                unAlumno.idAlumno = Convert.ToInt32(rdr[0]);
+                unAlumno.Nombre = rdr[1].ToString();
+                unAlumno.Apellido = rdr[2].ToString();
+                unAlumno.IdDivision = Convert.ToInt32(rdr[3]);
+                unAlumno.NombreUsuario = rdr[4].ToString();
+                unAlumno.Contrasenia = rdr[5].ToString();
+
+                
+            }
+            rdr.Close();
+            
+            conn.Close();
+            return unAlumno;
         }
     }
 }
