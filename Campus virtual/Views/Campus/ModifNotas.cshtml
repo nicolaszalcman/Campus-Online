@@ -1,0 +1,44 @@
+﻿
+@{
+    int contador = 0;
+
+}
+@using Campus_virtual.Models
+@model List<Nota>
+
+@(Html.BeginForm("ModificarNotas", "Campus", FormMethod.Post))
+ {
+    <div class="container">
+        <h1>Cargar Notas </h1>
+        <table class="table table-hover">
+
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Nota</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.nombre</td>
+                        <td>@item.apellido </td>
+
+                        <td>
+                            @Html.TextBoxFor(x => x[contador].nota, new { @class = "form-control", Type = "number", min = "1", max = "10" })
+                        </td>
+                    </tr>
+
+                    @Html.HiddenFor(x => x[contador].IdAlumno, new { id = "idAlumno", name = "idAlumno", Value = item.IdAlumno })
+
+
+                    contador++;
+                }
+
+            </tbody>
+        </table>
+        <input type="submit" class="btn btn-default" />
+    </div>
+

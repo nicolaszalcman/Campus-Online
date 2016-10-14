@@ -93,9 +93,20 @@ namespace Campus_virtual.Controllers
         [HttpPost]
         public ActionResult CargarNotas(List<Nota> UnaNota)
         {
+            Materia unaMateria = new Materia();
+            ViewBag.listamateria = unaMateria.listarmateria();
             Nota unaNotas = new Nota();
             unaNotas.Cargar_Nota(UnaNota, (string)TempData["trim"], (int)TempData["Materia"], (int)TempData["Divi"]);
-            return View("Nota");
+            return View("Notas");
+        }
+        [HttpPost]
+        public ActionResult ModificarNotas (List<Nota> UnaNota)
+        {
+            Materia unaMateria = new Materia();
+            ViewBag.listamateria = unaMateria.listarmateria();
+            Nota unaNota = new Nota();
+            unaNota.Modificar_Nota(UnaNota, (string)TempData["trim"], (int)TempData["Materia"]);
+            return View("Notas");
         }
         [HttpPost]
         public ActionResult AdminNotas( string trimestre, int anio, string Letra, int IdMateria)
@@ -110,9 +121,20 @@ namespace Campus_virtual.Controllers
             TempData.Add("trim", trimestre);
             TempData.Keep();
             ViewBag.listaalumnos = unAlumno.Listar_Alumnos_Falta(anio, Letra);
-            lista = Unafalta.ListarFaltas();
-            falta = Unafalta.HayUnaFalta(unaFalta, divi, IdMateria, lista);
-            return View("AltaNotas");
+            Nota unaNota = new Nota();
+            List<Nota> lista;
+            lista = unaNota.ListarNotas();
+            Boolean haynota = unaNota.HayUnaNota(trimestre, divi, IdMateria, lista);
+            if(haynota == false)
+            {
+                return View("AltaNotas");
+
+            }
+            else
+            {
+                List<Nota> listaNotas = unaNota.TraerFaltas_X_todo(trimestre, divi, IdMateria);
+                return View("ModifNotas", listaNotas);
+            }
         }
         [HttpPost]
         public ActionResult ActualizarAnio(Falta unaFalta, int anio, string Letra, int IdMateria)

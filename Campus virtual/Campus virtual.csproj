@@ -260,6 +260,7 @@
     <Content Include="Views\Campus\VerAlumno.cshtml" />
     <Content Include="Views\Campus\Notas.cshtml" />
     <Content Include="Views\Campus\AltaNotas.cshtml" />
+    <Content Include="Views\Campus\ModifNotas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
