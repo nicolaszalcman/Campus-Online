@@ -26,7 +26,7 @@
                         <td>@item.Apellido </td>
 
                         <td>
-                            @Html.TextBoxFor(x => x[contador].nota, new { @class = "form-control", Type = "number"})
+                            @Html.TextBoxFor(x => x[contador].nota, new { @class = "form-control", Type = "number", min = "1" , max = "10" })
                         </td>
                     </tr>
 

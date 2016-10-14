@@ -35,14 +35,15 @@ namespace Campus_virtual.Controllers
             string contraseña = Request.Form["pwd"].ToString();
             Alumno unAlumno = new Alumno();
             Falta unaFalta = new Falta();
-            Boolean hayUsuario = unAlumno.IniciarSesion(nombre, contraseña);
+            
             if(nombre == "Admin" && contraseña == "Admin")
             {
                 Session.Clear();
                 Session["Nombre"] = "Admin";
                 return View();
             }
-            else if(hayUsuario == false)
+            Boolean hayUsuario = unAlumno.IniciarSesion(nombre, contraseña);
+            if (hayUsuario == false)
             {
                 ViewBag.mensaje = "Usuario Invalido";
                 return View();
@@ -92,9 +93,9 @@ namespace Campus_virtual.Controllers
         [HttpPost]
         public ActionResult CargarNotas(List<Nota> UnaNota)
         {
-            Nota unaNota = new Nota();
-            unaNota.Cargar_Nota(unaNota, (int)TempData["Materia"], (int)TempData["Divi"]);
-            return View();
+            Nota unaNotas = new Nota();
+            unaNotas.Cargar_Nota(UnaNota, (string)TempData["trim"], (int)TempData["Materia"], (int)TempData["Divi"]);
+            return View("Nota");
         }
         [HttpPost]
         public ActionResult AdminNotas( string trimestre, int anio, string Letra, int IdMateria)
@@ -106,8 +107,11 @@ namespace Campus_virtual.Controllers
             TempData.Clear();
             TempData.Add("Materia", IdMateria);
             TempData.Add("divi", divi);
+            TempData.Add("trim", trimestre);
             TempData.Keep();
             ViewBag.listaalumnos = unAlumno.Listar_Alumnos_Falta(anio, Letra);
+            lista = Unafalta.ListarFaltas();
+            falta = Unafalta.HayUnaFalta(unaFalta, divi, IdMateria, lista);
             return View("AltaNotas");
         }
         [HttpPost]
