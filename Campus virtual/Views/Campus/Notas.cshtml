@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Notas";
+}
+
+
+<br />
+<br />
+<div class="container">
+   
+    @using (Html.BeginForm("AdminNotas", "Campus", FormMethod.Post))
+    {
+        <div id="Division" class="form-group">
+            <div class="form-group">
+                <label for="sel1">Seleccionar Trimestre</label>
+                <select id="trimestre" name="trimestre" class="form-control">
+                    <option id="nom" value="Primer">Primer Trimestre</option>
+                    <option id="nom" value="Segundo">Segundo Trimestre</option>
+                    <option id="nom" value="Tercer">Tercer Trimestre</option>
+
+                </select>
+            </div>
+        </div>
+
+                    <div class="form-inline" role="form">
+                        <div class="form-group">
+                            <label for="sel1">Seleccionar Año</label>
+                            <select id="anio" name="anio" class="form-control">
+                                <option id="anio" value="1">1</option>
+                                <option id="anio" value="2">2</option>
+                                <option id="anio" value="3">3</option>
+                                <option id="anio" value="4">4</option>
+                                <option id="anio" value="5">5</option>
+                                <option id="anio" value="6">6</option>
+
+                            </select>
+
+
+                        </div>
+
+
+
+                        <div id="Division" class="form-group">
+                            <div class="form-group">
+                                <label for="sel1">Seleccionar Año</label>
+                                <select id="anio" name="letra" class="form-control">
+                                    <option id="letra" value="A">A</option>
+                                    <option id="letra" value="B">B</option>
+                                    <option id="letra" value="C">C</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div id="materia" class="form-group">
+                            <label for="sel1">Seleccionar Materia</label>
+                            <select name="IdMateria" id="IdMateria" class="form-control">
+                                @foreach (var materia in ViewBag.listamateria)
+                                {
+                                    <option value="@materia.idMateria">@materia.Nombre</option>
+                                }
+                            </select>
+                        </div><br /><br />
+
+                        
+                    </div>
+                    <button type="submit" class="btn btn-default">Cargar</button>
+
+    }
+</div>
+
+
+
+

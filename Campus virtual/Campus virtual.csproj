@@ -180,6 +180,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ListItem.cs" />
     <Compile Include="Models\Materia.cs" />
+    <Compile Include="Models\Nota.cs" />
     <Compile Include="Models\Noticias.cs" />
     <Compile Include="Models\Sancion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -257,6 +258,8 @@
     <Content Include="Views\Campus\AgregarAlumno.cshtml" />
     <Content Include="Views\Campus\ModificarAlumno.cshtml" />
     <Content Include="Views\Campus\VerAlumno.cshtml" />
+    <Content Include="Views\Campus\Notas.cshtml" />
+    <Content Include="Views\Campus\AltaNotas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
