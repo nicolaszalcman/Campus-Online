@@ -110,9 +110,20 @@ namespace Campus_virtual.Controllers
             TempData.Add("trim", trimestre);
             TempData.Keep();
             ViewBag.listaalumnos = unAlumno.Listar_Alumnos_Falta(anio, Letra);
-            lista = Unafalta.ListarFaltas();
-            falta = Unafalta.HayUnaFalta(unaFalta, divi, IdMateria, lista);
-            return View("AltaNotas");
+            Nota unaNota = new Nota();
+            List<Nota> lista;
+            lista = unaNota.ListarNotas();
+            Boolean haynota = unaNota.HayUnaNota(trimestre, divi, IdMateria, lista);
+            if(haynota == false)
+            {
+                return View("AltaNotas");
+
+            }
+            else
+            {
+
+                return View("ModifNotas");
+            }
         }
         [HttpPost]
         public ActionResult ActualizarAnio(Falta unaFalta, int anio, string Letra, int IdMateria)

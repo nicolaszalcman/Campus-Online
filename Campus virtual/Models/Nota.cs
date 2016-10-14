@@ -15,6 +15,9 @@ namespace Campus_virtual.Models
         public int IdMateria { get; set; }
         public int IdDivision { get; set; }
 
+        public string nombre { get; set; }
+        public string apellido { get; set; }
+
         public void Cargar_Nota(List<Nota> listaTraida, string trim,int Materia, int division)
         {
 
@@ -45,7 +48,7 @@ namespace Campus_virtual.Models
             AbrirConexion abrirconexion = new AbrirConexion();
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
-            List<Falta> listaFalta = new List<Falta>();
+            List<Nota> ListaNota = new List<Nota>();
             string sql = "SELECT * FROM `nota`  ";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -56,16 +59,68 @@ namespace Campus_virtual.Models
             {
                 Nota unaNota = new Nota();
                 unaNota.idNota = Convert.ToInt32(rdr[0]);
-                unaNota.trimestre = Convert.ToDateTime(rdr[1]);
-                unaNota.nota = rdr[2].ToString();
+                unaNota.trimestre = (rdr[1]).ToString();
+                unaNota.nota = Convert.ToInt32(rdr[2]);
                 unaNota.IdAlumno = Convert.ToInt32(rdr[3]);
                 unaNota.IdMateria = Convert.ToInt32(rdr[4]);
-                unafalta.IdDivision = Convert.ToInt32(rdr[5]);
-                listaFalta.Add(unafalta);
+                unaNota.IdDivision = Convert.ToInt32(rdr[5]);
+                ListaNota.Add(unaNota);
             }
             rdr.Close();
-            return listaFalta;
+            return ListaNota;
             conn.Close();
         }
+        public Boolean HayUnaNota(string trimestre, int IdDivision, int IdMateria, List<Nota> listaNota)
+        {
+            for (int i = 0; i < listaNota.Count(); i++)
+            {
+                if (listaNota[i].trimestre == trimestre)
+                {
+                    if (listaNota[i].IdDivision == IdDivision)
+                    {
+                        if (listaNota[i].IdMateria == IdMateria)
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+            }
+            return false;
+
+
+        }
+        public List<Nota> TraerFaltas_X_todo(string trimestre, int IdDivision, int IdMateria)
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            List<Nota> listaNota = new List<Nota>();
+            string sql = "SELECT * FROM `nota` INNER JOIN alumno ON nota.IdAlumno = alumno.IdAlumno INNER JOIN division ON alumno.IdDivision = division.IdDivision WHERE division.IdDivision= @ingdiv AND nota.Trimestre= @trim AND nota.IdMateria = @mat";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.Add("@ingdiv", IdDivision);
+            cmd.Parameters.Add("@trim", trimestre);
+            cmd.Parameters.Add("@mat", IdMateria);
+
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                Nota unaNota = new Nota();
+                unaNota.idNota = Convert.ToInt32(rdr[0]);
+                unaNota.trimestre = (rdr[1]).ToString();
+                unaNota.nota = Convert.ToInt32( rdr[2]);
+                unaNota.IdAlumno = Convert.ToInt32(rdr[3]);
+                unaNota.IdMateria = Convert.ToInt32(rdr[4]);
+                unaNota.IdDivision = Convert.ToInt32(rdr[5]);
+                unaNota.nombre = rdr[7].ToString();
+                unaNota.apellido = rdr[8].ToString();
+                listaNota.Add(unaNota);
+            }
+            rdr.Close();
+            return listaNota;
+            conn.Close();
+        }
+
     }
 }
