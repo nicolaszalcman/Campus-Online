@@ -17,7 +17,7 @@
         <p>Descripcion:</p> @Html.TextAreaFor(x => x.motivo)<br />
 
 
-        @Html.DropDownListFor(x => x.idAlumno, new SelectList(ViewBag.listaalumnos, "idAlumno", "nombre", "apellido"))
+        @Html.DropDownListFor(x => x.idAlumno, new SelectList(@ViewBag.listaalumnos, "idAlumno", "nombre", "apellido"))
 
 
         @Html.HiddenFor(x => x.IdSancion)<br />
