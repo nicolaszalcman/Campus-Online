@@ -1,35 +1,37 @@
 ﻿@using Campus_virtual.Models;
 @model Noticias
-@{
-    ViewBag.Title = "AgregarNoticia";
-}
+
 <div class="container">
     <div class="page-header">
         <h1>Agregar Noticias</h1>
     </div>
 
-    @using (Html.BeginForm("AgregarNoticia", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("AgregarNoticia", "Home", FormMethod.Post, new { enctype = "multipart/form-data" , @class = "form"}))
     {
-        <div class="form-inline">
             <div class="form-group">
-                @Html.Label("Titulo: ") @Html.TextBoxFor(x => x.Titulo, new { @class = "form-control" })<br />
+                <label>Fecha:</label>
+                @Html.TextBoxFor(x => x.Fecha, new { @class = "form.control", Type = "date", @required = "required" })
             </div>
             <div class="form-group">
-                @Html.Label("Fecha: ") @Html.TextBoxFor(x => x.Fecha, new { @class = "form.control", Type = "date" })<br />
-           </div>
+                <label>Titulo:</label>
+                 @Html.TextBoxFor(x => x.Titulo, new { @class = "form-control", @required = "required" })
+            </div>
+            
            <div class="form-group">
-                        @Html.Label("Descripcion: ") @Html.TextAreaFor(x => x.Descripcion, new { @class = "form-control" })<br />
-               </div>
+                        @Html.Label("Descripcion:") @Html.TextAreaFor(x => x.Descripcion, new { @class = "form-control",rows = "5", @required = "required" })
+            </div>
             <div class="form-group">
-                @Html.Label("Foto: ") <input type="file" name="file" id="file" /><br />
+                <label class="control-label">Select File</label>
+                <input  class="file" type="file" name="file" id="file" />
                 </div>
             <div class="form-group">
-                @Html.Label("Fuente: ") @Html.TextBoxFor(x => x.Nota, new { @class = "form-control" })<br />
+                @Html.Label("Fuente: ") @Html.TextBoxFor(x => x.Nota, new { @class = "form-control", @required = "required" })<br />
            
                 </div>
                 <input type="submit" value="Aceptar" />
 
                 
 
-            </div>
+           
     }
+</div>
