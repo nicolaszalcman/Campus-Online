@@ -6,9 +6,14 @@
 @using Campus_virtual.Models;
 @model Sancion
 <h1>Mi Sancion</h1>
-<div class="container">
 
-    <h2>@Model.nombre   @Model.apellido </h2><br />
-    <h4>@Model.motivo</h4><br />
-    <p>@Model.fecha</p>
-</div>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>@Model.nombre   @Model.apellido</h1>
+            <p>
+                @Model.motivo
+            </p>
+        </div>
+        <p>@Model.fecha.</p>
+        <p>This is another text.</p>
+    </div>

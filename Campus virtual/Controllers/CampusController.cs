@@ -46,7 +46,7 @@ namespace Campus_virtual.Controllers
              if (hayUsuario == false)
             {
                 ViewBag.mensaje = "Usuario Invalido";
-                return View();
+                return RedirectToAction("Login", "Account", new { msg = "usuario invalido" });
             } else 
             {
                 

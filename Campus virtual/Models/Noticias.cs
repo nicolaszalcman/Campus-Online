@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
+using System.ComponentModel.DataAnnotations;
 
 namespace Campus_virtual.Models
 {
     public class Noticias
     {
         public int IdNotica { get; set; }
-
+        [Required]
         public string Titulo { get; set; }
-
+        [Required]
         public string Descripcion { get; set; }
-
+        [Required]
         public string Nota { get; set; }
-
+        [Required]
         public string Foto { get; set; }
-
+        [Required]
         public DateTime Fecha { get; set; }
 
 

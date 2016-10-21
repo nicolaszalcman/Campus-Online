@@ -91,34 +91,40 @@ namespace Campus_virtual.Controllers
         [HttpPost]
         public ActionResult AgregarNoticia(Noticias MiNoti, HttpPostedFileBase file)
         {
-
-            try 
+            if (!ModelState.IsValid)
             {
-                if (file.ContentLength > 0)
+                try
                 {
-                    var fileName = Path.GetFileName(file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Content/"), fileName);
+                    if (file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/Content/"), fileName);
 
-                    file.SaveAs(path);
+                        file.SaveAs(path);
 
-                    MiNoti.Foto = fileName;
+                        MiNoti.Foto = fileName;
+                    }
                 }
-            }
-            catch(Exception Error)
+                catch (Exception Error)
+                {
+
+                }
+
+                FotosNoticias Mifoto = new FotosNoticias();
+
+                MiNoti.CargarNoticia();
+                Mifoto.Nombre = MiNoti.Foto;
+                Mifoto.AgregarFoto();
+                Noticias UnaNoti = new Noticias();
+
+                List<Noticias> lista = UnaNoti.ListarNoticias();
+                ViewBag.ListarNoticias = lista;
+                return View("Index");
+                }
+            else
             {
-
+                return View();
             }
-
-            FotosNoticias Mifoto = new FotosNoticias();
-
-            MiNoti.CargarNoticia();
-            Mifoto.Nombre = MiNoti.Foto;
-            Mifoto.AgregarFoto();
-            Noticias UnaNoti = new Noticias();
-
-            List<Noticias> lista = UnaNoti.ListarNoticias();
-            ViewBag.ListarNoticias = lista;
-            return View("Index");
         }
 
         public ActionResult EliminarNoticia(int parametro)
