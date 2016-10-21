@@ -1,19 +1,33 @@
-﻿
+﻿@using Campus_virtual.Models;
+@model Alumno
 @{
     ViewBag.Title = "ListaAlumnos";
 }
 
-<h2>ListaAlumnos</h2>
+<h2>Lista de Alumnos </h2>
 
 <a href="@Url.Action("AgregarAlumno", "Campus")" class="btn btn-info" role="button">Agregar Alumno</a>
 
 <br /><br />
+<table class="table table-hover">
 
-@foreach (var item in ViewBag.ListarAlumnos)
-{
-    <div class="list-group">
-        <a href="@Url.Action("VerAlumno", "Campus", new { idAlumno = item.idAlumno })" class="list-group-item">  @item.Nombre     @item.Apellido </a>
-        <a href="@Url.Action("ModificarAlumno", "Campus", new { idAlumno = item.idAlumno })" class="list-group-item">Modificar    </a>
-        <a href="@Url.Action("EliminarAlumno", "Campus", new { idAlumno = item.idAlumno })" class="list-group-item">Eliminar </a>
-    </div>
-}
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        
+    </tr>
+    @foreach (var item in ViewBag.ListarAlumnos)
+    {
+        <tr>
+            <td>@item.Nombre     </td>
+            <td>@item.Apellido</td>
+            <td><a href="@Url.Action("VerAlumno", "Campus", new { idAlumno = item.idAlumno })">Ver  </a></td>
+            <td><a href="@Url.Action("ModificarAlumno", "Campus", new { idAlumno = item.idAlumno })">Modificar </a> </td>
+            <td><a href="@Url.Action("EliminarAlumno", "Campus", new { idAlumno = item.idAlumno })">Eliminar </a></td>
+        </tr>
+        
+
+    }
+</table>
+
+
