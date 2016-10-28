@@ -1,0 +1,35 @@
+﻿@using Campus_virtual.Models;
+@model Noticias
+
+<div class="container">
+    <div class="page-header">
+        <h1>Noticias</h1>
+    </div>
+    
+    @Html.ActionLink("Agregar noticia", "AgregarNoticia", "Home")<br />
+
+    @{    
+            foreach (Noticias MiNoti in ViewBag.ListarNoticias)
+            {
+
+                <div class="col-md-6">
+
+                    <p>@MiNoti.Titulo</p>
+                    <img src="/content/@MiNoti.Foto" alt="@MiNoti.Foto" style="width:150px;height:150px">
+
+                </div>
+                <div class="col-sm-2">
+                    <p>@Html.ActionLink("Ver", "DetalleNoticia", "Campus", new { parametro = MiNoti.IdNotica }, null)
+                </div>
+                <div class="col-sm-2">
+                    @Html.ActionLink("Editar", "ModificarNoticia", "Home", new { parametro = MiNoti.IdNotica }, null)
+                </div>
+                <div class="col-sm-2">
+                    <p>@Html.ActionLink("Eliminar", "EliminarNoticia", "Home", new { parametro = MiNoti.IdNotica }, null)</p>
+                </div>
+
+
+            }
+        
+    }
+</div>
