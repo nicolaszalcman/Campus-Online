@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MySql.Data.MySqlClient;
 
 namespace Campus_virtual.Models
 {
@@ -19,6 +20,8 @@ namespace Campus_virtual.Models
         public string NombreDivision { get; set; }
 
         public string DivisionCompleta { get; set; }
+
+       
 
     }
 }

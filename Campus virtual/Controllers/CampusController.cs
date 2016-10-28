@@ -301,6 +301,12 @@ namespace Campus_virtual.Controllers
         }
         public ActionResult AgregarAlumno()
         {
+
+            Division MiDivi = new Division();
+            List<Division> lista = new List<Division>();
+
+            lista = MiDivi.ListarDivisiones();
+            ViewBag.ListarDivisiones = lista;
             
             return View();
         }
@@ -309,14 +315,14 @@ namespace Campus_virtual.Controllers
         public ActionResult AgregarAlumno(Alumno UnAlumno)
         {
            
-            UnAlumno.AgregarAlumno((int)TempData["Divi"]);
+            UnAlumno.AgregarAlumno(UnAlumno.IdDivision);
 
 
 
             Alumno MiAlumno = new Alumno();
 
             List<Alumno> listaAlumnos = new List<Alumno>();
-            listaAlumnos = MiAlumno.ListarAlumnosConId((int)TempData["Divi"]);
+            listaAlumnos = MiAlumno.ListarAlumnosConId(UnAlumno.IdDivision);
             ViewBag.ListarAlumnos = listaAlumnos;
             return View("ListaAlumnos");
 
@@ -334,15 +340,18 @@ namespace Campus_virtual.Controllers
             
         }
 
-        public ActionResult ModificarAlumno()
+        public ActionResult ModificarAlumno(int idAlumno)
         {
             Division midivi = new Division();
             List<Division> lista = new List<Division>();
             lista= midivi.ListarDivisiones();
             ViewBag.ListarDivision = lista;
 
+            Alumno miAlumno = new Alumno();
+            miAlumno= miAlumno.TraerAlumno(idAlumno);
 
-            return View();
+
+            return View(miAlumno);
         }
         [HttpPost]
 
@@ -352,7 +361,7 @@ namespace Campus_virtual.Controllers
 
             Alumno MiAlumno = new Alumno();
             List<Alumno> listaAlumnos = new List<Alumno>();
-            listaAlumnos = MiAlumno.ListarAlumnosConId((int)TempData["Divi"]);
+            listaAlumnos = MiAlumno.ListarAlumnosConId(UnAlumno.IdDivision);
             ViewBag.ListarAlumnos = listaAlumnos;
             return View("ListaAlumnos");
 

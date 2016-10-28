@@ -1,5 +1,5 @@
 ﻿@using Campus_virtual.Models;
-@model Alumno
+@model AlumnoDivision
 @{
     ViewBag.Title = "AgregarAlumno";
 }
@@ -15,6 +15,13 @@
         <div class="form-group">
             @Html.Label("Apellido: ") @Html.TextBoxFor(x => x.Apellido, new { @class = "form.control" })<br />
         </div>
+        Division:
+        <select name="IdMateria" id="IdMateria" class="form-control">
+            @foreach (var division in ViewBag.ListarDivisiones)
+            {
+                <option value="@division.idDivision">@division.DivisionCompleta</option>
+            }
+        </select>
         
         <div class="form-group">
             @Html.Label("Nombre de Usuario: ") @Html.TextBoxFor(x => x.NombreUsuario, new { @class = "form-control" })<br />
