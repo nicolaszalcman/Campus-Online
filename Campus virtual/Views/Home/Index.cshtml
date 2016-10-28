@@ -40,28 +40,24 @@
         </a>
     </div>
 
-<h2>Noticias</h2>
-@{
-    @Html.ActionLink("Agregar noticia", "AgregarNoticia", "Home")<br />
-    <div class="row">
-        @foreach (Noticias MiNoti in ViewBag.ListarNoticias)
-        {
+<div class="container">
+    @{
+        @Html.ActionLink("Agregar noticia", "AgregarNoticia", "Home")<br />
+        <div class="row">
+            @foreach (Noticias MiNoti in ViewBag.ListarNoticias)
+            {
 
-        <div class="col-md-4">
-            <a href="pulpitrock.jpg" class="thumbnail">
-                <p>@MiNoti.Titulo</p>
-                <img src="/content/@MiNoti.Foto" alt="@MiNoti.Foto" style="width:150px;height:150px">
-            </a>
+                <div class="col-md-4">
+                    <a href="pulpitrock.jpg" class="thumbnail">
+                        <p>@MiNoti.Titulo</p>
+                        <a href=@Url.Action("DetalleNoticia", "Campus", new { parametro = MiNoti.IdNotica })>
+                            <img src="/content/@MiNoti.Foto" alt="@MiNoti.Foto" style="width:150px;height:150px">
+                        </a>
+                </div>
+
+
+
+            }
         </div>
-
-        <table>
-            <tr>
-                <td><p>@Html.ActionLink("Ver", "DetalleNoticia", "Campus", new { parametro = MiNoti.IdNotica }, null)   </p></td>
-                <td><p>@Html.ActionLink("Editar", "ModificarNoticia", "Home", new { parametro = MiNoti.IdNotica }, null)    </p></td>
-                <td><p>@Html.ActionLink("Eliminar", "EliminarNoticia", "Home", new { parametro = MiNoti.IdNotica }, null)</p></td>
-            </tr>
-        </table>
-
-        }
-    </div>
-}
+    }
+</div>
