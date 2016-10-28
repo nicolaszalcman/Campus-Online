@@ -1,15 +1,19 @@
 ﻿@using Campus_virtual.Models;
-@model Alumno
+@model DetalleAlumno
+
 @{
     ViewBag.Title = "VerAlumno";
 }
 
-<h2>VerAlumno</h2>
+<h2>Detalles del Alumno</h2>
 
-@{ 
 
-        @Model.Nombre 
-        @Model.Apellido
-        @Model.NombreUsuario
+
+       Nombre: @Model.Nombre <br />
+       Apellido:@Model.Apellido<br />
+       Nombre de Usuario: @Model.NombreUsuario<br />
+       Cantidad de Faltas: @ViewData["CantFaltas"]<br />
+       Cantidad de Sanciones: @ViewData["CantSanciones"]  
+        
     
- }
+ 

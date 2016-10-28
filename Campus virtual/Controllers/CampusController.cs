@@ -46,7 +46,7 @@ namespace Campus_virtual.Controllers
              if (hayUsuario == false)
             {
                 ViewBag.mensaje = "Usuario Invalido";
-                return View();
+                return RedirectToAction("Login", "Account", new { msg = "usuario invalido" });
             } else 
             {
                 
@@ -318,11 +318,10 @@ namespace Campus_virtual.Controllers
             UnAlumno.AgregarAlumno(UnAlumno.IdDivision);
 
 
-
             Alumno MiAlumno = new Alumno();
 
             List<Alumno> listaAlumnos = new List<Alumno>();
-            listaAlumnos = MiAlumno.ListarAlumnosConId(UnAlumno.IdDivision);
+            listaAlumnos = MiAlumno.ListarAlumnosConId((int)TempData["Divi"]);
             ViewBag.ListarAlumnos = listaAlumnos;
             return View("ListaAlumnos");
 
@@ -335,6 +334,7 @@ namespace Campus_virtual.Controllers
 
             List<Alumno> listaAlumnos = new List<Alumno>();
             listaAlumnos = MiAlumno.ListarAlumnosConId((int)TempData["Divi"]);
+            TempData.Keep();
             ViewBag.ListarAlumnos = listaAlumnos;
             return View("ListaAlumnos");
             
@@ -342,6 +342,9 @@ namespace Campus_virtual.Controllers
 
         public ActionResult ModificarAlumno(int idAlumno)
         {
+            AlumnoDivision miAlumno = new AlumnoDivision();
+            miAlumno = miAlumno.TraerUnAlumno(idAlumno);
+
             Division midivi = new Division();
             List<Division> lista = new List<Division>();
             lista= midivi.ListarDivisiones();
@@ -361,7 +364,7 @@ namespace Campus_virtual.Controllers
 
             Alumno MiAlumno = new Alumno();
             List<Alumno> listaAlumnos = new List<Alumno>();
-            listaAlumnos = MiAlumno.ListarAlumnosConId(UnAlumno.IdDivision);
+            listaAlumnos = MiAlumno.ListarAlumnosConId((int)TempData["Divi"]);
             ViewBag.ListarAlumnos = listaAlumnos;
             return View("ListaAlumnos");
 
@@ -370,10 +373,19 @@ namespace Campus_virtual.Controllers
 
         public ActionResult VerAlumno(int idAlumno)
         {
-            Alumno miAlu = new Alumno();
-            miAlu.TraerAlumno(idAlumno);
+            DetalleAlumno miAlu = new DetalleAlumno();
+            miAlu= miAlu.TraerAlumno(idAlumno);
 
-            return View();
+            int cantFalta, cantSancion;
+            cantFalta = 0;
+            cantSancion = 0;
+
+            cantSancion = miAlu.CantidadSancion(idAlumno);
+            cantFalta = miAlu.CantidadFaltas(idAlumno);
+            ViewData["CantFaltas"] = cantFalta;
+            ViewData["CantSanciones"] = cantSancion;
+            
+            return View(miAlu);
         }
 
 

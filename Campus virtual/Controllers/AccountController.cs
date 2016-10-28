@@ -30,9 +30,9 @@ namespace Campus_virtual.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login(string msg)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            ViewBag.ReturnUrl = msg;
             return View();
         }
 
