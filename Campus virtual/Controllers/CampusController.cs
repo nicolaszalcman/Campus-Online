@@ -137,6 +137,7 @@ namespace Campus_virtual.Controllers
             int IdAlumno = (int)TempData["idAlumno"];
             Nota unaNota = new Nota();
             List<Nota> ListaNotasAlumno = unaNota.ListarNotasXAlumno(IdAlumno);
+            ViewBag.listanotas = ListaNotasAlumno;
             return View();
         }
         [HttpPost]
