@@ -255,9 +255,16 @@ namespace Campus_virtual.Controllers
             Division unaDivision = new Division();
             int divi;
             divi = unaDivision.TraerIdDivision(anio, Letra);
+            ViewBag.Anio = anio;
+            ViewBag.Letra = Letra;
             TempData.Clear();
             TempData.Add("divi", divi);
             TempData.Keep();
+
+            Materia mate = new Materia();
+            string materia;
+            materia = mate.TraerMateria(IdMateria);
+            ViewBag.Materia = materia;
             
             List<Falta> lista;
             lista = Unafalta.ListarFaltas();

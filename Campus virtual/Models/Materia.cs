@@ -33,5 +33,25 @@ namespace Campus_virtual.Models
 
         }
 
+        public string TraerMateria(int id)
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+
+            string sql = "SELECT *  FROM materia where IdMateria = @id";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                
+                Nombre = rdr[1].ToString();
+            }
+            rdr.Close();
+            return Nombre ;
+        }
     }
 }
