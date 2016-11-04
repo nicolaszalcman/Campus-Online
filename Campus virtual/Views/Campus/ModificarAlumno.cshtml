@@ -1,6 +1,5 @@
 ﻿@using Campus_virtual.Models;
 @model Alumno
-
 @{
     ViewBag.Title = "ModificarAlumno";
 }
@@ -13,7 +12,15 @@
 
     Nombre: @Html.TextBoxFor(x => x.Nombre)<br />
     Apellido: @Html.TextBoxFor(x => x.Apellido)<br />
-    Division: @Html.DropDownListFor(x => x.DivisionCompleta, new SelectList(ViewBag.ListarDivision, "IdDivision", "DivisionCompleta"))
+    
+
+    <select name="IdDivision" id="IdDivision" class="form-control">
+        @foreach (var division in ViewBag.ListarDivisiones)
+            {
+            <option value="@division.idDivision">@division.DivisionCompleta</option>
+        }
+    </select>
+
    
     Nombre de Usuario:@Html.TextBoxFor(x => x.NombreUsuario)<br />
     Contraseña: @Html.TextBoxFor(x => x.Contrasenia)<br />

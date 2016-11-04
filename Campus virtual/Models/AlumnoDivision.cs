@@ -21,35 +21,7 @@ namespace Campus_virtual.Models
 
         public string DivisionCompleta { get; set; }
 
-        public AlumnoDivision TraerUnAlumno(int Id)
-        {
-            AbrirConexion abrirconexion = new AbrirConexion();
-            MySqlConnection conn = new MySqlConnection();
-            conn = abrirconexion.Conexion();
-
-            string sql = "SELECT *  FROM alumno where IdAlumno=@Id ";
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@Id", Id);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-            AlumnoDivision unAlumno = new AlumnoDivision();
-            while (rdr.Read())
-            {
-
-
-                unAlumno.Nombre = rdr[1].ToString();
-                unAlumno.Apellido = rdr[2].ToString();
-                unAlumno.IdDivision = Convert.ToInt32(rdr[3]);
-                unAlumno.NombreUsuario = rdr[4].ToString();
-                unAlumno.Contrasenia = rdr[5].ToString();
-
-
-
-            }
-            rdr.Close();
-
-            conn.Close();
-            return unAlumno;
-        }
+       
 
     }
 }

@@ -451,16 +451,15 @@ namespace Campus_virtual.Controllers
 
         public ActionResult ModificarAlumno(int idAlumno)
         {
-            AlumnoDivision miAlumno = new AlumnoDivision();
-            miAlumno = miAlumno.TraerUnAlumno(idAlumno);
-
-            Division midivi = new Division();
-            List<Division> lista = new List<Division>();
-            lista= midivi.ListarDivisiones();
-            ViewBag.ListarDivision = lista;
-
             Alumno miAlumno = new Alumno();
-            miAlumno= miAlumno.TraerAlumno(idAlumno);
+            miAlumno = miAlumno.TraerUnAlumnoo(idAlumno);
+
+           
+            Division MiDivi = new Division();
+            List<Division> list = new List<Division>();
+
+            list = MiDivi.ListarDivisiones();
+            ViewBag.ListarDivisiones = list;
 
 
             return View(miAlumno);
