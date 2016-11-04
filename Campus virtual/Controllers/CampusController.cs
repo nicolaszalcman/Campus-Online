@@ -459,8 +459,7 @@ namespace Campus_virtual.Controllers
             lista= midivi.ListarDivisiones();
             ViewBag.ListarDivision = lista;
 
-            Alumno miAlumno = new Alumno();
-            miAlumno= miAlumno.TraerAlumno(idAlumno);
+
 
 
             return View(miAlumno);
