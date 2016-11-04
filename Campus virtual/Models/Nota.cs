@@ -15,7 +15,10 @@ namespace Campus_virtual.Models
         public int IdMateria { get; set; }
         public int IdDivision { get; set; }
         public string Materia { get; set; }
-        public int notatrimestr1 { get; set; }
+        public int notatrimestre1 { get; set; }
+        public int notatrimestre2 { get; set; }
+        public int notatrimestre3 { get; set; }
+
         public string nombre { get; set; }
         public string apellido { get; set; }
 
@@ -77,7 +80,10 @@ namespace Campus_virtual.Models
             while (rdr.Read())
             {
                 Nota unaNota = new Nota();
-                
+                unaNota.Materia = rdr[0].ToString();
+                unaNota.notatrimestre1 = Convert.ToInt32(rdr[1]);
+                unaNota.notatrimestre2 = Convert.ToInt32(rdr[2]);
+                unaNota.notatrimestre3 = Convert.ToInt32(rdr[3]);
                 ListaNotaAlu.Add(unaNota);
             }
             rdr.Close();
