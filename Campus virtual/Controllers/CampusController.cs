@@ -132,6 +132,13 @@ namespace Campus_virtual.Controllers
             ViewBag.listamateria = unaMateria.listarmateria();
             return View();
         }
+        public ActionResult NotasAlumno()
+        {
+            int IdAlumno = (int)TempData["idAlumno"];
+            Nota unaNota = new Nota();
+            List<Nota> ListaNotasAlumno = unaNota.ListarNotasXAlumno(IdAlumno);
+            return View();
+        }
         [HttpPost]
         public ActionResult login(FormCollection form)
         {
@@ -164,6 +171,7 @@ namespace Campus_virtual.Controllers
                 TempData.Add("idAlumno", unAlumno.idAlumno);
                 List<Falta> listarFaltasAlumno = unaFalta.Faltas_por_Alumnos(unAlumno.idAlumno);
                 ViewBag.listafaltas = listarFaltasAlumno;
+                Session["Alumno"] = "1";
                 Session["Nombre"] = unAlumno.Nombre;
                 return View("VerInasistencias");
             }

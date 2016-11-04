@@ -263,6 +263,7 @@
     <Content Include="Views\Campus\AltaNotas.cshtml" />
     <Content Include="Views\Campus\ModifNotas.cshtml" />
     <Content Include="Views\Campus\Noticias.cshtml" />
+    <Content Include="Views\Campus\NotasAlumno.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

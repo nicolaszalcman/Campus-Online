@@ -33,7 +33,15 @@
                     <li>@Html.ActionLink("Notas", "Notas", "Campus")</li>
                     <li>@Html.ActionLink("Noticias", "Noticias", "Campus")</li>
                 }
-                
+                else if (Session["Alumno"] == "1")
+                {
+                    <li>@Html.ActionLink("Notas", "NotasAlumno", "Campus")</li>
+                }
+                else
+                {
+
+                }
+
             </ul>
             @Html.Partial("_LoginPartial")
         </div>

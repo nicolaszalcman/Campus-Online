@@ -14,7 +14,8 @@ namespace Campus_virtual.Models
         public int IdAlumno { get; set; }
         public int IdMateria { get; set; }
         public int IdDivision { get; set; }
-
+        public string Materia { get; set; }
+        public int notatrimestr1 { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
 
@@ -36,7 +37,8 @@ namespace Campus_virtual.Models
 
             conn.Close();
         }
-        public void Cargar_Nota(List<Nota> listaTraida, string trim,int Materia, int division)
+
+        public void Cargar_Nota(List<Nota> listaTraida, string trim, int Materia, int division)
         {
 
             for (int i = 0; i < listaTraida.Count; i++)
@@ -59,6 +61,28 @@ namespace Campus_virtual.Models
 
 
             }
+
+        }
+        public List<Nota> ListarNotasXAlumno(int IdAlumno)
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+            List<Nota> ListaNotaAlu = new List<Nota>();
+            string sql = "select DISTINCT m.Nombre AS Materia, (select n2.nota from nota AS n2 where n2.IdMateria=n.IdMateria and n2.Trimestre='Primer' and n2.IdAlumno=n.IdAlumno)as Trimestre1, (select n3.nota from nota n3 where n3.IdMateria=n.IdMateria and n3.Trimestre='Segundo' and n3.IdAlumno=n.IdAlumno)as Trimestre2 ,(select n4.nota from nota n4 where n4.IdMateria=n.IdMateria and n4.Trimestre='Tercer' and n4.IdAlumno=n.IdAlumno)as Trimestre3 from nota n inner join materia m on m.IdMateria=n.IdMateria where n.IdAlumno=@ingid";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.Add("@ingid", IdAlumno);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                Nota unaNota = new Nota();
+                
+                ListaNotaAlu.Add(unaNota);
+            }
+            rdr.Close();
+            return ListaNotaAlu;
+            conn.Close();
 
         }
         public List<Nota> ListarNotas()
@@ -139,6 +163,7 @@ namespace Campus_virtual.Models
             return listaNota;
             conn.Close();
         }
+
 
     }
 }
