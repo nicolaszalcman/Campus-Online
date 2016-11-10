@@ -239,6 +239,13 @@ namespace Campus_virtual.Controllers
             TempData.Add("trim", trimestre);
             TempData.Keep();
             ViewBag.listaalumnos = unAlumno.Listar_Alumnos_Falta(anio, Letra);
+            ViewBag.anio = anio;
+            ViewBag.letra = Letra;
+
+            Materia mate = new Materia();
+            string materia;
+            materia = mate.TraerMateria(IdMateria);
+            ViewBag.Materia = materia;
             Nota unaNota = new Nota();
             List<Nota> lista;
             lista = unaNota.ListarNotas();
@@ -340,6 +347,8 @@ namespace Campus_virtual.Controllers
             TempData.Add("anio", anio);
             TempData.Add("letra", Letra);
             TempData.Keep();
+            ViewBag.anio = anio;
+            ViewBag.Letra = Letra;
             return View();
         }
 
@@ -422,6 +431,8 @@ namespace Campus_virtual.Controllers
             List<Alumno> listaAlumnos = new List<Alumno>();
             listaAlumnos = MiAlumno.ListarAlumnosConId(IdDivi);
             ViewBag.ListarAlumnos = listaAlumnos;
+            ViewBag.anio = anio;
+            ViewBag.letra = letra;
             return View("ListaAlumnos");
         }
         public ActionResult AgregarAlumno()
