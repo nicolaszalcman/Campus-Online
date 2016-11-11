@@ -5,15 +5,20 @@
     ViewBag.Title = "VerAlumno";
 }
 
-<h2>Detalles del Alumno</h2>
+<div class="container">
+    <h2>Detalles del Alumno</h2>
 
 
 
-       Nombre: @Model.Nombre <br />
-       Apellido:@Model.Apellido<br />
-       Nombre de Usuario: @Model.NombreUsuario<br />
-       Cantidad de Faltas: @ViewData["CantFaltas"]<br />
-       Cantidad de Sanciones: @ViewData["CantSanciones"]  
-        
-    
+    <h4>
+        Nombre: @Model.Nombre <br />
+        Apellido:@Model.Apellido<br />
+        Nombre de Usuario: @Model.NombreUsuario<br />
+        Cantidad de Faltas: @ViewData["CantFaltas"]<br />
+        Cantidad de Sanciones: @ViewData["CantSanciones"]
+    </h4>
+    <a href="@Url.Action("VerFaltaAlumno","Campus")" type="button" class="btn btn-default btn-lg btn-block"> Inasistencias</a>
+        <a href="@Url.Action("VerNotasAlumno", "Campus")" type="button" class="btn btn-default btn-lg btn-block">Notas</a>
+
+</div>
  

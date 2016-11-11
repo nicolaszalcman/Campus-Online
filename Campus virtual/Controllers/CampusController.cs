@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Campus_virtual.Controllers
 {
+    
     public class CampusController : Controller
     {
         //
@@ -58,7 +59,14 @@ namespace Campus_virtual.Controllers
 
             return View("Index");
         }
-
+        public ActionResult VerFaltaAlumno()
+        {
+            Alumno unAlumno = new Alumno();
+            Falta unaFalta = new Falta();
+            List<Falta> listarFaltasAlumno = unaFalta.Faltas_por_Alumnos((int)TempData["IdAlumno"]);
+            ViewBag.listafaltas = listarFaltasAlumno;
+            return View();
+        }
         public ActionResult AgregarNoticia()
         {
             return View();
@@ -134,7 +142,7 @@ namespace Campus_virtual.Controllers
         }
         public ActionResult NotasAlumno()
         {
-            int IdAlumno = (int)TempData["idAlumno"];
+            int IdAlumno = (int)TempData["IdAlumno"];
             Nota unaNota = new Nota();
             List<Nota> ListaNotasAlumno = unaNota.ListarNotasXAlumno(IdAlumno);
             ViewBag.listanotas = ListaNotasAlumno;
@@ -169,7 +177,7 @@ namespace Campus_virtual.Controllers
                 
                 unAlumno = unAlumno.BuscarId(nombre);
                 TempData.Clear();
-                TempData.Add("idAlumno", unAlumno.idAlumno);
+                TempData.Add("IdAlumno", unAlumno.idAlumno);
                 List<Falta> listarFaltasAlumno = unaFalta.Faltas_por_Alumnos(unAlumno.idAlumno);
                 ViewBag.listafaltas = listarFaltasAlumno;
                 Session["Alumno"] = "1";
@@ -390,7 +398,7 @@ namespace Campus_virtual.Controllers
         {
             Falta unaFalta = new Falta();
             Materia unaMateria = new Materia();
-            List<Falta> faltaAlumnoFecha = unaFalta.TraerFaltas_X_Fecha_por_IdAlumno(fecha, (int)TempData["idAlumno"]);
+            List<Falta> faltaAlumnoFecha = unaFalta.TraerFaltas_X_Fecha_por_IdAlumno(fecha, (int)TempData["IdAlumno"]);
             ViewBag.listafaltas = faltaAlumnoFecha;
             ViewBag.listamaterias = unaMateria.listarmateria();
             ViewBag.fecha = fecha;
@@ -412,7 +420,14 @@ namespace Campus_virtual.Controllers
             UnaNoti= UnaNoti.TraerUnaNoticia(parametro);
             return View(UnaNoti);
         }
-
+        public ActionResult VerNotasAlumno()
+        {
+            int IdAlumno = (int)TempData["IdAlumno"];
+            Nota unaNota = new Nota();
+            List<Nota> ListaNotasAlumno = unaNota.ListarNotasXAlumno(IdAlumno);
+            ViewBag.listanotas = ListaNotasAlumno;
+            return View();
+        }
         public ActionResult Alumnos()
         {
             return View("Alumnos");
@@ -510,11 +525,14 @@ namespace Campus_virtual.Controllers
         {
             DetalleAlumno miAlu = new DetalleAlumno();
             miAlu= miAlu.TraerAlumno(idAlumno);
+            TempData.Clear();
+            TempData.Add("IdAlumno", idAlumno);
+            TempData.Keep();
 
             int cantFalta, cantSancion;
             cantFalta = 0;
             cantSancion = 0;
-
+            
             cantSancion = miAlu.CantidadSancion(idAlumno);
             cantFalta = miAlu.CantidadFaltas(idAlumno);
             ViewData["CantFaltas"] = cantFalta;
