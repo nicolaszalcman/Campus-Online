@@ -87,7 +87,7 @@ namespace Campus_virtual.Models
                     unaNota.notatrimestre1 = 0;
                 }
                
-                if (Convert.ToInt32(rdr[2]) == null)
+                if ((rdr[2]) == null)
                 {
                     unaNota.notatrimestre2 = 0;
                 }
