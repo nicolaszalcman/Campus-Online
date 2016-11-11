@@ -82,26 +82,29 @@ namespace Campus_virtual.Models
                 
                 Nota unaNota = new Nota();
                 unaNota.Materia = rdr[0].ToString();
-                if(Convert.ToInt32(rdr[1]) == null)
+                try
+                {
+                    unaNota.notatrimestre1 = Convert.ToInt32(rdr[1]);
+                }
+                catch (InvalidCastException e)
                 {
                     unaNota.notatrimestre1 = 0;
                 }
-               
-                if (Convert.ToInt32(rdr[2]) == null)
-                {
-                    unaNota.notatrimestre2 = 0;
-                }
-                else
+                try
                 {
                     unaNota.notatrimestre2 = Convert.ToInt32(rdr[2]);
                 }
-                if (Convert.ToInt32(rdr[3]) == null)
+                catch (InvalidCastException e)
                 {
-                    unaNota.notatrimestre3 = 0;
+                    unaNota.notatrimestre2 = 0;
                 }
-                else
+                try
                 {
                     unaNota.notatrimestre3 = Convert.ToInt32(rdr[3]);
+                }
+                catch (InvalidCastException e)
+                {
+                    unaNota.notatrimestre3 = 0;
                 }
 
                 ListaNotaAlu.Add(unaNota);

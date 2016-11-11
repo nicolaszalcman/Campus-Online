@@ -143,6 +143,7 @@ namespace Campus_virtual.Controllers
         public ActionResult NotasAlumno()
         {
             int IdAlumno = (int)TempData["IdAlumno"];
+            TempData.Clear();
             Nota unaNota = new Nota();
             List<Nota> ListaNotasAlumno = unaNota.ListarNotasXAlumno(IdAlumno);
             ViewBag.listanotas = ListaNotasAlumno;
@@ -178,6 +179,7 @@ namespace Campus_virtual.Controllers
                 unAlumno = unAlumno.BuscarId(nombre);
                 TempData.Clear();
                 TempData.Add("IdAlumno", unAlumno.idAlumno);
+                TempData.Keep();
                 List<Falta> listarFaltasAlumno = unaFalta.Faltas_por_Alumnos(unAlumno.idAlumno);
                 ViewBag.listafaltas = listarFaltasAlumno;
                 Session["Alumno"] = "1";
@@ -399,6 +401,7 @@ namespace Campus_virtual.Controllers
             Falta unaFalta = new Falta();
             Materia unaMateria = new Materia();
             List<Falta> faltaAlumnoFecha = unaFalta.TraerFaltas_X_Fecha_por_IdAlumno(fecha, (int)TempData["IdAlumno"]);
+            TempData.Keep();
             ViewBag.listafaltas = faltaAlumnoFecha;
             ViewBag.listamaterias = unaMateria.listarmateria();
             ViewBag.fecha = fecha;
