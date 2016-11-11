@@ -82,7 +82,30 @@ namespace Campus_virtual.Models
             return Lista;
         }
 
-        
+        public Division TraerDivision(int Id)
+        {
+            AbrirConexion abrirconexion = new AbrirConexion();
+            MySqlConnection conn = new MySqlConnection();
+            conn = abrirconexion.Conexion();
+           
+            string sql = "SELECT * FROM division where IdDivision=@Id";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@Id", Id);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            Division midivi = new Division();
+            while (rdr.Read())
+            {
+                
+                midivi.idDivision = Convert.ToInt32(rdr[0]);
+                midivi.Año = Convert.ToInt32(rdr[1]);
+                midivi.Nombre = rdr[2].ToString();
+                midivi.DivisionCompleta = rdr[3].ToString();
+            }
+
+            conn.Close();
+            rdr.Close();
+            return midivi;
+        }
 
 
     }

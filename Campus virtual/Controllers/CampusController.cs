@@ -468,11 +468,16 @@ namespace Campus_virtual.Controllers
            
             UnAlumno.AgregarAlumno(UnAlumno.IdDivision);
 
-
+            
             Alumno MiAlumno = new Alumno();
 
+           
             List<Alumno> listaAlumnos = new List<Alumno>();
-            listaAlumnos = MiAlumno.ListarAlumnosConId((int)TempData["Divi"]);
+            listaAlumnos = MiAlumno.ListarAlumnosConId(UnAlumno.IdDivision);
+            Division midivi = new Division();
+            midivi = midivi.TraerDivision(UnAlumno.IdDivision);
+            ViewBag.anio = midivi.Año;
+            ViewBag.letra = midivi.Nombre;
             ViewBag.ListarAlumnos = listaAlumnos;
             return View("ListaAlumnos");
 
@@ -516,6 +521,10 @@ namespace Campus_virtual.Controllers
             List<Alumno> listaAlumnos = new List<Alumno>();
             listaAlumnos = MiAlumno.ListarAlumnosConId((int)TempData["Divi"]);
             ViewBag.ListarAlumnos = listaAlumnos;
+            Division midivi = new Division();
+            midivi = midivi.TraerDivision(UnAlumno.IdDivision);
+            ViewBag.anio = midivi.Año;
+            ViewBag.letra = midivi.Nombre;
             return View("ListaAlumnos");
 
 

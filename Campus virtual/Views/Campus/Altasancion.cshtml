@@ -7,6 +7,9 @@
 @model Sancion
 <div class="container">
     <h1>Agregar Sancion </h1>
+
+   
+
     @using (Html.BeginForm("Altasancion", "Campus", FormMethod.Post))
     {
 
@@ -17,7 +20,7 @@
         <p>Descripcion:</p> @Html.TextAreaFor(x => x.motivo)<br />
 
 
-        @Html.DropDownListFor(x => x.idAlumno, new SelectList(@ViewBag.listaalumnos, "idAlumno", "nombre", "apellido"))
+        @Html.DropDownListFor(x => x.idAlumno, new SelectList(@ViewBag.listaalumnos, "idAlumno", "nomYAp"))
 
 
         @Html.HiddenFor(x => x.IdSancion)<br />

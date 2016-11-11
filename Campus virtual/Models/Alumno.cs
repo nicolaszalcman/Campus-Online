@@ -17,8 +17,8 @@ namespace Campus_virtual.Models
 
         public string NombreUsuario { get; set; }
         public string Contrasenia { get; set; }
+        public string nomYAp { get { return Nombre + " " + Apellido; } }
 
- 
 
 
 
