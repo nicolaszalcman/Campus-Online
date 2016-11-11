@@ -6,29 +6,34 @@
         <h1>Noticias</h1>
     </div>
     
-    @Html.ActionLink("Agregar noticia", "AgregarNoticia", "Home")<br />
-        {    
+    @Html.ActionLink("Agregar noticia", "AgregarNoticia", "Home")
+    {
+    <br />
+        
+        <div class="row">
             @foreach (Noticias MiNoti in ViewBag.ListarNoticias)
             {
 
+                <div class="col-md-4">
 
-                
-
-                    <p>@MiNoti.Titulo</p><br />
+                    <h3>@MiNoti.Titulo</h3><br />
                     <img src="/content/@MiNoti.Foto" alt="@MiNoti.Foto" style="width:150px;height:150px"><br />
                     <a class="btn btn-default" href="@Url.Action("DetalleNoticia", "Campus" , new { parametro = MiNoti.IdNotica }, null)" role="button">Ver Noticia</a><br />
 
-                    @Html.ActionLink("Editar", "ModificarNoticia", "Home", new { parametro = MiNoti.IdNotica }, null)<br />
+                    @Html.ActionLink("Editar", "ModificarNoticia", "Home", new { parametro = MiNoti.IdNotica, @class = "btn btn-info" }, null)<br />
 
 
-                    <p>@Html.ActionLink("Eliminar", "EliminarNoticia", "Home", new { parametro = MiNoti.IdNotica }, null)</p><br />
+                    <p>@Html.ActionLink("Eliminar", "EliminarNoticia", "Home", new { parametro = MiNoti.IdNotica, @class = "btn btn-info" }, null)</p><br />
 
-               
-               
-                   
-                
-                
-        }
+
+                </div>
+
+
+
+            }
+     </div>
+
+
 
     }
 </div>
