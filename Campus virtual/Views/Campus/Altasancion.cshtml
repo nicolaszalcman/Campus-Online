@@ -13,18 +13,22 @@
     @using (Html.BeginForm("Altasancion", "Campus", FormMethod.Post))
     {
 
-       
-            <p>Fecha</p>@Html.TextBoxFor(x => x.fecha, new { @class = "form-control", Type = "date" })
-        
- <
-        <p>Descripcion:</p> @Html.TextAreaFor(x => x.motivo)<br />
+       <div class="row">
+           
+               <p>Fecha</p>@Html.TextBoxFor(x => x.fecha, new { @class = "form-control", Type = "date" })<br />
+               @Html.DropDownListFor(x => x.idAlumno, new SelectList(@ViewBag.listaalumnos, "idAlumno", "nomYAp"))
+           <div class="col-md-6">
+               <p>Descripcion:</p> @Html.TextAreaFor(x => x.motivo)<br />
+
+               @Html.HiddenFor(x => x.IdSancion)<br />
+               <input class="btn btn-default" type="submit" name="Enviar" />
+           </div>
+           </div>
+      
 
 
-        @Html.DropDownListFor(x => x.idAlumno, new SelectList(@ViewBag.listaalumnos, "idAlumno", "nomYAp"))
 
 
-        @Html.HiddenFor(x => x.IdSancion)<br />
-        <input type="submit" name="Enviar" />
     }
 
 
