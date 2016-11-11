@@ -79,11 +79,31 @@ namespace Campus_virtual.Models
 
             while (rdr.Read())
             {
+                
                 Nota unaNota = new Nota();
                 unaNota.Materia = rdr[0].ToString();
-                unaNota.notatrimestre1 = Convert.ToInt32(rdr[1]);
-                unaNota.notatrimestre2 = Convert.ToInt32(rdr[2]);
-                unaNota.notatrimestre3 = Convert.ToInt32(rdr[3]);
+                if(Convert.ToInt32(rdr[1]) == null)
+                {
+                    unaNota.notatrimestre1 = 0;
+                }
+               
+                if (Convert.ToInt32(rdr[2]) == null)
+                {
+                    unaNota.notatrimestre2 = 0;
+                }
+                else
+                {
+                    unaNota.notatrimestre2 = Convert.ToInt32(rdr[2]);
+                }
+                if (Convert.ToInt32(rdr[3]) == null)
+                {
+                    unaNota.notatrimestre3 = 0;
+                }
+                else
+                {
+                    unaNota.notatrimestre3 = Convert.ToInt32(rdr[3]);
+                }
+
                 ListaNotaAlu.Add(unaNota);
             }
             rdr.Close();
