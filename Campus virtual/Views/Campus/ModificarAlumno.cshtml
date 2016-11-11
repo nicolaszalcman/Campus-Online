@@ -20,7 +20,7 @@
             <select name="IdDivision" id="IdDivision" class="form-control">
                 @foreach (var division in ViewBag.ListarDivisiones)
                 {
-                    <option value="@division.idDivision">@division.DivisionCompleta</option>
+                    <option @(division.idDivision == ViewBag.Division?"selected": "") value="@division.idDivision">@division.DivisionCompleta</option>
                 }
             </select>
             </div>

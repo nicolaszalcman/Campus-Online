@@ -64,6 +64,7 @@ namespace Campus_virtual.Controllers
             Alumno unAlumno = new Alumno();
             Falta unaFalta = new Falta();
             List<Falta> listarFaltasAlumno = unaFalta.Faltas_por_Alumnos((int)TempData["IdAlumno"]);
+            TempData.Clear();
             ViewBag.listafaltas = listarFaltasAlumno;
             return View();
         }
@@ -510,6 +511,7 @@ namespace Campus_virtual.Controllers
 
             list = MiDivi.ListarDivisiones();
             ViewBag.ListarDivisiones = list;
+            ViewBag.Division = miAlumno.IdDivision;
 
 
             return View(miAlumno);
@@ -522,7 +524,7 @@ namespace Campus_virtual.Controllers
 
             Alumno MiAlumno = new Alumno();
             List<Alumno> listaAlumnos = new List<Alumno>();
-            listaAlumnos = MiAlumno.ListarAlumnosConId((int)TempData["Divi"]);
+            listaAlumnos = MiAlumno.ListarAlumnosConId(UnAlumno.IdDivision);
             ViewBag.ListarAlumnos = listaAlumnos;
             Division midivi = new Division();
             midivi = midivi.TraerDivision(UnAlumno.IdDivision);
