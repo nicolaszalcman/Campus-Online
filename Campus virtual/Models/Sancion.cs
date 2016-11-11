@@ -15,7 +15,7 @@ namespace Campus_virtual.Models
         public string apellido { get; set; }
         public int idAlumno { get; set; }
         public int IdDivision { get; set; }
-
+      
         public List<Sancion> ListarSanciones(int año, string division)
         {
             AbrirConexion abrirconexion = new AbrirConexion();

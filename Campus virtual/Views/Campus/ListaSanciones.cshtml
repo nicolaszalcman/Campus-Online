@@ -4,7 +4,7 @@
     <h1> Lista De Sanciones de @ViewBag.anio@ViewBag.Letra</h1>
 </div>
 
-
+<a href="@Url.Action("Altasancion", "Campus")" class="btn btn-info" role="button">Agregar Sancion</a>
 @foreach (var item in ViewBag.listasanciones)
 {
     <div class="list-group">
