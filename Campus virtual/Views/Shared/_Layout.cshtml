@@ -22,9 +22,26 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Inasitencias", "Inasistencias", "Campus")</li>
-                <li>@Html.ActionLink("Sanciones", "Sanciones", "Campus")</li>
-                <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                <li></li>
+              
+                @if ( Session["Nombre"] == "Admin")
+                {
+                    
+                    <li>@Html.ActionLink("Inasistencias", "Inasistencias", "Campus")</li>
+                    <li>@Html.ActionLink("Sanciones", "Sanciones", "Campus")</li>
+                    <li>@Html.ActionLink("Alumnos", "Alumnos", "Campus")</li>
+                    <li>@Html.ActionLink("Notas", "Notas", "Campus")</li>
+                    <li>@Html.ActionLink("Noticias", "Noticias", "Campus")</li>
+                }
+                else if (Session["Alumno"] == "1")
+                {
+                    <li>@Html.ActionLink("Notas", "NotasAlumno", "Campus")</li>
+                }
+                else
+                {
+
+                }
+
             </ul>
             @Html.Partial("_LoginPartial")
         </div>
@@ -33,20 +50,7 @@
 
         @RenderBody()
         <hr />
-        <footer class="footer">
-            <center>
-                <ul class="texto">
-
-                    <li> @Html.ActionLink("Nosotros", "Acerca de", "Campus")</li>
-                    <li>@Html.ActionLink("Preguntas Frecuentes", "Preguntas frecuentes", "Campus")</li>
-                    <li> @Html.ActionLink("Contacto", "Contacto", "Campus")</li>
-                    <li> @Html.ActionLink("Esculas adheridas", "Acerca de", "Campus")</li>
-                    <li> @Html.ActionLink("Calificar", "Preguntas frecuentes", "Campus")</li>
-                    <li>@Html.ActionLink("Ayuda", "Contacto", "Campus")</li>
-
-                </ul>
-            </center>
-        </footer>
+        
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

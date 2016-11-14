@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "VerNotasAlumno";
+}
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Materia</th>
+                <th>Primer Trimestr</th>
+                <th>Segundo Trimestre</th>
+                <th>Tercer Trimestre</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in ViewBag.listanotas)
+            {
+                <tr>
+                    <td>@item.Materia</td>
+                    <td>@item.notatrimestre1</td>
+                    <td>@item.notatrimestre2</td>
+                    <td>@item.notatrimestre3</td>
+                </tr>
+            }
+
+
+
+
+        </tbody>
+    </table>
+</div>

@@ -1,6 +1,8 @@
 ﻿@{
     ViewBag.Title = "La escuela de hilel";
 }
+@using Campus_virtual.Models;
+@model Noticias
 
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
@@ -37,3 +39,25 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+
+<div class="container">
+    @{
+       
+        <div class="row">
+            @foreach (Noticias MiNoti in ViewBag.ListarNoticias)
+            {
+
+                <div class="col-md-4">
+                    <a href="pulpitrock.jpg" class="thumbnail">
+                        <p>@MiNoti.Titulo</p>
+                        <a href=@Url.Action("DetalleNoticia", "Campus", new { parametro = MiNoti.IdNotica })>
+                            <img src="/content/@MiNoti.Foto" alt="@MiNoti.Foto" style="width:150px;height:150px">
+                        </a>
+                </div>
+
+
+
+            }
+        </div>
+    }
+</div>

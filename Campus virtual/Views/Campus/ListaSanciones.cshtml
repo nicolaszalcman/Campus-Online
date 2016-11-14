@@ -1,0 +1,15 @@
+﻿
+
+<div class="page-header">
+    <h1> Lista De Sanciones de @ViewBag.anio@ViewBag.Letra</h1>
+</div>
+
+<a href="@Url.Action("Altasancion", "Campus")" class="btn btn-info" role="button">Agregar Sancion</a>
+@foreach (var item in ViewBag.listasanciones)
+{
+    <div class="list-group">
+        <a href="@Url.Action("VerSancion", "Campus", new { IdSancion = item.IdSancion })" class="list-group-item"><span class="badge">Ver</span> @item.fecha     @item.nombre   @item.apellido</a>
+        <a href="@Url.Action("EliminarSancion", "Campus", new { IdSancion = item.IdSancion })" class="btn btn-info" role="button">Eliminar Sancion</a>
+    </div>
+}
+

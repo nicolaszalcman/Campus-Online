@@ -1,0 +1,31 @@
+﻿
+
+
+@{
+    ViewBag.Title = "AgregarNoticia";
+}
+
+@using Campus_virtual.Models;
+@model Noticias
+<div class="container">
+    <h2>Agregar Noticia</h2>
+
+
+    @using (Html.BeginForm("AgregarNoticia", "Campus", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+    {
+        <div class="row">
+            <div class="col-md-6">
+                @Html.Label("Titulo: ") @Html.TextBoxFor(x => x.Titulo, new { @class = "form-control" }) <br />
+                @Html.Label("Fecha: ") @Html.TextBoxFor(x => x.Fecha, new { @class = "form-control", Type = "date" })<br />
+            </div>
+            <div class="col-md-6">
+                @Html.Label("Descripcion: ") @Html.TextAreaFor(x => x.Descripcion, new { @class = "form-control" })<br />
+                @Html.Label("Foto: ") <input type="file" name="file" id="file" /><br />
+                @Html.Label("Fuente: ") @Html.TextBoxFor(x => x.Nota, new { @class = "form-control" })<br />
+
+                <input class="btn btn-default" type="submit" value="Aceptar" />
+            </div>
+        </div>
+
+    }
+</div>

@@ -1,0 +1,27 @@
+﻿@using Campus_virtual.Models;
+@model Noticias
+@{
+    ViewBag.Title = "ModificarNoticia";
+}
+
+
+<h2>ModificarNoticia</h2>
+
+
+<form method="post" action="@Url.Action("ModificarNoticia","Home")" enctype="multipart/form-data">
+
+
+    @Html.HiddenFor(x => x.IdNotica)
+  
+    @Html.HiddenFor(x => x.Foto)
+
+    Nombre: @Html.TextBoxFor(x => x.Titulo)<br />
+    Descripción: @Html.TextBoxFor(x => x.Descripcion)<br />
+    <img src="/content/@ViewBag.NomFoto" alt="@ViewBag.NomFoto" height="200px" width="220px" /><br />
+    <input type="file" name="file" id="file" /><br />
+    Fuente: @Html.TextBoxFor(x => x.Nota)<br />
+    Fecha: @Html.TextBoxFor(x => x.Fecha, new { @class = "form.control", Type = "date" })<br />
+   
+    <input type="submit" value="Aceptar" />
+
+</form>

@@ -1,15 +1,20 @@
 ﻿
+@{
+    ViewBag.Title = "Alumnos";
+}
+@{ int anio = 0;
+    string division = "";
+    int contador = 0;
+}
+
+@using Campus_virtual.Models;
+
 <div class="container">
-    <div class="page-header">
-        <h1>Sanciones</h1>
-    </div>
-
    
-    
-    @using (Html.BeginForm("ListaSanciones", "Campus", FormMethod.Post))
+
+    @using (Html.BeginForm("ListarAlumnos", "Campus", FormMethod.Post))
     {
-
-
+        <h2>Divisiones</h2>
         <div class="form-inline" role="form">
             <div class="form-group">
                 <label for="sel1">Seleccionar Año</label>
@@ -20,32 +25,25 @@
                     <option id="anio" value="4">4</option>
                     <option id="anio" value="5">5</option>
                     <option id="anio" value="6">6</option>
-
                 </select>
-
-
             </div>
-
-
-
             <div id="Division" class="form-group">
                 <div class="form-group">
-                    <label for="sel1">Seleccionar Divicion</label>
+                    <label for="sel1">Seleccionar Año</label>
                     <select id="anio" name="letra" class="form-control">
                         <option id="letra" value="A">A</option>
                         <option id="letra" value="B">B</option>
                        
-
                     </select>
                 </div>
             </div>
-            
+
         </div><br /><br />
+            <button type="submit" class="btn btn-default">Cargar</button>
+            <br /><br />
+            <a href="@Url.Action("AgregarAlumno", "Campus")" class="btn btn-info" role="button">Agregar Alumno</a>
 
-    <button type="submit" class="btn btn-default">Cargar</button>
-    <br /><br />
-
-    
 
     }
+
 

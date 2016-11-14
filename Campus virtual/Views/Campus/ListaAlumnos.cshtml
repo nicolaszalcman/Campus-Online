@@ -1,0 +1,33 @@
+﻿@using Campus_virtual.Models;
+@model Alumno
+@{
+    ViewBag.Title = "ListaAlumnos";
+}
+
+<h2>Lista de Alumnos de @ViewBag.anio@ViewBag.letra </h2>
+
+
+
+<br /><br />
+<table class="table table-hover">
+
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        
+    </tr>
+    @foreach (var item in ViewBag.ListarAlumnos)
+    {
+        <tr>
+            <td>@item.Nombre     </td>
+            <td>@item.Apellido</td>
+            <td><a href="@Url.Action("VerAlumno", "Campus", new { idAlumno = item.idAlumno })">Ver  </a></td>
+            <td><a href="@Url.Action("ModificarAlumno", "Campus", new { idAlumno = item.idAlumno })">Modificar </a> </td>
+            <td><a href="@Url.Action("EliminarAlumno", "Campus", new { idAlumno = item.idAlumno })">Eliminar </a></td>
+        </tr>
+        
+
+    }
+</table>
+
+
