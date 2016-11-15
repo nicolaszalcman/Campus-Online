@@ -56,7 +56,7 @@ namespace Campus_virtual.Models
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
             List<Alumno> listaAlumnos = new List<Alumno>();
-            string sql = "SELECT * FROM alumno INNER JOIN division on alumno.IdDivision = division.IdDivision WHERE division.Año = @anio AND division.Division = @letra";
+            string sql = "SELECT * FROM alumno INNER JOIN division on alumno.IdDivision = division.IdDivision WHERE division.Año = @anio AND division.Division = @letra ORDER BY Apellido ASC";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.Parameters.Add("@anio", año);
             cmd.Parameters.Add("@letra", division);
@@ -146,7 +146,7 @@ namespace Campus_virtual.Models
             MySqlConnection conn = new MySqlConnection();
             conn = abrirconexion.Conexion();
             List<Alumno> listaAlumnos = new List<Alumno>();
-            string sql = "SELECT *  FROM alumno  where IdDivision= @Id order by Apellido asc ";
+            string sql = "SELECT *  FROM alumno  where IdDivision= @Id ORDER BY  Apellido ASC ";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             
             cmd.Parameters.Add("@Id", IdDivision);
