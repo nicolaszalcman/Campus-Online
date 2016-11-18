@@ -64,7 +64,7 @@ namespace Campus_virtual.Controllers
             Alumno unAlumno = new Alumno();
             Falta unaFalta = new Falta();
             List<Falta> listarFaltasAlumno = unaFalta.Faltas_por_Alumnos((int)TempData["IdAlumno"]);
-            TempData.Clear();
+            TempData.Keep();
             ViewBag.listafaltas = listarFaltasAlumno;
             return View();
         }
@@ -427,6 +427,7 @@ namespace Campus_virtual.Controllers
         public ActionResult VerNotasAlumno()
         {
             int IdAlumno = (int)TempData["IdAlumno"];
+            TempData.Keep();
             Nota unaNota = new Nota();
             List<Nota> ListaNotasAlumno = unaNota.ListarNotasXAlumno(IdAlumno);
             ViewBag.listanotas = ListaNotasAlumno;
