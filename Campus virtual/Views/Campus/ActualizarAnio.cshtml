@@ -40,11 +40,11 @@
                 @foreach (var item in ViewBag.listaalumnos)
                 {
                     <tr>
-                        <td>@item.idAlumno @item.Nombre</td>
+                        <td> @item.Nombre</td>
                         <td>@item.Apellido </td>
 
                         <td>
-                            @Html.DropDownListFor(x => x[contador].tipo, listItems, "Presente")
+                            @Html.DropDownListFor(x => x[contador].tipo, listItems, "Presente", new { @class = "form-control" })
                         </td>
                     </tr>
 

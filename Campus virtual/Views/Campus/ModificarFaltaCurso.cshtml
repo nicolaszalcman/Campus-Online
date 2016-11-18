@@ -50,7 +50,7 @@
                                 listItems.ForEach(lt => lt.Selected = false);
                                 listItems.First(lt => lt.Text == item.tipo).Selected = true;
                              }
-                            @Html.DropDownListFor(x => x[contador].tipo, listItems)
+                            @Html.DropDownListFor(x => x[contador].tipo, listItems, new { @class = "form-control" })
                         </td>
                     </tr>
                     
