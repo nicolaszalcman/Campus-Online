@@ -42,6 +42,7 @@ namespace Campus_virtual.Models
                 unAlumno.idAlumno = Convert.ToInt32(rdr[0]);
                 unAlumno.Nombre = rdr[1].ToString();
                 unAlumno.Apellido = rdr[2].ToString();
+                
 
                 listaAlumnos.Add(unAlumno);
             }
