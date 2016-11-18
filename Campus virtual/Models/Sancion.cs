@@ -15,7 +15,8 @@ namespace Campus_virtual.Models
         public string apellido { get; set; }
         public int idAlumno { get; set; }
         public int IdDivision { get; set; }
-      
+        public string nomYAp { get { return nombre + " " + apellido; } }
+
         public List<Sancion> ListarSanciones(int año, string division)
         {
             AbrirConexion abrirconexion = new AbrirConexion();
@@ -34,8 +35,9 @@ namespace Campus_virtual.Models
                 unaSancion.IdSancion = Convert.ToInt32(rdr[0]);
                 unaSancion.fecha = Convert.ToDateTime(rdr[1]);
                 unaSancion.motivo = rdr[2].ToString();
-                unaSancion.nombre = rdr[5].ToString();
-                unaSancion.apellido = rdr[6].ToString();
+                unaSancion.idAlumno= Convert.ToInt32(rdr[4]);
+                unaSancion.nombre = rdr[6].ToString();
+                unaSancion.apellido = rdr[7].ToString();
                 listaSanciones.Add(unaSancion);
             }
             rdr.Close();
@@ -77,11 +79,13 @@ namespace Campus_virtual.Models
 
             while (rdr.Read())
             {
+                
                 unaSancion.IdSancion = Convert.ToInt32(rdr[0]);
                 unaSancion.fecha = Convert.ToDateTime(rdr[1]);
                 unaSancion.motivo = rdr[2].ToString();
-                unaSancion.nombre = rdr[5].ToString();
-                unaSancion.apellido = rdr[6].ToString();
+                unaSancion.idAlumno = Convert.ToInt32(rdr[4]);
+                unaSancion.nombre = rdr[6].ToString();
+                unaSancion.apellido = rdr[7].ToString();
             }
             rdr.Close();
             return unaSancion;
